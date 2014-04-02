@@ -23,21 +23,10 @@
 		<h3 class="element-title"><?php echo $element->elementType->name?></h3>
 	</header>
 
-			<div class="element-data element-eyes row">
-			<div class="element-eye right-eye column">
-<?php if ($element->hasRight()) {?>						<div class="row data-row">
-			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('medication_history_verified_left'))?></div></div>
-			<div class="large-10 column end"><div class="data-value"><?php echo $element->medication_history_verified_left ? 'Yes' : 'No'?></div></div>
+		<div class="element-data">
+				<div class="row data-row">
+			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('medication_history_verified'))?></div></div>
+			<div class="large-10 column end"><div class="data-value"><?php echo $element->medication_history_verified ? 'Yes' : 'No'?></div></div>
 		</div>
-				<?php } else { ?>					<div class="data-value">Not recorded</div>
-				<?php } ?>			</div>
-			<div class="element-eye left-eye column">
-<?php if ($element->hasLeft()) {?>						<div class="row data-row">
-			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('medication_history_verified_left'))?></div></div>
-			<div class="large-10 column end"><div class="data-value"><?php echo $element->medication_history_verified_left ? 'Yes' : 'No'?></div></div>
-		</div>
-				<?php } else { ?>					<div class="data-value">Not recorded</div>
-				<?php } ?>			</div>
-		</div>
-		</div>
+			</div>
 </section>

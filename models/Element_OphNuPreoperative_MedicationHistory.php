@@ -34,7 +34,7 @@
  * @property User $usermodified
  */
 
-class Element_OphNuPreoperative_MedicationHistory  extends  SplitEventTypeElement
+class Element_OphNuPreoperative_MedicationHistory  extends  BaseEventTypeElement
 {
 	public $service;
 
@@ -60,14 +60,10 @@ class Element_OphNuPreoperative_MedicationHistory  extends  SplitEventTypeElemen
 	 */
 	public function rules()
 	{
-		// NOTE: you should only define rules for those attributes that
-		// will receive user inputs.
 		return array(
-			array('event_id, medication_history_verified_left, medication_history_verified_right, ', 'safe'),
-			array('medication_history_verified_left, medication_history_verified_right, ', 'required'),
-			// The following rule is used by search().
-			// Please remove those attributes that should not be searched.
-			array('id, event_id, medication_history_verified_left, medication_history_verified_right, ', 'safe', 'on' => 'search'),
+			array('event_id, medication_history_verified, ', 'safe'),
+			array('medication_history_verified, ', 'required'),
+			array('id, event_id, medication_history_verified, ', 'safe', 'on' => 'search'),
 		);
 	}
 
@@ -76,15 +72,12 @@ class Element_OphNuPreoperative_MedicationHistory  extends  SplitEventTypeElemen
 	 */
 	public function relations()
 	{
-		// NOTE: you may need to adjust the relation name and the related
-		// class name for the relations automatically generated below.
 		return array(
 			'element_type' => array(self::HAS_ONE, 'ElementType', 'id','on' => "element_type.class_name='".get_class($this)."'"),
 			'eventType' => array(self::BELONGS_TO, 'EventType', 'event_type_id'),
 			'event' => array(self::BELONGS_TO, 'Event', 'event_id'),
 			'user' => array(self::BELONGS_TO, 'User', 'created_user_id'),
 			'usermodified' => array(self::BELONGS_TO, 'User', 'last_modified_user_id'),
-			'eye' => array(self::BELONGS_TO, 'Eye', 'eye_id'),
 		);
 	}
 
@@ -96,8 +89,7 @@ class Element_OphNuPreoperative_MedicationHistory  extends  SplitEventTypeElemen
 		return array(
 			'id' => 'ID',
 			'event_id' => 'Event',
-			'medication_history_verified_left' => 'Medication History Verified',
-			'medication_history_verified_right' => 'Medication History Verified',
+			'medication_history_verified' => 'Medication History Verified',
 		);
 	}
 
@@ -107,15 +99,11 @@ class Element_OphNuPreoperative_MedicationHistory  extends  SplitEventTypeElemen
 	 */
 	public function search()
 	{
-		// Warning: Please modify the following code to remove attributes that
-		// should not be searched.
-
 		$criteria = new CDbCriteria;
 
 		$criteria->compare('id', $this->id, true);
 		$criteria->compare('event_id', $this->event_id, true);
-		$criteria->compare('medication_history_verified_left', $this->medication_history_verified_left);
-		$criteria->compare('medication_history_verified_right', $this->medication_history_verified_right);
+		$criteria->compare('medication_history_verified', $this->medication_history_verified);
 
 		return new CActiveDataProvider(get_class($this), array(
 			'criteria' => $criteria,
@@ -124,20 +112,10 @@ class Element_OphNuPreoperative_MedicationHistory  extends  SplitEventTypeElemen
 
 
 
-	protected function beforeSave()
-	{
-		return parent::beforeSave();
-	}
-
 	protected function afterSave()
 	{
 
 		return parent::afterSave();
-	}
-
-	protected function beforeValidate()
-	{
-		return parent::beforeValidate();
 	}
 }
 ?>

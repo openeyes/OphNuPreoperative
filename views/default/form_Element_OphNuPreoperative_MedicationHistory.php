@@ -27,48 +27,8 @@
 		<h3 class="element-title"><?php echo $element->elementType->name; ?></h3>
 	</header>
 
-		<div class="element-fields element-eyes row">
-		<?php $form->hiddenInput($element, 'eye_id', false, array('class' => 'sideField'));?>
-		<div class="element-eye right-eye left side column <?php if (!$element->hasRight()) { ?> inactive <?php } ?>"
-				 data-side="right">
-			<div class="active-form">
-				<a href="#" class="icon-remove-side remove-side">Remove side</a>
-				<div class="element-fields">
-					<div class="row">
-						<div class="large-12 column">
-								<?php echo $form->checkBox($element, 'medication_history_verified_right')?>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="inactive-form">
-				<div class="add-side">
-					<a href="#">
-						Add Right side <span class="icon-add-side"></span>
-					</a>
-				</div>
-			</div>
-		</div>
-
-		<div class="element-eye left-eye right side column <?php if (!$element->hasLeft()) { ?> inactive <?php } ?>"
-				 data-side="left">
-			<div class="active-form">
-				<a href="#" class="icon-remove-side remove-side">Remove side</a>
-				<div class="element-fields">
-					<div class="row">
-						<div class="large-12 column">
-								<?php echo $form->checkBox($element, 'medication_history_verified_left')?>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="inactive-form">
-				<div class="add-side">
-					<a href="#">
-						Add Left side <span class="icon-add-side"></span>
-					</a>
-				</div>
-			</div>
-		</div>
-		
+		<div class="element-fields">
+			<?php echo $form->checkBox($element, 'medication_history_verified')?>
+	</div>
+	
 </section>

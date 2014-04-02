@@ -29,13 +29,16 @@
 
 		<div class="element-fields">
 			<?php echo $form->textField($element, 'blood_pressure', array('size' => '10'))?>
-	<?php echo $form->textField($element, 'heart_rate', array('size' => '10'))?>
+	<?php echo $form->textField($element, 'mmhg', array('size' => '10'))?>
+	<?php echo $form->textField($element, 'heart_rate_pulse', array('size' => '10'))?>
 	<?php echo $form->textField($element, 'temperature', array('size' => '10'))?>
 	<?php echo $form->textField($element, 'respiratory_rate', array('size' => '10'))?>
-	<?php echo $form->textField($element, 'blood_sugar', array('size' => '10'))?>
+	<?php echo $form->textField($element, 'sao2', array('size' => '10'))?>
+	<?php echo $form->checkBox($element, 'blood_sugar')?>
+	<?php echo $form->textField($element, 'blood_sugar_comments', array('size' => '10'))?>
 	<?php echo $form->radioBoolean($element, 'urine_passed')?>
-	<?php echo $form->textField($element, 'time', array('size' => '10'))?>
-	<?php echo $form->textField($element, 'avpi', array('size' => '10'))?>
+	<?php echo $form->textField($element, 'urine_passed_time', array('size' => '10'))?>
+	<?php echo $form->textField($element, 'avpu', array('size' => '10'))?>
 	</div>
 	
 </section>

@@ -24,13 +24,16 @@
  * @property string $id
  * @property integer $event_id
  * @property string $blood_pressure
- * @property string $heart_rate
+ * @property string $mmhg
+ * @property string $heart_rate_pulse
  * @property string $temperature
  * @property string $respiratory_rate
- * @property string $blood_sugar
+ * @property string $sao2
+ * @property integer $blood_sugar
+ * @property string $blood_sugar_comments
  * @property integer $urine_passed
- * @property string $time
- * @property string $avpi
+ * @property string $urine_passed_time
+ * @property string $avpu
  *
  * The followings are the available model relations:
  *
@@ -67,14 +70,10 @@ class Element_OphNuPreoperative_BaselineObservations  extends  BaseEventTypeElem
 	 */
 	public function rules()
 	{
-		// NOTE: you should only define rules for those attributes that
-		// will receive user inputs.
 		return array(
-			array('event_id, blood_pressure, heart_rate, temperature, respiratory_rate, blood_sugar, urine_passed, time, avpi, ', 'safe'),
-			array('blood_pressure, heart_rate, temperature, respiratory_rate, blood_sugar, urine_passed, time, avpi, ', 'required'),
-			// The following rule is used by search().
-			// Please remove those attributes that should not be searched.
-			array('id, event_id, blood_pressure, heart_rate, temperature, respiratory_rate, blood_sugar, urine_passed, time, avpi, ', 'safe', 'on' => 'search'),
+			array('event_id, blood_pressure, mmhg, heart_rate_pulse, temperature, respiratory_rate, sao2, blood_sugar, blood_sugar_comments, urine_passed, urine_passed_time, avpu, ', 'safe'),
+			array('blood_pressure, mmhg, heart_rate_pulse, temperature, respiratory_rate, sao2, blood_sugar, blood_sugar_comments, urine_passed, urine_passed_time, avpu, ', 'required'),
+			array('id, event_id, blood_pressure, mmhg, heart_rate_pulse, temperature, respiratory_rate, sao2, blood_sugar, blood_sugar_comments, urine_passed, urine_passed_time, avpu, ', 'safe', 'on' => 'search'),
 		);
 	}
 
@@ -83,8 +82,6 @@ class Element_OphNuPreoperative_BaselineObservations  extends  BaseEventTypeElem
 	 */
 	public function relations()
 	{
-		// NOTE: you may need to adjust the relation name and the related
-		// class name for the relations automatically generated below.
 		return array(
 			'element_type' => array(self::HAS_ONE, 'ElementType', 'id','on' => "element_type.class_name='".get_class($this)."'"),
 			'eventType' => array(self::BELONGS_TO, 'EventType', 'event_type_id'),
@@ -103,13 +100,16 @@ class Element_OphNuPreoperative_BaselineObservations  extends  BaseEventTypeElem
 			'id' => 'ID',
 			'event_id' => 'Event',
 			'blood_pressure' => 'Blood Pressure',
-			'heart_rate' => 'Heart Rate Pulse',
+			'mmhg' => 'mmHg',
+			'heart_rate_pulse' => 'Heart Rate Pulse',
 			'temperature' => 'Temperature',
 			'respiratory_rate' => 'Respiratory Rate',
+			'sao2' => 'SaO2',
 			'blood_sugar' => 'Blood Sugar',
+			'blood_sugar_comments' => 'Blood Sugar',
 			'urine_passed' => 'Urine Passed',
-			'time' => 'Time',
-			'avpi' => 'AVPI',
+			'urine_passed_time' => 'Urine Passed Time',
+			'avpu' => 'AVPU',
 		);
 	}
 
@@ -119,21 +119,21 @@ class Element_OphNuPreoperative_BaselineObservations  extends  BaseEventTypeElem
 	 */
 	public function search()
 	{
-		// Warning: Please modify the following code to remove attributes that
-		// should not be searched.
-
 		$criteria = new CDbCriteria;
 
 		$criteria->compare('id', $this->id, true);
 		$criteria->compare('event_id', $this->event_id, true);
 		$criteria->compare('blood_pressure', $this->blood_pressure);
-		$criteria->compare('heart_rate', $this->heart_rate);
+		$criteria->compare('mmhg', $this->mmhg);
+		$criteria->compare('heart_rate_pulse', $this->heart_rate_pulse);
 		$criteria->compare('temperature', $this->temperature);
 		$criteria->compare('respiratory_rate', $this->respiratory_rate);
+		$criteria->compare('sao2', $this->sao2);
 		$criteria->compare('blood_sugar', $this->blood_sugar);
+		$criteria->compare('blood_sugar_comments', $this->blood_sugar_comments);
 		$criteria->compare('urine_passed', $this->urine_passed);
-		$criteria->compare('time', $this->time);
-		$criteria->compare('avpi', $this->avpi);
+		$criteria->compare('urine_passed_time', $this->urine_passed_time);
+		$criteria->compare('avpu', $this->avpu);
 
 		return new CActiveDataProvider(get_class($this), array(
 			'criteria' => $criteria,
@@ -142,20 +142,10 @@ class Element_OphNuPreoperative_BaselineObservations  extends  BaseEventTypeElem
 
 
 
-	protected function beforeSave()
-	{
-		return parent::beforeSave();
-	}
-
 	protected function afterSave()
 	{
 
 		return parent::afterSave();
-	}
-
-	protected function beforeValidate()
-	{
-		return parent::beforeValidate();
 	}
 }
 ?>

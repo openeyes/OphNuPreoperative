@@ -26,8 +26,12 @@
 			<td><span class="big"><?php echo CHtml::encode($element->blood_pressure)?></span></td>
 		</tr>
 		<tr>
-			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('heart_rate'))?></td>
-			<td><span class="big"><?php echo CHtml::encode($element->heart_rate)?></span></td>
+			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('mmhg'))?></td>
+			<td><span class="big"><?php echo CHtml::encode($element->mmhg)?></span></td>
+		</tr>
+		<tr>
+			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('heart_rate_pulse'))?></td>
+			<td><span class="big"><?php echo CHtml::encode($element->heart_rate_pulse)?></span></td>
 		</tr>
 		<tr>
 			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('temperature'))?></td>
@@ -38,20 +42,28 @@
 			<td><span class="big"><?php echo CHtml::encode($element->respiratory_rate)?></span></td>
 		</tr>
 		<tr>
+			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('sao2'))?></td>
+			<td><span class="big"><?php echo CHtml::encode($element->sao2)?></span></td>
+		</tr>
+		<tr>
 			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('blood_sugar'))?></td>
-			<td><span class="big"><?php echo CHtml::encode($element->blood_sugar)?></span></td>
+			<td><span class="big"><?php echo $element->blood_sugar ? 'Yes' : 'No'?></span></td>
+		</tr>
+		<tr>
+			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('blood_sugar_comments'))?></td>
+			<td><span class="big"><?php echo CHtml::encode($element->blood_sugar_comments)?></span></td>
 		</tr>
 		<tr>
 			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('urine_passed'))?>:</td>
 			<td><span class="big"><?php echo $element->urine_passed ? 'Yes' : 'No'?></span></td>
 		</tr>
 		<tr>
-			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('time'))?></td>
-			<td><span class="big"><?php echo CHtml::encode($element->time)?></span></td>
+			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('urine_passed_time'))?></td>
+			<td><span class="big"><?php echo CHtml::encode($element->urine_passed_time)?></span></td>
 		</tr>
 		<tr>
-			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('avpi'))?></td>
-			<td><span class="big"><?php echo CHtml::encode($element->avpi)?></span></td>
+			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('avpu'))?></td>
+			<td><span class="big"><?php echo CHtml::encode($element->avpu)?></span></td>
 		</tr>
 	</tbody>
 </table>

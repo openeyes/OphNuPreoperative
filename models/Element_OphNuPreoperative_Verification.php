@@ -73,13 +73,9 @@ class Element_OphNuPreoperative_Verification  extends  BaseEventTypeElement
 	 */
 	public function rules()
 	{
-		// NOTE: you should only define rules for those attributes that
-		// will receive user inputs.
 		return array(
 			array('event_id, surgical_id, iol_verified, iol_type, iol_size, metal_in_body, comments, removable_dental, full_uppers, full_uppers_removed, full_lowers, other, other_comments, other_removed, ', 'safe'),
 			array('surgical_id, iol_verified, iol_type, iol_size, metal_in_body, comments, removable_dental, full_uppers, full_uppers_removed, full_lowers, other, other_comments, other_removed, ', 'required'),
-			// The following rule is used by search().
-			// Please remove those attributes that should not be searched.
 			array('id, event_id, surgical_id, iol_verified, iol_type, iol_size, metal_in_body, comments, removable_dental, full_uppers, full_uppers_removed, full_lowers, other, other_comments, other_removed, ', 'safe', 'on' => 'search'),
 		);
 	}
@@ -89,8 +85,6 @@ class Element_OphNuPreoperative_Verification  extends  BaseEventTypeElement
 	 */
 	public function relations()
 	{
-		// NOTE: you may need to adjust the relation name and the related
-		// class name for the relations automatically generated below.
 		return array(
 			'element_type' => array(self::HAS_ONE, 'ElementType', 'id','on' => "element_type.class_name='".get_class($this)."'"),
 			'eventType' => array(self::BELONGS_TO, 'EventType', 'event_type_id'),
@@ -131,9 +125,6 @@ class Element_OphNuPreoperative_Verification  extends  BaseEventTypeElement
 	 */
 	public function search()
 	{
-		// Warning: Please modify the following code to remove attributes that
-		// should not be searched.
-
 		$criteria = new CDbCriteria;
 
 		$criteria->compare('id', $this->id, true);
@@ -159,20 +150,10 @@ class Element_OphNuPreoperative_Verification  extends  BaseEventTypeElement
 
 
 
-	protected function beforeSave()
-	{
-		return parent::beforeSave();
-	}
-
 	protected function afterSave()
 	{
 
 		return parent::afterSave();
-	}
-
-	protected function beforeValidate()
-	{
-		return parent::beforeValidate();
 	}
 }
 ?>
