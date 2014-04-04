@@ -34,7 +34,7 @@
 	<?php echo $form->textField($element, 'temperature', array('size' => '10'))?>
 	<?php echo $form->textField($element, 'respiratory_rate', array('size' => '10'))?>
 	<?php echo $form->textField($element, 'sao2', array('size' => '10'))?>
-	<?php echo $form->checkBox($element, 'blood_sugar')?>
+	<?php echo $form->radioBoolean($element, 'blood_sugar')?>
 	<?php echo $form->textField($element, 'blood_sugar_comments', array('size' => '10'))?>
 	<?php echo $form->radioBoolean($element, 'urine_passed')?>
 	<?php echo $form->textField($element, 'urine_passed_time', array('size' => '10'))?>

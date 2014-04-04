@@ -66,16 +66,16 @@
 			<td><span class="big"><?php echo $element->right ? 'Yes' : 'No'?></span></td>
 		</tr>
 		<tr>
-			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('left'))?>:</td>
+			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('left'))?></td>
 			<td><span class="big"><?php echo $element->left ? 'Yes' : 'No'?></span></td>
 		</tr>
 		<tr>
-			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('both'))?>:</td>
+			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('both'))?></td>
 			<td><span class="big"><?php echo $element->both ? 'Yes' : 'No'?></span></td>
 		</tr>
 		<tr>
-			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('comments'))?>:</td>
-			<td><span class="big"><?php echo $element->comments ? 'Yes' : 'No'?></span></td>
+			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('comments'))?></td>
+			<td><span class="big"><?php echo CHtml::encode($element->comments)?></span></td>
 		</tr>
 	</tbody>
 </table>

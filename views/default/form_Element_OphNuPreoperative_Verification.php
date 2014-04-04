@@ -29,18 +29,29 @@
 
 		<div class="element-fields">
 			<?php echo $form->radioButtons($element, 'surgical_id', 'ophnupreoperative_verification_surgical')?>
-	<?php echo $form->checkBox($element, 'iol_verified')?>
-	<?php echo $form->textArea($element, 'iol_type', array('rows' => 6, 'cols' => 80))?>
-	<?php echo $form->textArea($element, 'iol_size', array('rows' => 6, 'cols' => 80))?>
+	<?php echo $form->radioBoolean($element, 'iol_verified')?>
+	<?php echo $form->textField($element, 'iol_type', array('size' => '10'))?>
+	<?php echo $form->textField($element, 'iol_size', array('size' => '10'))?>
 	<?php echo $form->radioBoolean($element, 'metal_in_body')?>
-	<?php echo $form->textArea($element, 'comments', array('rows' => 6, 'cols' => 80))?>
+	<?php echo $form->textArea($element, 'metal_comments', array('rows' => 6, 'cols' => 80))?>
 	<?php echo $form->radioBoolean($element, 'removable_dental')?>
 	<?php echo $form->checkBox($element, 'full_uppers')?>
 	<?php echo $form->checkBox($element, 'full_uppers_removed')?>
 	<?php echo $form->checkBox($element, 'full_lowers')?>
+	<?php echo $form->checkBox($element, 'full_lowers_removed')?>
 	<?php echo $form->checkBox($element, 'other')?>
-	<?php echo $form->textField($element, 'other_comments', array('size' => '10'))?>
-	<?php echo $form->radioBoolean($element, 'other_removed')?>
+	<?php echo $form->radioBoolean($element, 'dental_comments')?>
+	<?php echo $form->radioBoolean($element, 'hearing_aid_present')?>
+	<?php echo $form->checkBox($element, 'right')?>
+	<?php echo $form->radioBoolean($element, 'right_removed')?>
+	<?php echo $form->checkBox($element, 'left')?>
+	<?php echo $form->radioBoolean($element, 'left_removed')?>
+	<?php echo $form->radioBoolean($element, 'patient_belongings')?>
+	<?php echo $form->checkBox($element, 'glasses')?>
+	<?php echo $form->checkBox($element, 'jewelery')?>
+	<?php echo $form->checkBox($element, 'clothing')?>
+	<?php echo $form->checkBox($element, 'other')?>
+	<?php echo $form->radioBoolean($element, 'belongings_comments')?>
 	</div>
 	
 </section>

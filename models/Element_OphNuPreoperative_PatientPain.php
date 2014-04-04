@@ -36,7 +36,7 @@
  * @property integer $right
  * @property integer $left
  * @property integer $both
- * @property integer $comments
+ * @property string $comments
  *
  * The followings are the available model relations:
  *

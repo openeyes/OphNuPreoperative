@@ -26,7 +26,7 @@
 			<td><span class="big"><?php echo $element->surgical ? $element->surgical->name : 'None'?></span></td>
 		</tr>
 		<tr>
-			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('iol_verified'))?></td>
+			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('iol_verified'))?>:</td>
 			<td><span class="big"><?php echo $element->iol_verified ? 'Yes' : 'No'?></span></td>
 		</tr>
 		<tr>
@@ -42,8 +42,8 @@
 			<td><span class="big"><?php echo $element->metal_in_body ? 'Yes' : 'No'?></span></td>
 		</tr>
 		<tr>
-			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('comments'))?></td>
-			<td><span class="big"><?php echo CHtml::encode($element->comments)?></span></td>
+			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('metal_comments'))?></td>
+			<td><span class="big"><?php echo CHtml::encode($element->metal_comments)?></span></td>
 		</tr>
 		<tr>
 			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('removable_dental'))?>:</td>
@@ -62,16 +62,60 @@
 			<td><span class="big"><?php echo $element->full_lowers ? 'Yes' : 'No'?></span></td>
 		</tr>
 		<tr>
+			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('full_lowers_removed'))?></td>
+			<td><span class="big"><?php echo $element->full_lowers_removed ? 'Yes' : 'No'?></span></td>
+		</tr>
+		<tr>
 			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('other'))?></td>
 			<td><span class="big"><?php echo $element->other ? 'Yes' : 'No'?></span></td>
 		</tr>
 		<tr>
-			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('other_comments'))?></td>
-			<td><span class="big"><?php echo CHtml::encode($element->other_comments)?></span></td>
+			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('dental_comments'))?>:</td>
+			<td><span class="big"><?php echo $element->dental_comments ? 'Yes' : 'No'?></span></td>
 		</tr>
 		<tr>
-			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('other_removed'))?>:</td>
-			<td><span class="big"><?php echo $element->other_removed ? 'Yes' : 'No'?></span></td>
+			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('hearing_aid_present'))?>:</td>
+			<td><span class="big"><?php echo $element->hearing_aid_present ? 'Yes' : 'No'?></span></td>
+		</tr>
+		<tr>
+			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('right'))?></td>
+			<td><span class="big"><?php echo $element->right ? 'Yes' : 'No'?></span></td>
+		</tr>
+		<tr>
+			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('right_removed'))?>:</td>
+			<td><span class="big"><?php echo $element->right_removed ? 'Yes' : 'No'?></span></td>
+		</tr>
+		<tr>
+			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('left'))?></td>
+			<td><span class="big"><?php echo $element->left ? 'Yes' : 'No'?></span></td>
+		</tr>
+		<tr>
+			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('left_removed'))?>:</td>
+			<td><span class="big"><?php echo $element->left_removed ? 'Yes' : 'No'?></span></td>
+		</tr>
+		<tr>
+			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('patient_belongings'))?>:</td>
+			<td><span class="big"><?php echo $element->patient_belongings ? 'Yes' : 'No'?></span></td>
+		</tr>
+		<tr>
+			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('glasses'))?></td>
+			<td><span class="big"><?php echo $element->glasses ? 'Yes' : 'No'?></span></td>
+		</tr>
+		<tr>
+			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('jewelery'))?></td>
+			<td><span class="big"><?php echo $element->jewelery ? 'Yes' : 'No'?></span></td>
+		</tr>
+		<tr>
+			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('clothing'))?></td>
+			<td><span class="big"><?php echo $element->clothing ? 'Yes' : 'No'?></span></td>
+		</tr>
+		<tr>
+			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('other'))?></td>
+			<td><span class="big"><?php echo $element->other ? 'Yes' : 'No'?></span></td>
+		</tr>
+		<tr>
+			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('belongings_comments'))?>:</td>
+			<td><span class="big"><?php echo $element->belongings_comments ? 'Yes' : 'No'?></span></td>
 		</tr>
 	</tbody>
 </table>

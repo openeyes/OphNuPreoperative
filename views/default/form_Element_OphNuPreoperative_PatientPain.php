@@ -39,9 +39,9 @@
 	<?php echo $form->checkBox($element, 'other')?>
 	<?php echo $form->textField($element, 'other_comments', array('size' => '10'))?>
 	<?php echo $form->checkBox($element, 'right')?>
-	<?php echo $form->radioBoolean($element, 'left')?>
-	<?php echo $form->radioBoolean($element, 'both')?>
-	<?php echo $form->radioBoolean($element, 'comments')?>
+	<?php echo $form->checkBox($element, 'left')?>
+	<?php echo $form->checkBox($element, 'both')?>
+	<?php echo $form->textArea($element, 'comments', array('rows' => 6, 'cols' => 80))?>
 	</div>
 	
 </section>

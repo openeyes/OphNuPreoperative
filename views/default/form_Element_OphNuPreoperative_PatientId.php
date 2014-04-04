@@ -28,8 +28,17 @@
 	</header>
 
 		<div class="element-fields">
-			<?php echo $form->multiSelectList($element, 'MultiSelect_wb_verified', 'wb_verifieds', 'ophnupreoperative_patientid_wb_verified_id', CHtml::listData(OphNuPreoperative_PatientId_WbVerified::model()->findAll(array('order'=>'display_order asc')),'id','name'), $element->ophnupreoperative_patientid_wb_verified_defaults, array('empty' => '- Please select -', 'label' => 'Wrist band verified with two identifiers'))?>
-	<?php echo $form->multiSelectList($element, 'MultiSelect_wrist_band', 'wrist_bands', 'ophnupreoperative_patientid_wrist_band_id', CHtml::listData(OphNuPreoperative_PatientId_WristBand::model()->findAll(array('order'=>'display_order asc')),'id','name'), $element->ophnupreoperative_patientid_wrist_band_defaults, array('empty' => '- Please select -', 'label' => 'Special Attention wrist band attached'))?>
+			<?php echo $form->radioBoolean($element, 'wb_verified')?>
+	<?php echo $form->checkBox($element, 'dob')?>
+	<?php echo $form->checkBox($element, 'patient_name')?>
+	<?php echo $form->checkBox($element, 'parent_caregiver')?>
+	<?php echo $form->checkBox($element, 'chart_number')?>
+	<?php echo $form->radioBoolean($element, 'sa_wristband')?>
+	<?php echo $form->checkBox($element, 'hypertension')?>
+	<?php echo $form->checkBox($element, 'sickle_cell')?>
+	<?php echo $form->checkBox($element, 'hypertension')?>
+	<?php echo $form->checkBox($element, 'diabetes')?>
+	<?php echo $form->checkBox($element, 'allergies')?>
 	</div>
 	
 </section>

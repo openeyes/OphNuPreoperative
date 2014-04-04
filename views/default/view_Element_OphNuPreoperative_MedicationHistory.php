@@ -25,7 +25,7 @@
 
 		<div class="element-data">
 				<div class="row data-row">
-			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('medication_history_verified'))?></div></div>
+			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('medication_history_verified'))?>:</div></div>
 			<div class="large-10 column end"><div class="data-value"><?php echo $element->medication_history_verified ? 'Yes' : 'No'?></div></div>
 		</div>
 			</div>

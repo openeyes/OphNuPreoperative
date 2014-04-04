@@ -28,7 +28,7 @@
 	</header>
 
 		<div class="element-fields">
-			<?php echo $form->checkBox($element, 'allergies_verified')?>
+			<?php echo $form->radioBoolean($element, 'allergies_verified')?>
 	</div>
 	
 </section>

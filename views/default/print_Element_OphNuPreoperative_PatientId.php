@@ -22,40 +22,48 @@
 <table class="subtleWhite normalText">
 	<tbody>
 		<tr>
-			<td colspan="2">
-				<div class="colThird">
-					<b><?php echo CHtml::encode($element->getAttributeLabel('wb_verified'))?>:</b>
-					<div class="eventHighlight medium">
-						<?php if (!$element->wb_verifieds) {?>
-							<h4>None</h4>
-						<?php } else {?>
-							<h4>
-								<?php foreach ($element->wb_verifieds as $item) {
-									echo $item->ophnupreoperative_patientid_wb_verified->name?><br/>
-								<?php }?>
-							</h4>
-						<?php }?>
-					</div>
-				</div>
-			</td>
+			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('wb_verified'))?>:</td>
+			<td><span class="big"><?php echo $element->wb_verified ? 'Yes' : 'No'?></span></td>
 		</tr>
 		<tr>
-			<td colspan="2">
-				<div class="colThird">
-					<b><?php echo CHtml::encode($element->getAttributeLabel('wrist_band'))?>:</b>
-					<div class="eventHighlight medium">
-						<?php if (!$element->wrist_bands) {?>
-							<h4>None</h4>
-						<?php } else {?>
-							<h4>
-								<?php foreach ($element->wrist_bands as $item) {
-									echo $item->ophnupreoperative_patientid_wrist_band->name?><br/>
-								<?php }?>
-							</h4>
-						<?php }?>
-					</div>
-				</div>
-			</td>
+			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('dob'))?></td>
+			<td><span class="big"><?php echo $element->dob ? 'Yes' : 'No'?></span></td>
+		</tr>
+		<tr>
+			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('patient_name'))?></td>
+			<td><span class="big"><?php echo $element->patient_name ? 'Yes' : 'No'?></span></td>
+		</tr>
+		<tr>
+			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('parent_caregiver'))?></td>
+			<td><span class="big"><?php echo $element->parent_caregiver ? 'Yes' : 'No'?></span></td>
+		</tr>
+		<tr>
+			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('chart_number'))?></td>
+			<td><span class="big"><?php echo $element->chart_number ? 'Yes' : 'No'?></span></td>
+		</tr>
+		<tr>
+			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('sa_wristband'))?>:</td>
+			<td><span class="big"><?php echo $element->sa_wristband ? 'Yes' : 'No'?></span></td>
+		</tr>
+		<tr>
+			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('hypertension'))?></td>
+			<td><span class="big"><?php echo $element->hypertension ? 'Yes' : 'No'?></span></td>
+		</tr>
+		<tr>
+			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('sickle_cell'))?></td>
+			<td><span class="big"><?php echo $element->sickle_cell ? 'Yes' : 'No'?></span></td>
+		</tr>
+		<tr>
+			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('hypertension'))?></td>
+			<td><span class="big"><?php echo $element->hypertension ? 'Yes' : 'No'?></span></td>
+		</tr>
+		<tr>
+			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('diabetes'))?></td>
+			<td><span class="big"><?php echo $element->diabetes ? 'Yes' : 'No'?></span></td>
+		</tr>
+		<tr>
+			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('allergies'))?></td>
+			<td><span class="big"><?php echo $element->allergies ? 'Yes' : 'No'?></span></td>
 		</tr>
 	</tbody>
 </table>

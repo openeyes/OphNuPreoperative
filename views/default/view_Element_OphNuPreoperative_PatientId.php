@@ -26,25 +26,47 @@
 		<div class="element-data">
 				<div class="row data-row">
 			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('wb_verified'))?>:</div></div>
-			<div class="large-10 column end"><div class="data-value"><?php if (!$element->wb_verifieds) {?>
-							None
-						<?php } else {?>
-								<?php foreach ($element->wb_verifieds as $item) {
-									echo $item->ophnupreoperative_patientid_wb_verified->name?><br/>
-								<?php }?>
-						<?php }?>
-			</div></div>
+			<div class="large-10 column end"><div class="data-value"><?php echo $element->wb_verified ? 'Yes' : 'No'?></div></div>
 		</div>
 		<div class="row data-row">
-			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('wrist_band'))?>:</div></div>
-			<div class="large-10 column end"><div class="data-value"><?php if (!$element->wrist_bands) {?>
-							None
-						<?php } else {?>
-								<?php foreach ($element->wrist_bands as $item) {
-									echo $item->ophnupreoperative_patientid_wrist_band->name?><br/>
-								<?php }?>
-						<?php }?>
-			</div></div>
+			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('dob'))?></div></div>
+			<div class="large-10 column end"><div class="data-value"><?php echo $element->dob ? 'Yes' : 'No'?></div></div>
+		</div>
+		<div class="row data-row">
+			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('patient_name'))?></div></div>
+			<div class="large-10 column end"><div class="data-value"><?php echo $element->patient_name ? 'Yes' : 'No'?></div></div>
+		</div>
+		<div class="row data-row">
+			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('parent_caregiver'))?></div></div>
+			<div class="large-10 column end"><div class="data-value"><?php echo $element->parent_caregiver ? 'Yes' : 'No'?></div></div>
+		</div>
+		<div class="row data-row">
+			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('chart_number'))?></div></div>
+			<div class="large-10 column end"><div class="data-value"><?php echo $element->chart_number ? 'Yes' : 'No'?></div></div>
+		</div>
+		<div class="row data-row">
+			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('sa_wristband'))?>:</div></div>
+			<div class="large-10 column end"><div class="data-value"><?php echo $element->sa_wristband ? 'Yes' : 'No'?></div></div>
+		</div>
+		<div class="row data-row">
+			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('hypertension'))?></div></div>
+			<div class="large-10 column end"><div class="data-value"><?php echo $element->hypertension ? 'Yes' : 'No'?></div></div>
+		</div>
+		<div class="row data-row">
+			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('sickle_cell'))?></div></div>
+			<div class="large-10 column end"><div class="data-value"><?php echo $element->sickle_cell ? 'Yes' : 'No'?></div></div>
+		</div>
+		<div class="row data-row">
+			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('hypertension'))?></div></div>
+			<div class="large-10 column end"><div class="data-value"><?php echo $element->hypertension ? 'Yes' : 'No'?></div></div>
+		</div>
+		<div class="row data-row">
+			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('diabetes'))?></div></div>
+			<div class="large-10 column end"><div class="data-value"><?php echo $element->diabetes ? 'Yes' : 'No'?></div></div>
+		</div>
+		<div class="row data-row">
+			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('allergies'))?></div></div>
+			<div class="large-10 column end"><div class="data-value"><?php echo $element->allergies ? 'Yes' : 'No'?></div></div>
 		</div>
 			</div>
 </section>

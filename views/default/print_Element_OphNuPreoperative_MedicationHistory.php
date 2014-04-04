@@ -22,7 +22,7 @@
 <table class="subtleWhite normalText">
 	<tbody>
 		<tr>
-			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('medication_history_verified'))?></td>
+			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('medication_history_verified'))?>:</td>
 			<td><span class="big"><?php echo $element->medication_history_verified ? 'Yes' : 'No'?></span></td>
 		</tr>
 	</tbody>

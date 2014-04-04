@@ -23,6 +23,17 @@
  * The followings are the available columns in table:
  * @property string $id
  * @property integer $event_id
+ * @property integer $wb_verified
+ * @property integer $dob
+ * @property integer $patient_name
+ * @property integer $parent_caregiver
+ * @property integer $chart_number
+ * @property integer $sa_wristband
+ * @property integer $hypertension
+ * @property integer $sickle_cell
+ * @property integer $hypertension
+ * @property integer $diabetes
+ * @property integer $allergies
  *
  * The followings are the available model relations:
  *
@@ -31,8 +42,6 @@
  * @property Event $event
  * @property User $user
  * @property User $usermodified
- * @property Element_OphNuPreoperative_PatientId_WbVerified_Assignment $wb_verifieds
- * @property Element_OphNuPreoperative_PatientId_WristBand_Assignment $wrist_bands
  */
 
 class Element_OphNuPreoperative_PatientId  extends  BaseEventTypeElement
@@ -62,9 +71,9 @@ class Element_OphNuPreoperative_PatientId  extends  BaseEventTypeElement
 	public function rules()
 	{
 		return array(
-			array('event_id, ', 'safe'),
-			array('', 'required'),
-			array('id, event_id, ', 'safe', 'on' => 'search'),
+			array('event_id, wb_verified, dob, patient_name, parent_caregiver, chart_number, sa_wristband, hypertension, sickle_cell, hypertension, diabetes, allergies, ', 'safe'),
+			array('wb_verified, dob, patient_name, parent_caregiver, chart_number, sa_wristband, hypertension, sickle_cell, hypertension, diabetes, allergies, ', 'required'),
+			array('id, event_id, wb_verified, dob, patient_name, parent_caregiver, chart_number, sa_wristband, hypertension, sickle_cell, hypertension, diabetes, allergies, ', 'safe', 'on' => 'search'),
 		);
 	}
 
@@ -79,8 +88,6 @@ class Element_OphNuPreoperative_PatientId  extends  BaseEventTypeElement
 			'event' => array(self::BELONGS_TO, 'Event', 'event_id'),
 			'user' => array(self::BELONGS_TO, 'User', 'created_user_id'),
 			'usermodified' => array(self::BELONGS_TO, 'User', 'last_modified_user_id'),
-			'wb_verifieds' => array(self::HAS_MANY, 'Element_OphNuPreoperative_PatientId_WbVerified_Assignment', 'element_id'),
-			'wrist_bands' => array(self::HAS_MANY, 'Element_OphNuPreoperative_PatientId_WristBand_Assignment', 'element_id'),
 		);
 	}
 
@@ -93,7 +100,16 @@ class Element_OphNuPreoperative_PatientId  extends  BaseEventTypeElement
 			'id' => 'ID',
 			'event_id' => 'Event',
 			'wb_verified' => 'Wrist band verified with two identifiers',
-			'wrist_band' => 'Special Attention wrist band attached',
+			'dob' => 'DOB',
+			'patient_name' => 'Patient Name',
+			'parent_caregiver' => 'Parent Caregiver',
+			'chart_number' => 'Chart Number',
+			'sa_wristband' => 'Special Attention Wristband attached',
+			'hypertension' => 'Hypertension',
+			'sickle_cell' => 'Sickle Cell',
+			'hypertension' => 'Hypertension',
+			'diabetes' => 'Diabetes',
+			'allergies' => 'Allergies',
 		);
 	}
 
@@ -108,7 +124,16 @@ class Element_OphNuPreoperative_PatientId  extends  BaseEventTypeElement
 		$criteria->compare('id', $this->id, true);
 		$criteria->compare('event_id', $this->event_id, true);
 		$criteria->compare('wb_verified', $this->wb_verified);
-		$criteria->compare('wrist_band', $this->wrist_band);
+		$criteria->compare('dob', $this->dob);
+		$criteria->compare('patient_name', $this->patient_name);
+		$criteria->compare('parent_caregiver', $this->parent_caregiver);
+		$criteria->compare('chart_number', $this->chart_number);
+		$criteria->compare('sa_wristband', $this->sa_wristband);
+		$criteria->compare('hypertension', $this->hypertension);
+		$criteria->compare('sickle_cell', $this->sickle_cell);
+		$criteria->compare('hypertension', $this->hypertension);
+		$criteria->compare('diabetes', $this->diabetes);
+		$criteria->compare('allergies', $this->allergies);
 
 		return new CActiveDataProvider(get_class($this), array(
 			'criteria' => $criteria,
@@ -116,81 +141,9 @@ class Element_OphNuPreoperative_PatientId  extends  BaseEventTypeElement
 	}
 
 
-	public function getophnupreoperative_patientid_wb_verified_defaults() {
-		$ids = array();
-		foreach (OphNuPreoperative_PatientId_WbVerified::model()->findAll('`default` = ?',array(1)) as $item) {
-			$ids[] = $item->id;
-		}
-		return $ids;
-	}
-	public function getophnupreoperative_patientid_wrist_band_defaults() {
-		$ids = array();
-		foreach (OphNuPreoperative_PatientId_WristBand::model()->findAll('`default` = ?',array(1)) as $item) {
-			$ids[] = $item->id;
-		}
-		return $ids;
-	}
 
 	protected function afterSave()
 	{
-		if (!empty($_POST['MultiSelect_wb_verified'])) {
-
-			$existing_ids = array();
-
-			foreach (Element_OphNuPreoperative_PatientId_WbVerified_Assignment::model()->findAll('element_id = :elementId', array(':elementId' => $this->id)) as $item) {
-				$existing_ids[] = $item->ophnupreoperative_patientid_wb_verified_id;
-			}
-
-			foreach ($_POST['MultiSelect_wb_verified'] as $id) {
-				if (!in_array($id,$existing_ids)) {
-					$item = new Element_OphNuPreoperative_PatientId_WbVerified_Assignment;
-					$item->element_id = $this->id;
-					$item->ophnupreoperative_patientid_wb_verified_id = $id;
-
-					if (!$item->save()) {
-						throw new Exception('Unable to save MultiSelect item: '.print_r($item->getErrors(),true));
-					}
-				}
-			}
-
-			foreach ($existing_ids as $id) {
-				if (!in_array($id,$_POST['MultiSelect_wb_verified'])) {
-					$item = Element_OphNuPreoperative_PatientId_WbVerified_Assignment::model()->find('element_id = :elementId and ophnupreoperative_patientid_wb_verified_id = :lookupfieldId',array(':elementId' => $this->id, ':lookupfieldId' => $id));
-					if (!$item->delete()) {
-						throw new Exception('Unable to delete MultiSelect item: '.print_r($item->getErrors(),true));
-					}
-				}
-			}
-		}
-		if (!empty($_POST['MultiSelect_wrist_band'])) {
-
-			$existing_ids = array();
-
-			foreach (Element_OphNuPreoperative_PatientId_WristBand_Assignment::model()->findAll('element_id = :elementId', array(':elementId' => $this->id)) as $item) {
-				$existing_ids[] = $item->ophnupreoperative_patientid_wrist_band_id;
-			}
-
-			foreach ($_POST['MultiSelect_wrist_band'] as $id) {
-				if (!in_array($id,$existing_ids)) {
-					$item = new Element_OphNuPreoperative_PatientId_WristBand_Assignment;
-					$item->element_id = $this->id;
-					$item->ophnupreoperative_patientid_wrist_band_id = $id;
-
-					if (!$item->save()) {
-						throw new Exception('Unable to save MultiSelect item: '.print_r($item->getErrors(),true));
-					}
-				}
-			}
-
-			foreach ($existing_ids as $id) {
-				if (!in_array($id,$_POST['MultiSelect_wrist_band'])) {
-					$item = Element_OphNuPreoperative_PatientId_WristBand_Assignment::model()->find('element_id = :elementId and ophnupreoperative_patientid_wrist_band_id = :lookupfieldId',array(':elementId' => $this->id, ':lookupfieldId' => $id));
-					if (!$item->delete()) {
-						throw new Exception('Unable to delete MultiSelect item: '.print_r($item->getErrors(),true));
-					}
-				}
-			}
-		}
 
 		return parent::afterSave();
 	}

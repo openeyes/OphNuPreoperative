@@ -28,14 +28,25 @@
  * @property string $iol_type
  * @property string $iol_size
  * @property integer $metal_in_body
- * @property string $comments
+ * @property string $metal_comments
  * @property integer $removable_dental
  * @property integer $full_uppers
  * @property integer $full_uppers_removed
  * @property integer $full_lowers
+ * @property integer $full_lowers_removed
  * @property integer $other
- * @property string $other_comments
- * @property integer $other_removed
+ * @property integer $dental_comments
+ * @property integer $hearing_aid_present
+ * @property integer $right
+ * @property integer $right_removed
+ * @property integer $left
+ * @property integer $left_removed
+ * @property integer $patient_belongings
+ * @property integer $glasses
+ * @property integer $jewelery
+ * @property integer $clothing
+ * @property integer $other
+ * @property integer $belongings_comments
  *
  * The followings are the available model relations:
  *
@@ -74,9 +85,9 @@ class Element_OphNuPreoperative_Verification  extends  BaseEventTypeElement
 	public function rules()
 	{
 		return array(
-			array('event_id, surgical_id, iol_verified, iol_type, iol_size, metal_in_body, comments, removable_dental, full_uppers, full_uppers_removed, full_lowers, other, other_comments, other_removed, ', 'safe'),
-			array('surgical_id, iol_verified, iol_type, iol_size, metal_in_body, comments, removable_dental, full_uppers, full_uppers_removed, full_lowers, other, other_comments, other_removed, ', 'required'),
-			array('id, event_id, surgical_id, iol_verified, iol_type, iol_size, metal_in_body, comments, removable_dental, full_uppers, full_uppers_removed, full_lowers, other, other_comments, other_removed, ', 'safe', 'on' => 'search'),
+			array('event_id, surgical_id, iol_verified, iol_type, iol_size, metal_in_body, metal_comments, removable_dental, full_uppers, full_uppers_removed, full_lowers, full_lowers_removed, other, dental_comments, hearing_aid_present, right, right_removed, left, left_removed, patient_belongings, glasses, jewelery, clothing, other, belongings_comments, ', 'safe'),
+			array('surgical_id, iol_verified, iol_type, iol_size, metal_in_body, metal_comments, removable_dental, full_uppers, full_uppers_removed, full_lowers, full_lowers_removed, other, dental_comments, hearing_aid_present, right, right_removed, left, left_removed, patient_belongings, glasses, jewelery, clothing, other, belongings_comments, ', 'required'),
+			array('id, event_id, surgical_id, iol_verified, iol_type, iol_size, metal_in_body, metal_comments, removable_dental, full_uppers, full_uppers_removed, full_lowers, full_lowers_removed, other, dental_comments, hearing_aid_present, right, right_removed, left, left_removed, patient_belongings, glasses, jewelery, clothing, other, belongings_comments, ', 'safe', 'on' => 'search'),
 		);
 	}
 
@@ -108,14 +119,25 @@ class Element_OphNuPreoperative_Verification  extends  BaseEventTypeElement
 			'iol_type' => 'IOL Type',
 			'iol_size' => 'IOL Size',
 			'metal_in_body' => 'Metal in body',
-			'comments' => 'Comments',
+			'metal_comments' => 'Metal in body comments',
 			'removable_dental' => 'Removable dental work present',
 			'full_uppers' => 'Full uppers',
 			'full_uppers_removed' => 'Full uppers removed',
 			'full_lowers' => 'Full lowers',
+			'full_lowers_removed' => 'Full lowers removed',
 			'other' => 'Other',
-			'other_comments' => 'Other Comments',
-			'other_removed' => 'Other Removed',
+			'dental_comments' => 'Other comments',
+			'hearing_aid_present' => 'Hearing aid present',
+			'right' => 'Right',
+			'right_removed' => 'Right Removed',
+			'left' => 'Left',
+			'left_removed' => 'Left Removed',
+			'patient_belongings' => 'Patient Belongings',
+			'glasses' => 'Glasses',
+			'jewelery' => 'Jewelery',
+			'clothing' => 'Clothing',
+			'other' => 'Other',
+			'belongings_comments' => 'Other Comments',
 		);
 	}
 
@@ -134,14 +156,25 @@ class Element_OphNuPreoperative_Verification  extends  BaseEventTypeElement
 		$criteria->compare('iol_type', $this->iol_type);
 		$criteria->compare('iol_size', $this->iol_size);
 		$criteria->compare('metal_in_body', $this->metal_in_body);
-		$criteria->compare('comments', $this->comments);
+		$criteria->compare('metal_comments', $this->metal_comments);
 		$criteria->compare('removable_dental', $this->removable_dental);
 		$criteria->compare('full_uppers', $this->full_uppers);
 		$criteria->compare('full_uppers_removed', $this->full_uppers_removed);
 		$criteria->compare('full_lowers', $this->full_lowers);
+		$criteria->compare('full_lowers_removed', $this->full_lowers_removed);
 		$criteria->compare('other', $this->other);
-		$criteria->compare('other_comments', $this->other_comments);
-		$criteria->compare('other_removed', $this->other_removed);
+		$criteria->compare('dental_comments', $this->dental_comments);
+		$criteria->compare('hearing_aid_present', $this->hearing_aid_present);
+		$criteria->compare('right', $this->right);
+		$criteria->compare('right_removed', $this->right_removed);
+		$criteria->compare('left', $this->left);
+		$criteria->compare('left_removed', $this->left_removed);
+		$criteria->compare('patient_belongings', $this->patient_belongings);
+		$criteria->compare('glasses', $this->glasses);
+		$criteria->compare('jewelery', $this->jewelery);
+		$criteria->compare('clothing', $this->clothing);
+		$criteria->compare('other', $this->other);
+		$criteria->compare('belongings_comments', $this->belongings_comments);
 
 		return new CActiveDataProvider(get_class($this), array(
 			'criteria' => $criteria,

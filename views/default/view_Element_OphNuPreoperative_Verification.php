@@ -29,7 +29,7 @@
 			<div class="large-10 column end"><div class="data-value"><?php echo $element->surgical ? $element->surgical->name : 'None'?></div></div>
 		</div>
 		<div class="row data-row">
-			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('iol_verified'))?></div></div>
+			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('iol_verified'))?>:</div></div>
 			<div class="large-10 column end"><div class="data-value"><?php echo $element->iol_verified ? 'Yes' : 'No'?></div></div>
 		</div>
 		<div class="row data-row">
@@ -45,8 +45,8 @@
 			<div class="large-10 column end"><div class="data-value"><?php echo $element->metal_in_body ? 'Yes' : 'No'?></div></div>
 		</div>
 		<div class="row data-row">
-			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('comments'))?></div></div>
-			<div class="large-10 column end"><div class="data-value"><?php echo CHtml::encode($element->comments)?></div></div>
+			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('metal_comments'))?></div></div>
+			<div class="large-10 column end"><div class="data-value"><?php echo CHtml::encode($element->metal_comments)?></div></div>
 		</div>
 		<div class="row data-row">
 			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('removable_dental'))?>:</div></div>
@@ -65,16 +65,60 @@
 			<div class="large-10 column end"><div class="data-value"><?php echo $element->full_lowers ? 'Yes' : 'No'?></div></div>
 		</div>
 		<div class="row data-row">
+			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('full_lowers_removed'))?></div></div>
+			<div class="large-10 column end"><div class="data-value"><?php echo $element->full_lowers_removed ? 'Yes' : 'No'?></div></div>
+		</div>
+		<div class="row data-row">
 			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('other'))?></div></div>
 			<div class="large-10 column end"><div class="data-value"><?php echo $element->other ? 'Yes' : 'No'?></div></div>
 		</div>
 		<div class="row data-row">
-			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('other_comments'))?></div></div>
-			<div class="large-10 column end"><div class="data-value"><?php echo CHtml::encode($element->other_comments)?></div></div>
+			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('dental_comments'))?>:</div></div>
+			<div class="large-10 column end"><div class="data-value"><?php echo $element->dental_comments ? 'Yes' : 'No'?></div></div>
 		</div>
 		<div class="row data-row">
-			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('other_removed'))?>:</div></div>
-			<div class="large-10 column end"><div class="data-value"><?php echo $element->other_removed ? 'Yes' : 'No'?></div></div>
+			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('hearing_aid_present'))?>:</div></div>
+			<div class="large-10 column end"><div class="data-value"><?php echo $element->hearing_aid_present ? 'Yes' : 'No'?></div></div>
+		</div>
+		<div class="row data-row">
+			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('right'))?></div></div>
+			<div class="large-10 column end"><div class="data-value"><?php echo $element->right ? 'Yes' : 'No'?></div></div>
+		</div>
+		<div class="row data-row">
+			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('right_removed'))?>:</div></div>
+			<div class="large-10 column end"><div class="data-value"><?php echo $element->right_removed ? 'Yes' : 'No'?></div></div>
+		</div>
+		<div class="row data-row">
+			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('left'))?></div></div>
+			<div class="large-10 column end"><div class="data-value"><?php echo $element->left ? 'Yes' : 'No'?></div></div>
+		</div>
+		<div class="row data-row">
+			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('left_removed'))?>:</div></div>
+			<div class="large-10 column end"><div class="data-value"><?php echo $element->left_removed ? 'Yes' : 'No'?></div></div>
+		</div>
+		<div class="row data-row">
+			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('patient_belongings'))?>:</div></div>
+			<div class="large-10 column end"><div class="data-value"><?php echo $element->patient_belongings ? 'Yes' : 'No'?></div></div>
+		</div>
+		<div class="row data-row">
+			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('glasses'))?></div></div>
+			<div class="large-10 column end"><div class="data-value"><?php echo $element->glasses ? 'Yes' : 'No'?></div></div>
+		</div>
+		<div class="row data-row">
+			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('jewelery'))?></div></div>
+			<div class="large-10 column end"><div class="data-value"><?php echo $element->jewelery ? 'Yes' : 'No'?></div></div>
+		</div>
+		<div class="row data-row">
+			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('clothing'))?></div></div>
+			<div class="large-10 column end"><div class="data-value"><?php echo $element->clothing ? 'Yes' : 'No'?></div></div>
+		</div>
+		<div class="row data-row">
+			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('other'))?></div></div>
+			<div class="large-10 column end"><div class="data-value"><?php echo $element->other ? 'Yes' : 'No'?></div></div>
+		</div>
+		<div class="row data-row">
+			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('belongings_comments'))?>:</div></div>
+			<div class="large-10 column end"><div class="data-value"><?php echo $element->belongings_comments ? 'Yes' : 'No'?></div></div>
 		</div>
 			</div>
 </section>

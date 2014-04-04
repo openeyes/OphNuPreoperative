@@ -46,7 +46,7 @@
 			<td><span class="big"><?php echo CHtml::encode($element->sao2)?></span></td>
 		</tr>
 		<tr>
-			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('blood_sugar'))?></td>
+			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('blood_sugar'))?>:</td>
 			<td><span class="big"><?php echo $element->blood_sugar ? 'Yes' : 'No'?></span></td>
 		</tr>
 		<tr>
