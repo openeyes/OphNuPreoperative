@@ -40,18 +40,18 @@
 	<?php echo $form->checkBox($element, 'full_lowers')?>
 	<?php echo $form->checkBox($element, 'full_lowers_removed')?>
 	<?php echo $form->checkBox($element, 'other')?>
-	<?php echo $form->radioBoolean($element, 'dental_comments')?>
+	<?php echo $form->textField($element, 'dental_comments', array('size' => '10'))?>
 	<?php echo $form->radioBoolean($element, 'hearing_aid_present')?>
 	<?php echo $form->checkBox($element, 'right')?>
-	<?php echo $form->radioBoolean($element, 'right_removed')?>
+	<?php echo $form->checkBox($element, 'right_removed')?>
 	<?php echo $form->checkBox($element, 'left')?>
-	<?php echo $form->radioBoolean($element, 'left_removed')?>
+	<?php echo $form->checkBox($element, 'left_removed')?>
 	<?php echo $form->radioBoolean($element, 'patient_belongings')?>
 	<?php echo $form->checkBox($element, 'glasses')?>
 	<?php echo $form->checkBox($element, 'jewelery')?>
 	<?php echo $form->checkBox($element, 'clothing')?>
 	<?php echo $form->checkBox($element, 'other')?>
-	<?php echo $form->radioBoolean($element, 'belongings_comments')?>
+	<?php echo $form->textField($element, 'belongings_comments', array('size' => '10'))?>
 	</div>
 	
 </section>

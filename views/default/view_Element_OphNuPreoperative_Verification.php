@@ -73,8 +73,8 @@
 			<div class="large-10 column end"><div class="data-value"><?php echo $element->other ? 'Yes' : 'No'?></div></div>
 		</div>
 		<div class="row data-row">
-			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('dental_comments'))?>:</div></div>
-			<div class="large-10 column end"><div class="data-value"><?php echo $element->dental_comments ? 'Yes' : 'No'?></div></div>
+			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('dental_comments'))?></div></div>
+			<div class="large-10 column end"><div class="data-value"><?php echo CHtml::encode($element->dental_comments)?></div></div>
 		</div>
 		<div class="row data-row">
 			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('hearing_aid_present'))?>:</div></div>
@@ -85,7 +85,7 @@
 			<div class="large-10 column end"><div class="data-value"><?php echo $element->right ? 'Yes' : 'No'?></div></div>
 		</div>
 		<div class="row data-row">
-			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('right_removed'))?>:</div></div>
+			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('right_removed'))?></div></div>
 			<div class="large-10 column end"><div class="data-value"><?php echo $element->right_removed ? 'Yes' : 'No'?></div></div>
 		</div>
 		<div class="row data-row">
@@ -93,7 +93,7 @@
 			<div class="large-10 column end"><div class="data-value"><?php echo $element->left ? 'Yes' : 'No'?></div></div>
 		</div>
 		<div class="row data-row">
-			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('left_removed'))?>:</div></div>
+			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('left_removed'))?></div></div>
 			<div class="large-10 column end"><div class="data-value"><?php echo $element->left_removed ? 'Yes' : 'No'?></div></div>
 		</div>
 		<div class="row data-row">
@@ -117,8 +117,8 @@
 			<div class="large-10 column end"><div class="data-value"><?php echo $element->other ? 'Yes' : 'No'?></div></div>
 		</div>
 		<div class="row data-row">
-			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('belongings_comments'))?>:</div></div>
-			<div class="large-10 column end"><div class="data-value"><?php echo $element->belongings_comments ? 'Yes' : 'No'?></div></div>
+			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('belongings_comments'))?></div></div>
+			<div class="large-10 column end"><div class="data-value"><?php echo CHtml::encode($element->belongings_comments)?></div></div>
 		</div>
 			</div>
 </section>

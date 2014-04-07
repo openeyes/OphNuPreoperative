@@ -35,7 +35,7 @@
  * @property integer $full_lowers
  * @property integer $full_lowers_removed
  * @property integer $other
- * @property integer $dental_comments
+ * @property string $dental_comments
  * @property integer $hearing_aid_present
  * @property integer $right
  * @property integer $right_removed
@@ -46,7 +46,7 @@
  * @property integer $jewelery
  * @property integer $clothing
  * @property integer $other
- * @property integer $belongings_comments
+ * @property string $belongings_comments
  *
  * The followings are the available model relations:
  *

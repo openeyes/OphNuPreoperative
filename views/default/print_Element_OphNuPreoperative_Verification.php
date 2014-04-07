@@ -70,8 +70,8 @@
 			<td><span class="big"><?php echo $element->other ? 'Yes' : 'No'?></span></td>
 		</tr>
 		<tr>
-			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('dental_comments'))?>:</td>
-			<td><span class="big"><?php echo $element->dental_comments ? 'Yes' : 'No'?></span></td>
+			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('dental_comments'))?></td>
+			<td><span class="big"><?php echo CHtml::encode($element->dental_comments)?></span></td>
 		</tr>
 		<tr>
 			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('hearing_aid_present'))?>:</td>
@@ -82,7 +82,7 @@
 			<td><span class="big"><?php echo $element->right ? 'Yes' : 'No'?></span></td>
 		</tr>
 		<tr>
-			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('right_removed'))?>:</td>
+			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('right_removed'))?></td>
 			<td><span class="big"><?php echo $element->right_removed ? 'Yes' : 'No'?></span></td>
 		</tr>
 		<tr>
@@ -90,7 +90,7 @@
 			<td><span class="big"><?php echo $element->left ? 'Yes' : 'No'?></span></td>
 		</tr>
 		<tr>
-			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('left_removed'))?>:</td>
+			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('left_removed'))?></td>
 			<td><span class="big"><?php echo $element->left_removed ? 'Yes' : 'No'?></span></td>
 		</tr>
 		<tr>
@@ -114,8 +114,8 @@
 			<td><span class="big"><?php echo $element->other ? 'Yes' : 'No'?></span></td>
 		</tr>
 		<tr>
-			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('belongings_comments'))?>:</td>
-			<td><span class="big"><?php echo $element->belongings_comments ? 'Yes' : 'No'?></span></td>
+			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('belongings_comments'))?></td>
+			<td><span class="big"><?php echo CHtml::encode($element->belongings_comments)?></span></td>
 		</tr>
 	</tbody>
 </table>

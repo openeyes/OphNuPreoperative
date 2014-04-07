@@ -328,17 +328,17 @@ class m140401_145257_event_type_OphNuPreoperative extends CDbMigration
 
 				'other' => 'tinyint(1) unsigned NOT NULL',
 
-				'dental_comments' => 'tinyint(1) unsigned NOT NULL DEFAULT 0',
+				'dental_comments' => 'varchar(255) COLLATE utf8_bin DEFAULT \'\'',
 
 				'hearing_aid_present' => 'tinyint(1) unsigned NOT NULL DEFAULT 0',
 
 				'right' => 'tinyint(1) unsigned NOT NULL',
 
-				'right_removed' => 'tinyint(1) unsigned NOT NULL DEFAULT 0',
+				'right_removed' => 'tinyint(1) unsigned NOT NULL',
 
 				'left' => 'tinyint(1) unsigned NOT NULL',
 
-				'left_removed' => 'tinyint(1) unsigned NOT NULL DEFAULT 0',
+				'left_removed' => 'tinyint(1) unsigned NOT NULL',
 
 				'patient_belongings' => 'tinyint(1) unsigned NOT NULL DEFAULT 0',
 
@@ -350,7 +350,7 @@ class m140401_145257_event_type_OphNuPreoperative extends CDbMigration
 
 				'other' => 'tinyint(1) unsigned NOT NULL',
 
-				'belongings_comments' => 'tinyint(1) unsigned NOT NULL DEFAULT 0',
+				'belongings_comments' => 'varchar(255) COLLATE utf8_bin DEFAULT \'\'',
 
 				'last_modified_user_id' => 'int(10) unsigned NOT NULL DEFAULT 1',
 				'last_modified_date' => 'datetime NOT NULL DEFAULT \'1901-01-01 00:00:00\'',
