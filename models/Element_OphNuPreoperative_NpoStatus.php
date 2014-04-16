@@ -37,8 +37,6 @@
 
 class Element_OphNuPreoperative_NpoStatus  extends  BaseEventTypeElement
 {
-	public $service;
-
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @return the static model class

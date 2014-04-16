@@ -18,15 +18,21 @@
  */
 ?>
 
-<section class="element">
+<section class="element <?php echo $element->elementType->class_name?>"
+	data-element-type-id="<?php echo $element->elementType->id?>"
+	data-element-type-class="<?php echo $element->elementType->class_name?>"
+	data-element-type-name="<?php echo $element->elementType->name?>"
+	data-element-display-order="<?php echo $element->elementType->display_order?>">
 	<header class="element-header">
-		<h3 class="element-title"><?php echo $element->elementType->name?></h3>
+		<h3 class="element-title"><?php echo $element->elementType->name; ?></h3>
 	</header>
 
-		<div class="element-data">
-				<div class="row data-row">
-			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('pre-operative_medication_administration'))?></div></div>
-			<div class="large-10 column end"><div class="data-value"><?php echo CHtml::encode($element->pre-operative_medication_administration)?></div></div>
-		</div>
-			</div>
+		<div class="element-fields">
+			<?php echo $form->checkBox($element, 'medical_history_verified')?>
+	<?php echo $form->radioBoolean($element, 'medical_discrepancy_found')?>
+	<?php echo $form->textField($element, 'comments', array('size' => '10'))?>
+	<?php echo $form->checkBox($element, 'allergies_verified')?>
+	<?php echo $form->checkBox($element, 'medication_history_verified')?>
+	</div>
+	
 </section>

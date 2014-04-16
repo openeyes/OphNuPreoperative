@@ -22,8 +22,8 @@
 <table class="subtleWhite normalText">
 	<tbody>
 		<tr>
-			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('medication'))?></td>
-			<td><span class="big"><?php echo CHtml::encode($element->medication)?></span></td>
+			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('pre-operative_medication_administration'))?></td>
+			<td><span class="big"><?php echo CHtml::encode($element->pre-operative_medication_administration)?></span></td>
 		</tr>
 	</tbody>
 </table>

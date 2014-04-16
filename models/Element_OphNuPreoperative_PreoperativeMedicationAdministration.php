@@ -18,12 +18,12 @@
  */
 
 /**
- * This is the model class for table "et_ophnupreoperative_preoperativemed".
+ * This is the model class for table "et_ophnupreoperative_preopmedication".
  *
  * The followings are the available columns in table:
  * @property string $id
  * @property integer $event_id
- * @property string $medication
+ * @property string $pre-operative_medication_administration
  *
  * The followings are the available model relations:
  *
@@ -34,10 +34,8 @@
  * @property User $usermodified
  */
 
-class Element_OphNuPreoperative_PreoperativeMedicationAdministration  extends  BaseEventTypeElement
+class Element_OphNuPreoperative_PreOperativeMedicationAdministration  extends  BaseEventTypeElement
 {
-	public $service;
-
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @return the static model class
@@ -52,7 +50,7 @@ class Element_OphNuPreoperative_PreoperativeMedicationAdministration  extends  B
 	 */
 	public function tableName()
 	{
-		return 'et_ophnupreoperative_preoperativemed';
+		return 'et_ophnupreoperative_preopmedication';
 	}
 
 	/**
@@ -61,9 +59,9 @@ class Element_OphNuPreoperative_PreoperativeMedicationAdministration  extends  B
 	public function rules()
 	{
 		return array(
-			array('event_id, medication, ', 'safe'),
-			array('medication, ', 'required'),
-			array('id, event_id, medication, ', 'safe', 'on' => 'search'),
+			array('event_id, pre-operative_medication_administration, ', 'safe'),
+			array('pre-operative_medication_administration, ', 'required'),
+			array('id, event_id, pre-operative_medication_administration, ', 'safe', 'on' => 'search'),
 		);
 	}
 
@@ -89,7 +87,7 @@ class Element_OphNuPreoperative_PreoperativeMedicationAdministration  extends  B
 		return array(
 			'id' => 'ID',
 			'event_id' => 'Event',
-			'medication' => 'Medication',
+			'pre-operative_medication_administration' => 'Pre-Operative Medication Administration',
 		);
 	}
 
@@ -103,7 +101,7 @@ class Element_OphNuPreoperative_PreoperativeMedicationAdministration  extends  B
 
 		$criteria->compare('id', $this->id, true);
 		$criteria->compare('event_id', $this->event_id, true);
-		$criteria->compare('medication', $this->medication);
+		$criteria->compare('pre-operative_medication_administration', $this->pre-operative_medication_administration);
 
 		return new CActiveDataProvider(get_class($this), array(
 			'criteria' => $criteria,

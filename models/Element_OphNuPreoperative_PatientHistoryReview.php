@@ -18,25 +18,16 @@
  */
 
 /**
- * This is the model class for table "et_ophnupreoperative_patientpain".
+ * This is the model class for table "et_ophnupreoperative_patienthistory".
  *
  * The followings are the available columns in table:
  * @property string $id
  * @property integer $event_id
- * @property integer $is_pain
- * @property integer $type_of_pain_id
- * @property string $pain_score_method
- * @property integer $back
- * @property integer $neck
- * @property integer $arm
- * @property integer $leg
- * @property integer $head
- * @property integer $other
- * @property string $other_comments
- * @property integer $right
- * @property integer $left
- * @property integer $both
+ * @property integer $medical_history_verified
+ * @property integer $medical_discrepancy_found
  * @property string $comments
+ * @property integer $allergies_verified
+ * @property integer $medication_history_verified
  *
  * The followings are the available model relations:
  *
@@ -45,10 +36,9 @@
  * @property Event $event
  * @property User $user
  * @property User $usermodified
- * @property OphNuPreoperative_PatientPain_TypeOfPain $type_of_pain
  */
 
-class Element_OphNuPreoperative_PatientPain  extends  BaseEventTypeElement
+class Element_OphNuPreoperative_PatientHistoryReview  extends  BaseEventTypeElement
 {
 	/**
 	 * Returns the static model of the specified AR class.
@@ -64,7 +54,7 @@ class Element_OphNuPreoperative_PatientPain  extends  BaseEventTypeElement
 	 */
 	public function tableName()
 	{
-		return 'et_ophnupreoperative_patientpain';
+		return 'et_ophnupreoperative_patienthistory';
 	}
 
 	/**
@@ -73,9 +63,9 @@ class Element_OphNuPreoperative_PatientPain  extends  BaseEventTypeElement
 	public function rules()
 	{
 		return array(
-			array('event_id, is_pain, type_of_pain_id, pain_score_method, back, neck, arm, leg, head, other, other_comments, right, left, both, comments, ', 'safe'),
-			array('is_pain, type_of_pain_id, pain_score_method, back, neck, arm, leg, head, other, other_comments, right, left, both, comments, ', 'required'),
-			array('id, event_id, is_pain, type_of_pain_id, pain_score_method, back, neck, arm, leg, head, other, other_comments, right, left, both, comments, ', 'safe', 'on' => 'search'),
+			array('event_id, medical_history_verified, medical_discrepancy_found, comments, allergies_verified, medication_history_verified, ', 'safe'),
+			array('medical_history_verified, medical_discrepancy_found, comments, allergies_verified, medication_history_verified, ', 'required'),
+			array('id, event_id, medical_history_verified, medical_discrepancy_found, comments, allergies_verified, medication_history_verified, ', 'safe', 'on' => 'search'),
 		);
 	}
 
@@ -90,7 +80,6 @@ class Element_OphNuPreoperative_PatientPain  extends  BaseEventTypeElement
 			'event' => array(self::BELONGS_TO, 'Event', 'event_id'),
 			'user' => array(self::BELONGS_TO, 'User', 'created_user_id'),
 			'usermodified' => array(self::BELONGS_TO, 'User', 'last_modified_user_id'),
-			'type_of_pain' => array(self::BELONGS_TO, 'OphNuPreoperative_PatientPain_TypeOfPain', 'type_of_pain_id'),
 		);
 	}
 
@@ -102,20 +91,11 @@ class Element_OphNuPreoperative_PatientPain  extends  BaseEventTypeElement
 		return array(
 			'id' => 'ID',
 			'event_id' => 'Event',
-			'is_pain' => 'Is the patient experiancing pain',
-			'type_of_pain_id' => 'Type of Pain',
-			'pain_score_method' => 'Pain Score Method',
-			'back' => 'Back',
-			'neck' => 'Neck',
-			'arm' => 'Arm',
-			'leg' => 'Leg',
-			'head' => 'Head',
-			'other' => 'Other',
-			'other_comments' => 'Other Comments',
-			'right' => 'Right',
-			'left' => 'Left',
-			'both' => 'Both',
+			'medical_history_verified' => 'Medical History Verfied',
+			'medical_discrepancy_found' => 'Medical History discrepancy found?',
 			'comments' => 'Comments',
+			'allergies_verified' => 'Allergies Verified',
+			'medication_history_verified' => 'Medication History Verified',
 		);
 	}
 
@@ -129,20 +109,11 @@ class Element_OphNuPreoperative_PatientPain  extends  BaseEventTypeElement
 
 		$criteria->compare('id', $this->id, true);
 		$criteria->compare('event_id', $this->event_id, true);
-		$criteria->compare('is_pain', $this->is_pain);
-		$criteria->compare('type_of_pain_id', $this->type_of_pain_id);
-		$criteria->compare('pain_score_method', $this->pain_score_method);
-		$criteria->compare('back', $this->back);
-		$criteria->compare('neck', $this->neck);
-		$criteria->compare('arm', $this->arm);
-		$criteria->compare('leg', $this->leg);
-		$criteria->compare('head', $this->head);
-		$criteria->compare('other', $this->other);
-		$criteria->compare('other_comments', $this->other_comments);
-		$criteria->compare('right', $this->right);
-		$criteria->compare('left', $this->left);
-		$criteria->compare('both', $this->both);
+		$criteria->compare('medical_history_verified', $this->medical_history_verified);
+		$criteria->compare('medical_discrepancy_found', $this->medical_discrepancy_found);
 		$criteria->compare('comments', $this->comments);
+		$criteria->compare('allergies_verified', $this->allergies_verified);
+		$criteria->compare('medication_history_verified', $this->medication_history_verified);
 
 		return new CActiveDataProvider(get_class($this), array(
 			'criteria' => $criteria,

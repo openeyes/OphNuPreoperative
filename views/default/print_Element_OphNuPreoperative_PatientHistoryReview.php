@@ -22,30 +22,24 @@
 <table class="subtleWhite normalText">
 	<tbody>
 		<tr>
-			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('patient_status_id'))?></td>
-			<td><span class="big"><?php echo $element->patient_status ? $element->patient_status->name : 'None'?></span></td>
+			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('medical_history_verified'))?></td>
+			<td><span class="big"><?php echo $element->medical_history_verified ? 'Yes' : 'No'?></span></td>
 		</tr>
 		<tr>
-			<td colspan="2">
-				<div class="colThird">
-					<b><?php echo CHtml::encode($element->getAttributeLabel('cancel'))?>:</b>
-					<div class="eventHighlight medium">
-						<?php if (!$element->cancels) {?>
-							<h4>None</h4>
-						<?php } else {?>
-							<h4>
-								<?php foreach ($element->cancels as $item) {
-									echo $item->ophnupreoperative_patientstatus_cancel->name?><br/>
-								<?php }?>
-							</h4>
-						<?php }?>
-					</div>
-				</div>
-			</td>
+			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('medical_discrepancy_found'))?>:</td>
+			<td><span class="big"><?php echo $element->medical_discrepancy_found ? 'Yes' : 'No'?></span></td>
 		</tr>
 		<tr>
-			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('res_comments'))?></td>
-			<td><span class="big"><?php echo CHtml::encode($element->res_comments)?></span></td>
+			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('comments'))?></td>
+			<td><span class="big"><?php echo CHtml::encode($element->comments)?></span></td>
+		</tr>
+		<tr>
+			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('allergies_verified'))?></td>
+			<td><span class="big"><?php echo $element->allergies_verified ? 'Yes' : 'No'?></span></td>
+		</tr>
+		<tr>
+			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('medication_history_verified'))?></td>
+			<td><span class="big"><?php echo $element->medication_history_verified ? 'Yes' : 'No'?></span></td>
 		</tr>
 	</tbody>
 </table>

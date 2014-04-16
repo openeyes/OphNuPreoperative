@@ -42,8 +42,6 @@
 
 class Element_OphNuPreoperative_SkinAssessment  extends  BaseEventTypeElement
 {
-	public $service;
-
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @return the static model class

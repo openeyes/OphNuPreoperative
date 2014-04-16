@@ -60,8 +60,6 @@
 
 class Element_OphNuPreoperative_Verification  extends  BaseEventTypeElement
 {
-	public $service;
-
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @return the static model class

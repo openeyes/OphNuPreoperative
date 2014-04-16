@@ -29,16 +29,33 @@
 
 		<div class="element-fields">
 			<?php echo $form->textField($element, 'blood_pressure', array('size' => '10'))?>
-	<?php echo $form->textField($element, 'mmhg', array('size' => '10'))?>
-	<?php echo $form->textField($element, 'heart_rate_pulse', array('size' => '10'))?>
+	<?php echo $form->textField($element, 'bpm', array('size' => '10'))?>
 	<?php echo $form->textField($element, 'temperature', array('size' => '10'))?>
-	<?php echo $form->textField($element, 'respiratory_rate', array('size' => '10'))?>
+	<?php echo $form->textField($element, 'res_rate', array('size' => '10'))?>
 	<?php echo $form->textField($element, 'sao2', array('size' => '10'))?>
-	<?php echo $form->radioBoolean($element, 'blood_sugar')?>
-	<?php echo $form->textField($element, 'blood_sugar_comments', array('size' => '10'))?>
+	<?php echo $form->textField($element, 'blood_sugar', array('size' => '10'))?>
+	<?php echo $form->checkBox($element, 'bloodsugar_na')?>
 	<?php echo $form->radioBoolean($element, 'urine_passed')?>
-	<?php echo $form->textField($element, 'urine_passed_time', array('size' => '10'))?>
+	<?php echo $form->textField($element, 'time', array('size' => '10'))?>
 	<?php echo $form->textField($element, 'avpu', array('size' => '10'))?>
+	<?php echo $form->radioBoolean($element, 'is_patient_experiencing_pain')?>
+	<?php echo $form->dropDownList($element, 'location_id', CHtml::listData(OphNuPreoperative_BaselineObservations_Location::model()->findAll(array('order'=> 'display_order asc')),'id','name'),array('empty'=>'- Please select -'))?>
+	<?php echo $form->dropDownList($element, 'side_id', CHtml::listData(OphNuPreoperative_BaselineObservations_Side::model()->findAll(array('order'=> 'display_order asc')),'id','name'),array('empty'=>'- Please select -'))?>
+	<?php echo $form->dropDownList($element, 'type_of_pain_id', CHtml::listData(OphNuPreoperative_BaselineObservations_TypeOfPain::model()->findAll(array('order'=> 'display_order asc')),'id','name'),array('empty'=>'- Please select -'))?>
+	<?php echo $form->dropDownList($element, 'pain_score_method_id', CHtml::listData(OphNuPreoperative_BaselineObservations_PainScoreMethod::model()->findAll(array('order'=> 'display_order asc')),'id','name'),array('empty'=>'- Please select -'))?>
+	<?php echo $form->textField($element, 'pain_score', array('size' => '10'))?>
+	<?php echo $form->textField($element, 'p_comments', array('size' => '10'))?>
+	<?php echo $form->dropDownList($element, 'skin_id', CHtml::listData(OphNuPreoperative_BaselineObservations_Skin::model()->findAll(array('order'=> 'display_order asc')),'id','name'),array('empty'=>'- Please select -'))?>
+	<?php echo $form->textField($element, 'comments', array('size' => '10'))?>
+	<?php echo $form->multiSelectList($element, 'MultiSelect_obs', 'obss', 'ophnupreoperative_baseline_obs_id', CHtml::listData(OphNuPreoperative_BaselineObservations_Obs::model()->findAll(array('order'=>'display_order asc')),'id','name'), $element->ophnupreoperative_baseline_obs_defaults, array('empty' => '- Please select -', 'label' => 'Pre-op Observations'))?>
+	<?php echo $form->radioBoolean($element, 'o_comments')?>
+	<?php echo $form->textField($element, 'mews_score', array('size' => '10'))?>
+	<?php echo $form->checkBox($element, 'iv_inserted')?>
+	<?php echo $form->textField($element, 'iv_location', array('size' => '10'))?>
+	<?php echo $form->dropDownList($element, 'size_id', CHtml::listData(OphNuPreoperative_BaselineObservations_Size::model()->findAll(array('order'=> 'display_order asc')),'id','name'),array('empty'=>'- Please select -'))?>
+	<?php echo $form->dropDownList($element, 'fluid_type_id', CHtml::listData(OphNuPreoperative_BaselineObservations_FluidType::model()->findAll(array('order'=> 'display_order asc')),'id','name'),array('empty'=>'- Please select -'))?>
+	<?php echo $form->dropDownList($element, 'volume_given_id', CHtml::listData(OphNuPreoperative_BaselineObservations_VolumeGiven::model()->findAll(array('order'=> 'display_order asc')),'id','name'),array('empty'=>'- Please select -'))?>
+	<?php echo $form->textField($element, 'rate', array('size' => '10'))?>
 	</div>
 	
 </section>

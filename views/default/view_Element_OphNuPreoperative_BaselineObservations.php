@@ -29,44 +29,119 @@
 			<div class="large-10 column end"><div class="data-value"><?php echo CHtml::encode($element->blood_pressure)?></div></div>
 		</div>
 		<div class="row data-row">
-			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('mmhg'))?></div></div>
-			<div class="large-10 column end"><div class="data-value"><?php echo CHtml::encode($element->mmhg)?></div></div>
-		</div>
-		<div class="row data-row">
-			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('heart_rate_pulse'))?></div></div>
-			<div class="large-10 column end"><div class="data-value"><?php echo CHtml::encode($element->heart_rate_pulse)?></div></div>
+			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('bpm'))?></div></div>
+			<div class="large-10 column end"><div class="data-value"><?php echo CHtml::encode($element->bpm)?></div></div>
 		</div>
 		<div class="row data-row">
 			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('temperature'))?></div></div>
 			<div class="large-10 column end"><div class="data-value"><?php echo CHtml::encode($element->temperature)?></div></div>
 		</div>
 		<div class="row data-row">
-			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('respiratory_rate'))?></div></div>
-			<div class="large-10 column end"><div class="data-value"><?php echo CHtml::encode($element->respiratory_rate)?></div></div>
+			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('res_rate'))?></div></div>
+			<div class="large-10 column end"><div class="data-value"><?php echo CHtml::encode($element->res_rate)?></div></div>
 		</div>
 		<div class="row data-row">
 			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('sao2'))?></div></div>
 			<div class="large-10 column end"><div class="data-value"><?php echo CHtml::encode($element->sao2)?></div></div>
 		</div>
 		<div class="row data-row">
-			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('blood_sugar'))?>:</div></div>
-			<div class="large-10 column end"><div class="data-value"><?php echo $element->blood_sugar ? 'Yes' : 'No'?></div></div>
+			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('blood_sugar'))?></div></div>
+			<div class="large-10 column end"><div class="data-value"><?php echo CHtml::encode($element->blood_sugar)?></div></div>
 		</div>
 		<div class="row data-row">
-			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('blood_sugar_comments'))?></div></div>
-			<div class="large-10 column end"><div class="data-value"><?php echo CHtml::encode($element->blood_sugar_comments)?></div></div>
+			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('bloodsugar_na'))?></div></div>
+			<div class="large-10 column end"><div class="data-value"><?php echo $element->bloodsugar_na ? 'Yes' : 'No'?></div></div>
 		</div>
 		<div class="row data-row">
 			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('urine_passed'))?>:</div></div>
 			<div class="large-10 column end"><div class="data-value"><?php echo $element->urine_passed ? 'Yes' : 'No'?></div></div>
 		</div>
 		<div class="row data-row">
-			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('urine_passed_time'))?></div></div>
-			<div class="large-10 column end"><div class="data-value"><?php echo CHtml::encode($element->urine_passed_time)?></div></div>
+			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('time'))?></div></div>
+			<div class="large-10 column end"><div class="data-value"><?php echo CHtml::encode($element->time)?></div></div>
 		</div>
 		<div class="row data-row">
 			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('avpu'))?></div></div>
 			<div class="large-10 column end"><div class="data-value"><?php echo CHtml::encode($element->avpu)?></div></div>
+		</div>
+		<div class="row data-row">
+			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('is_patient_experiencing_pain'))?>:</div></div>
+			<div class="large-10 column end"><div class="data-value"><?php echo $element->is_patient_experiencing_pain ? 'Yes' : 'No'?></div></div>
+		</div>
+		<div class="row data-row">
+			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('location_id'))?></div></div>
+			<div class="large-10 column end"><div class="data-value"><?php echo $element->location ? $element->location->name : 'None'?></div></div>
+		</div>
+		<div class="row data-row">
+			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('side_id'))?></div></div>
+			<div class="large-10 column end"><div class="data-value"><?php echo $element->side ? $element->side->name : 'None'?></div></div>
+		</div>
+		<div class="row data-row">
+			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('type_of_pain_id'))?></div></div>
+			<div class="large-10 column end"><div class="data-value"><?php echo $element->type_of_pain ? $element->type_of_pain->name : 'None'?></div></div>
+		</div>
+		<div class="row data-row">
+			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('pain_score_method_id'))?></div></div>
+			<div class="large-10 column end"><div class="data-value"><?php echo $element->pain_score_method ? $element->pain_score_method->name : 'None'?></div></div>
+		</div>
+		<div class="row data-row">
+			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('pain_score'))?></div></div>
+			<div class="large-10 column end"><div class="data-value"><?php echo CHtml::encode($element->pain_score)?></div></div>
+		</div>
+		<div class="row data-row">
+			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('p_comments'))?></div></div>
+			<div class="large-10 column end"><div class="data-value"><?php echo CHtml::encode($element->p_comments)?></div></div>
+		</div>
+		<div class="row data-row">
+			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('skin_id'))?></div></div>
+			<div class="large-10 column end"><div class="data-value"><?php echo $element->skin ? $element->skin->name : 'None'?></div></div>
+		</div>
+		<div class="row data-row">
+			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('comments'))?></div></div>
+			<div class="large-10 column end"><div class="data-value"><?php echo CHtml::encode($element->comments)?></div></div>
+		</div>
+		<div class="row data-row">
+			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('obs'))?>:</div></div>
+			<div class="large-10 column end"><div class="data-value"><?php if (!$element->obss) {?>
+							None
+						<?php } else {?>
+								<?php foreach ($element->obss as $item) {
+									echo $item->ophnupreoperative_baseline_obs->name?><br/>
+								<?php }?>
+						<?php }?>
+			</div></div>
+		</div>
+		<div class="row data-row">
+			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('o_comments'))?>:</div></div>
+			<div class="large-10 column end"><div class="data-value"><?php echo $element->o_comments ? 'Yes' : 'No'?></div></div>
+		</div>
+		<div class="row data-row">
+			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('mews_score'))?></div></div>
+			<div class="large-10 column end"><div class="data-value"><?php echo CHtml::encode($element->mews_score)?></div></div>
+		</div>
+		<div class="row data-row">
+			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('iv_inserted'))?></div></div>
+			<div class="large-10 column end"><div class="data-value"><?php echo $element->iv_inserted ? 'Yes' : 'No'?></div></div>
+		</div>
+		<div class="row data-row">
+			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('iv_location'))?></div></div>
+			<div class="large-10 column end"><div class="data-value"><?php echo CHtml::encode($element->iv_location)?></div></div>
+		</div>
+		<div class="row data-row">
+			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('size_id'))?></div></div>
+			<div class="large-10 column end"><div class="data-value"><?php echo $element->size ? $element->size->name : 'None'?></div></div>
+		</div>
+		<div class="row data-row">
+			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('fluid_type_id'))?></div></div>
+			<div class="large-10 column end"><div class="data-value"><?php echo $element->fluid_type ? $element->fluid_type->name : 'None'?></div></div>
+		</div>
+		<div class="row data-row">
+			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('volume_given_id'))?></div></div>
+			<div class="large-10 column end"><div class="data-value"><?php echo $element->volume_given ? $element->volume_given->name : 'None'?></div></div>
+		</div>
+		<div class="row data-row">
+			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('rate'))?></div></div>
+			<div class="large-10 column end"><div class="data-value"><?php echo CHtml::encode($element->rate)?></div></div>
 		</div>
 			</div>
 </section>

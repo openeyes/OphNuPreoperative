@@ -1,5 +1,4 @@
-<?php
-/**
+<?php /**
  * OpenEyes
  *
  * (C) Moorfields Eye Hospital NHS Foundation Trust, 2008-2011
@@ -18,23 +17,22 @@
  */
 
 /**
- * This is the model class for table "et_ophnupreoperative_comments".
+ * This is the model class for table "et_ophnupreoperative_baseline_obs_assignment".
  *
  * The followings are the available columns in table:
  * @property string $id
- * @property integer $event_id
- * @property string $comments
+ * @property integer $element_id
+ * @property integer $ophnupreoperative_baseline_obs_id
  *
  * The followings are the available model relations:
  *
- * @property ElementType $element_type
- * @property EventType $eventType
- * @property Event $event
+ * @property Element_OphNuPreoperative_BaselineObservations $element
+ * @property OphNuPreoperative_BaselineObservations_Obs $ophnupreoperative_baseline_obs
  * @property User $user
  * @property User $usermodified
  */
 
-class Element_OphNuPreoperative_Comments  extends  BaseEventTypeElement
+class Element_OphNuPreoperative_BaselineObservations_Obs_Assignment extends BaseActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
@@ -50,7 +48,7 @@ class Element_OphNuPreoperative_Comments  extends  BaseEventTypeElement
 	 */
 	public function tableName()
 	{
-		return 'et_ophnupreoperative_comments';
+		return 'et_ophnupreoperative_baseline_obs_assignment';
 	}
 
 	/**
@@ -59,9 +57,9 @@ class Element_OphNuPreoperative_Comments  extends  BaseEventTypeElement
 	public function rules()
 	{
 		return array(
-			array('event_id, comments, ', 'safe'),
-			array('comments, ', 'required'),
-			array('id, event_id, comments, ', 'safe', 'on' => 'search'),
+			array('element_id, ophnupreoperative_baseline_obs_id', 'safe'),
+			array('element_id, ophnupreoperative_baseline_obs_id', 'required'),
+			array('id, element_id, ophnupreoperative_baseline_obs_id', 'safe', 'on' => 'search'),
 		);
 	}
 
@@ -71,9 +69,8 @@ class Element_OphNuPreoperative_Comments  extends  BaseEventTypeElement
 	public function relations()
 	{
 		return array(
-			'element_type' => array(self::HAS_ONE, 'ElementType', 'id','on' => "element_type.class_name='".get_class($this)."'"),
-			'eventType' => array(self::BELONGS_TO, 'EventType', 'event_type_id'),
-			'event' => array(self::BELONGS_TO, 'Event', 'event_id'),
+			'element' => array(self::BELONGS_TO, 'Element_OphNuPreoperative_BaselineObservations', 'element_id'),
+			'ophnupreoperative_baseline_obs' => array(self::BELONGS_TO, 'OphNuPreoperative_BaselineObservations_Obs', 'ophnupreoperative_baseline_obs_id'),
 			'user' => array(self::BELONGS_TO, 'User', 'created_user_id'),
 			'usermodified' => array(self::BELONGS_TO, 'User', 'last_modified_user_id'),
 		);
@@ -86,8 +83,7 @@ class Element_OphNuPreoperative_Comments  extends  BaseEventTypeElement
 	{
 		return array(
 			'id' => 'ID',
-			'event_id' => 'Event',
-			'comments' => 'Comments',
+			'name' => 'Name',
 		);
 	}
 
@@ -100,20 +96,11 @@ class Element_OphNuPreoperative_Comments  extends  BaseEventTypeElement
 		$criteria = new CDbCriteria;
 
 		$criteria->compare('id', $this->id, true);
-		$criteria->compare('event_id', $this->event_id, true);
-		$criteria->compare('comments', $this->comments);
+		$criteria->compare('name', $this->name, true);
 
 		return new CActiveDataProvider(get_class($this), array(
 			'criteria' => $criteria,
 		));
-	}
-
-
-
-	protected function afterSave()
-	{
-
-		return parent::afterSave();
 	}
 }
 ?>

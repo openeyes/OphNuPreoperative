@@ -17,16 +17,8 @@
  * @license http://www.gnu.org/licenses/gpl-3.0.html The GNU General Public License V3.0
  */
 ?>
-
-<section class="element">
-	<header class="element-header">
-		<h3 class="element-title"><?php echo $element->elementType->name?></h3>
-	</header>
-
-		<div class="element-data">
-				<div class="row data-row">
-			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('pre-operative_medication_administration'))?></div></div>
-			<div class="large-10 column end"><div class="data-value"><?php echo CHtml::encode($element->pre-operative_medication_administration)?></div></div>
-		</div>
-			</div>
-</section>
+<?php $this->renderPartial(
+	'form_' . get_class($element),
+	array('element' => $element, 'data' => $data, 'form' => $form),
+	false, false
+)?>

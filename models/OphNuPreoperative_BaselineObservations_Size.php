@@ -1,5 +1,4 @@
-<?php
-/**
+<?php /**
  * OpenEyes
  *
  * (C) Moorfields Eye Hospital NHS Foundation Trust, 2008-2011
@@ -18,25 +17,11 @@
  */
 
 /**
- * This is the model class for table "et_ophnupreoperative_patientpain".
+ * This is the model class for table "ophnupreoperative_baseline_size".
  *
  * The followings are the available columns in table:
  * @property string $id
- * @property integer $event_id
- * @property integer $is_pain
- * @property integer $type_of_pain_id
- * @property string $pain_score_method
- * @property integer $back
- * @property integer $neck
- * @property integer $arm
- * @property integer $leg
- * @property integer $head
- * @property integer $other
- * @property string $other_comments
- * @property integer $right
- * @property integer $left
- * @property integer $both
- * @property string $comments
+ * @property string $name
  *
  * The followings are the available model relations:
  *
@@ -45,10 +30,9 @@
  * @property Event $event
  * @property User $user
  * @property User $usermodified
- * @property OphNuPreoperative_PatientPain_TypeOfPain $type_of_pain
  */
 
-class Element_OphNuPreoperative_PatientPain  extends  BaseEventTypeElement
+class OphNuPreoperative_BaselineObservations_Size extends BaseActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
@@ -64,7 +48,7 @@ class Element_OphNuPreoperative_PatientPain  extends  BaseEventTypeElement
 	 */
 	public function tableName()
 	{
-		return 'et_ophnupreoperative_patientpain';
+		return 'ophnupreoperative_baseline_size';
 	}
 
 	/**
@@ -73,9 +57,9 @@ class Element_OphNuPreoperative_PatientPain  extends  BaseEventTypeElement
 	public function rules()
 	{
 		return array(
-			array('event_id, is_pain, type_of_pain_id, pain_score_method, back, neck, arm, leg, head, other, other_comments, right, left, both, comments, ', 'safe'),
-			array('is_pain, type_of_pain_id, pain_score_method, back, neck, arm, leg, head, other, other_comments, right, left, both, comments, ', 'required'),
-			array('id, event_id, is_pain, type_of_pain_id, pain_score_method, back, neck, arm, leg, head, other, other_comments, right, left, both, comments, ', 'safe', 'on' => 'search'),
+			array('name', 'safe'),
+			array('name', 'required'),
+			array('id, name', 'safe', 'on' => 'search'),
 		);
 	}
 
@@ -90,7 +74,6 @@ class Element_OphNuPreoperative_PatientPain  extends  BaseEventTypeElement
 			'event' => array(self::BELONGS_TO, 'Event', 'event_id'),
 			'user' => array(self::BELONGS_TO, 'User', 'created_user_id'),
 			'usermodified' => array(self::BELONGS_TO, 'User', 'last_modified_user_id'),
-			'type_of_pain' => array(self::BELONGS_TO, 'OphNuPreoperative_PatientPain_TypeOfPain', 'type_of_pain_id'),
 		);
 	}
 
@@ -101,21 +84,7 @@ class Element_OphNuPreoperative_PatientPain  extends  BaseEventTypeElement
 	{
 		return array(
 			'id' => 'ID',
-			'event_id' => 'Event',
-			'is_pain' => 'Is the patient experiancing pain',
-			'type_of_pain_id' => 'Type of Pain',
-			'pain_score_method' => 'Pain Score Method',
-			'back' => 'Back',
-			'neck' => 'Neck',
-			'arm' => 'Arm',
-			'leg' => 'Leg',
-			'head' => 'Head',
-			'other' => 'Other',
-			'other_comments' => 'Other Comments',
-			'right' => 'Right',
-			'left' => 'Left',
-			'both' => 'Both',
-			'comments' => 'Comments',
+			'name' => 'Name',
 		);
 	}
 
@@ -128,33 +97,11 @@ class Element_OphNuPreoperative_PatientPain  extends  BaseEventTypeElement
 		$criteria = new CDbCriteria;
 
 		$criteria->compare('id', $this->id, true);
-		$criteria->compare('event_id', $this->event_id, true);
-		$criteria->compare('is_pain', $this->is_pain);
-		$criteria->compare('type_of_pain_id', $this->type_of_pain_id);
-		$criteria->compare('pain_score_method', $this->pain_score_method);
-		$criteria->compare('back', $this->back);
-		$criteria->compare('neck', $this->neck);
-		$criteria->compare('arm', $this->arm);
-		$criteria->compare('leg', $this->leg);
-		$criteria->compare('head', $this->head);
-		$criteria->compare('other', $this->other);
-		$criteria->compare('other_comments', $this->other_comments);
-		$criteria->compare('right', $this->right);
-		$criteria->compare('left', $this->left);
-		$criteria->compare('both', $this->both);
-		$criteria->compare('comments', $this->comments);
+		$criteria->compare('name', $this->name, true);
 
 		return new CActiveDataProvider(get_class($this), array(
 			'criteria' => $criteria,
 		));
-	}
-
-
-
-	protected function afterSave()
-	{
-
-		return parent::afterSave();
 	}
 }
 ?>

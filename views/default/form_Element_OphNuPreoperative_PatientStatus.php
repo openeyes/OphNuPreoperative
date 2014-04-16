@@ -28,18 +28,9 @@
 	</header>
 
 		<div class="element-fields">
-			<?php echo $form->dropDownList($element, 'patient_surgery_id', CHtml::listData(OphNuPreoperative_PatientStatus_PatientSurgery::model()->findAll(array('order'=> 'display_order asc')),'id','name'),array('empty'=>'- Please select -'))?>
-	<?php echo $form->checkBox($element, 'anes_related')?>
-	<?php echo $form->checkBox($element, 'equipment_failure')?>
-	<?php echo $form->checkBox($element, 'change_in_patient_condition')?>
-	<?php echo $form->checkBox($element, 'npo_status')?>
-	<?php echo $form->checkBox($element, 'patient_failed_mews')?>
-	<?php echo $form->checkBox($element, 'lack_of_consumables')?>
-	<?php echo $form->checkBox($element, 'staff_sickness')?>
-	<?php echo $form->checkBox($element, 'consent_form')?>
-	<?php echo $form->checkBox($element, 'run_out_of_time')?>
-	<?php echo $form->checkBox($element, 'other')?>
-	<?php echo $form->textField($element, 'other_comments', array('size' => '10'))?>
+			<?php echo $form->dropDownList($element, 'patient_status_id', CHtml::listData(OphNuPreoperative_PatientStatus_PatientStatus::model()->findAll(array('order'=> 'display_order asc')),'id','name'),array('empty'=>'- Please select -'))?>
+	<?php echo $form->multiSelectList($element, 'MultiSelect_cancel', 'cancels', 'ophnupreoperative_patientstatus_cancel_id', CHtml::listData(OphNuPreoperative_PatientStatus_Cancel::model()->findAll(array('order'=>'display_order asc')),'id','name'), $element->ophnupreoperative_patientstatus_cancel_defaults, array('empty' => '- Please select -', 'label' => 'Reason for cancelation'))?>
+	<?php echo $form->textField($element, 'res_comments', array('size' => '10'))?>
 	</div>
 	
 </section>
