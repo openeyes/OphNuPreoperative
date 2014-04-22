@@ -48,7 +48,7 @@ class m140422_102852_event_type_OphNuPreoperative extends CDbMigration
 				'event_id' => 'int(10) unsigned NOT NULL',
 				'medical_history_verified' => 'tinyint(1) unsigned NOT NULL',
 
-				'medical_discrepancy_found' => 'tinyint(1) unsigned NOT NULL DEFAULT 0',
+				'medical_discrepancy_found' => 'tinyint(1) unsigned NOT NULL',
 
 				'comments' => 'varchar(255) COLLATE utf8_bin DEFAULT \'\'',
 
@@ -92,7 +92,7 @@ class m140422_102852_event_type_OphNuPreoperative extends CDbMigration
 				'id' => 'int(10) unsigned NOT NULL AUTO_INCREMENT',
 				'name' => 'varchar(128) COLLATE utf8_bin NOT NULL',
 				'display_order' => 'int(10) unsigned NOT NULL DEFAULT 1',
-				'default' => 'tinyint(1) unsigned NOT NULL DEFAULT 0',
+				'default' => 'tinyint(1) unsigned NOT NULL',
 				'last_modified_user_id' => 'int(10) unsigned NOT NULL DEFAULT 1',
 				'last_modified_date' => 'datetime NOT NULL DEFAULT \'1901-01-01 00:00:00\'',
 				'created_user_id' => 'int(10) unsigned NOT NULL DEFAULT 1',
@@ -132,7 +132,7 @@ class m140422_102852_event_type_OphNuPreoperative extends CDbMigration
 				'id' => 'int(10) unsigned NOT NULL AUTO_INCREMENT',
 				'name' => 'varchar(128) COLLATE utf8_bin NOT NULL',
 				'display_order' => 'int(10) unsigned NOT NULL DEFAULT 1',
-				'default' => 'tinyint(1) unsigned NOT NULL DEFAULT 0',
+				'default' => 'tinyint(1) unsigned NOT NULL',
 				'last_modified_user_id' => 'int(10) unsigned NOT NULL DEFAULT 1',
 				'last_modified_date' => 'datetime NOT NULL DEFAULT \'1901-01-01 00:00:00\'',
 				'created_user_id' => 'int(10) unsigned NOT NULL DEFAULT 1',
@@ -155,7 +155,7 @@ class m140422_102852_event_type_OphNuPreoperative extends CDbMigration
 				'id' => 'int(10) unsigned NOT NULL AUTO_INCREMENT',
 				'name' => 'varchar(128) COLLATE utf8_bin NOT NULL',
 				'display_order' => 'int(10) unsigned NOT NULL DEFAULT 1',
-				'default' => 'tinyint(1) unsigned NOT NULL DEFAULT 0',
+				'default' => 'tinyint(1) unsigned NOT NULL',
 				'last_modified_user_id' => 'int(10) unsigned NOT NULL DEFAULT 1',
 				'last_modified_date' => 'datetime NOT NULL DEFAULT \'1901-01-01 00:00:00\'',
 				'created_user_id' => 'int(10) unsigned NOT NULL DEFAULT 1',
@@ -175,7 +175,7 @@ class m140422_102852_event_type_OphNuPreoperative extends CDbMigration
 				'id' => 'int(10) unsigned NOT NULL AUTO_INCREMENT',
 				'name' => 'varchar(128) COLLATE utf8_bin NOT NULL',
 				'display_order' => 'int(10) unsigned NOT NULL DEFAULT 1',
-				'default' => 'tinyint(1) unsigned NOT NULL DEFAULT 0',
+				'default' => 'tinyint(1) unsigned NOT NULL',
 				'last_modified_user_id' => 'int(10) unsigned NOT NULL DEFAULT 1',
 				'last_modified_date' => 'datetime NOT NULL DEFAULT \'1901-01-01 00:00:00\'',
 				'created_user_id' => 'int(10) unsigned NOT NULL DEFAULT 1',
@@ -241,19 +241,19 @@ class m140422_102852_event_type_OphNuPreoperative extends CDbMigration
 
 				'iol_size' => 'varchar(255) COLLATE utf8_bin DEFAULT \'\'',
 
-				'metal_in_body' => 'tinyint(1) unsigned NOT NULL DEFAULT 0',
+				'metal_in_body' => 'tinyint(1) unsigned NOT NULL',
 
 				'm_comments' => 'varchar(255) COLLATE utf8_bin DEFAULT \'\'',
 
-				'falls_mobility' => 'tinyint(1) unsigned NOT NULL DEFAULT 0',
+				'falls_mobility' => 'tinyint(1) unsigned NOT NULL',
 
-				'removable_dental_work_present' => 'tinyint(1) unsigned NOT NULL DEFAULT 0',
+				'removable_dental_work_present' => 'tinyint(1) unsigned NOT NULL',
 
 				'd_comments' => 'varchar(255) COLLATE utf8_bin DEFAULT \'\'',
 
-				'hearing_aid_present' => 'tinyint(1) unsigned NOT NULL DEFAULT 0',
+				'hearing_aid_present' => 'tinyint(1) unsigned NOT NULL',
 
-				'patient_belongings' => 'tinyint(1) unsigned NOT NULL DEFAULT 0',
+				'patient_belongings' => 'tinyint(1) unsigned NOT NULL',
 
 				'belong_id' => 'int(10) unsigned NOT NULL',
 
@@ -461,7 +461,7 @@ class m140422_102852_event_type_OphNuPreoperative extends CDbMigration
 				'id' => 'int(10) unsigned NOT NULL AUTO_INCREMENT',
 				'name' => 'varchar(128) COLLATE utf8_bin NOT NULL',
 				'display_order' => 'int(10) unsigned NOT NULL DEFAULT 1',
-				'default' => 'tinyint(1) unsigned NOT NULL DEFAULT 0',
+				'default' => 'tinyint(1) unsigned NOT NULL',
 				'last_modified_user_id' => 'int(10) unsigned NOT NULL DEFAULT 1',
 				'last_modified_date' => 'datetime NOT NULL DEFAULT \'1901-01-01 00:00:00\'',
 				'created_user_id' => 'int(10) unsigned NOT NULL DEFAULT 1',
@@ -554,13 +554,13 @@ class m140422_102852_event_type_OphNuPreoperative extends CDbMigration
 
 				'bloodsugar_na' => 'tinyint(1) unsigned NOT NULL',
 
-				'urine_passed' => 'tinyint(1) unsigned NOT NULL DEFAULT 0',
+				'urine_passed' => 'tinyint(1) unsigned NOT NULL',
 
 				'time' => 'varchar(255) COLLATE utf8_bin DEFAULT \'\'',
 
 				'avpu' => 'varchar(255) COLLATE utf8_bin DEFAULT \'\'',
 
-				'is_patient_experiencing_pain' => 'tinyint(1) unsigned NOT NULL DEFAULT 0',
+				'is_patient_experiencing_pain' => 'tinyint(1) unsigned NOT NULL',
 
 				'location_id' => 'int(10) unsigned NOT NULL',
 
@@ -578,7 +578,7 @@ class m140422_102852_event_type_OphNuPreoperative extends CDbMigration
 
 				'comments' => 'varchar(255) COLLATE utf8_bin DEFAULT \'\'',
 
-				'o_comments' => 'tinyint(1) unsigned NOT NULL DEFAULT 0',
+				'o_comments' => 'tinyint(1) unsigned NOT NULL',
 
 				'mews_score' => 'varchar(255) COLLATE utf8_bin DEFAULT \'\'',
 
@@ -684,7 +684,7 @@ class m140422_102852_event_type_OphNuPreoperative extends CDbMigration
 				'id' => 'int(10) unsigned NOT NULL AUTO_INCREMENT',
 				'name' => 'varchar(128) COLLATE utf8_bin NOT NULL',
 				'display_order' => 'int(10) unsigned NOT NULL DEFAULT 1',
-				'default' => 'tinyint(1) unsigned NOT NULL DEFAULT 0',
+				'default' => 'tinyint(1) unsigned NOT NULL',
 				'last_modified_user_id' => 'int(10) unsigned NOT NULL DEFAULT 1',
 				'last_modified_date' => 'datetime NOT NULL DEFAULT \'1901-01-01 00:00:00\'',
 				'created_user_id' => 'int(10) unsigned NOT NULL DEFAULT 1',
