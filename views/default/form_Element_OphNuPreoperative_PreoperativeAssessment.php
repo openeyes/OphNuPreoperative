@@ -47,18 +47,10 @@
 	<?php echo $form->radioBoolean($element, 'falls_mobility')?>
 	<?php echo $form->multiSelectList($element, 'MultiSelect_falls', 'fallss', 'ophnupreoperative_preoperative_falls_id', CHtml::listData(OphNuPreoperative_PreoperativeAssessment_Falls::model()->findAll(array('order'=>'display_order asc')),'id','name'), $element->ophnupreoperative_preoperative_falls_defaults, array('empty' => '- Please select -', 'label' => 'Falls / Mobility'))?>
 	<?php echo $form->radioBoolean($element, 'removable_dental_work_present')?>
-	<?php echo $form->checkBox($element, 'full_uppers')?>
-	<?php echo $form->checkBox($element, 'fu_removed')?>
-	<?php echo $form->checkBox($element, 'full_lowers')?>
-	<?php echo $form->checkBox($element, 'fl_removed')?>
-	<?php echo $form->checkBox($element, 'd_other')?>
-	<?php echo $form->checkBox($element, 'other_removed')?>
+	<?php echo $form->multiSelectList($element, 'MultiSelect_dental', 'dentals', 'ophnupreoperative_preoperative_dental_id', CHtml::listData(OphNuPreoperative_PreoperativeAssessment_Dental::model()->findAll(array('order'=>'display_order asc')),'id','name'), $element->ophnupreoperative_preoperative_dental_defaults, array('empty' => '- Please select -', 'label' => 'Items'))?>
 	<?php echo $form->textField($element, 'd_comments', array('size' => '10'))?>
 	<?php echo $form->radioBoolean($element, 'hearing_aid_present')?>
-	<?php echo $form->checkBox($element, 'h_right')?>
-	<?php echo $form->checkBox($element, 'h_r_removed')?>
-	<?php echo $form->checkBox($element, 'h_left')?>
-	<?php echo $form->checkBox($element, 'h_r_removed')?>
+	<?php echo $form->multiSelectList($element, 'MultiSelect_hearing_aid', 'hearing_aids', 'ophnupreoperative_preoperative_hearing_aid_id', CHtml::listData(OphNuPreoperative_PreoperativeAssessment_HearingAid::model()->findAll(array('order'=>'display_order asc')),'id','name'), $element->ophnupreoperative_preoperative_hearing_aid_defaults, array('empty' => '- Please select -', 'label' => 'Hearing Aid'))?>
 	<?php echo $form->radioBoolean($element, 'patient_belongings')?>
 	<?php echo $form->dropDownList($element, 'belong_id', CHtml::listData(OphNuPreoperative_PreoperativeAssessment_Belong::model()->findAll(array('order'=> 'display_order asc')),'id','name'),array('empty'=>'- Please select -'))?>
 	<?php echo $form->textField($element, 'b_comments', array('size' => '10'))?>

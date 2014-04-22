@@ -40,18 +40,8 @@
  * @property string $m_comments
  * @property integer $falls_mobility
  * @property integer $removable_dental_work_present
- * @property integer $full_uppers
- * @property integer $fu_removed
- * @property integer $full_lowers
- * @property integer $fl_removed
- * @property integer $d_other
- * @property integer $other_removed
  * @property string $d_comments
  * @property integer $hearing_aid_present
- * @property integer $h_right
- * @property integer $h_r_removed
- * @property integer $h_left
- * @property integer $h_r_removed
  * @property integer $patient_belongings
  * @property integer $belong_id
  * @property string $b_comments
@@ -67,6 +57,8 @@
  * @property Element_OphNuPreoperative_PreoperativeAssessment_Wristband_Assignment $wristbands
  * @property OphNuPreoperative_PreoperativeAssessment_IolVerified $iol_verified
  * @property Element_OphNuPreoperative_PreoperativeAssessment_Falls_Assignment $fallss
+ * @property Element_OphNuPreoperative_PreoperativeAssessment_Dental_Assignment $dentals
+ * @property Element_OphNuPreoperative_PreoperativeAssessment_HearingAid_Assignment $hearing_aids
  * @property OphNuPreoperative_PreoperativeAssessment_Belong $belong
  */
 
@@ -95,9 +87,9 @@ class Element_OphNuPreoperative_PreoperativeAssessment  extends  BaseEventTypeEl
 	public function rules()
 	{
 		return array(
-			array('event_id, translator_present_id, name_of_translator, patient_verified, time_last_ate, time_last_drank, consent_signed, surgical_site_verified, s_right, s_left, s_both, iol_verified_id, iol_type, iol_size, metal_in_body, m_comments, falls_mobility, removable_dental_work_present, full_uppers, fu_removed, full_lowers, fl_removed, d_other, other_removed, d_comments, hearing_aid_present, h_right, h_r_removed, h_left, h_r_removed, patient_belongings, belong_id, b_comments, ', 'safe'),
-			array('translator_present_id, name_of_translator, patient_verified, time_last_ate, time_last_drank, consent_signed, surgical_site_verified, s_right, s_left, s_both, iol_verified_id, iol_type, iol_size, metal_in_body, m_comments, falls_mobility, removable_dental_work_present, full_uppers, fu_removed, full_lowers, fl_removed, d_other, other_removed, d_comments, hearing_aid_present, h_right, h_r_removed, h_left, h_r_removed, patient_belongings, belong_id, b_comments, ', 'required'),
-			array('id, event_id, translator_present_id, name_of_translator, patient_verified, time_last_ate, time_last_drank, consent_signed, surgical_site_verified, s_right, s_left, s_both, iol_verified_id, iol_type, iol_size, metal_in_body, m_comments, falls_mobility, removable_dental_work_present, full_uppers, fu_removed, full_lowers, fl_removed, d_other, other_removed, d_comments, hearing_aid_present, h_right, h_r_removed, h_left, h_r_removed, patient_belongings, belong_id, b_comments, ', 'safe', 'on' => 'search'),
+			array('event_id, translator_present_id, name_of_translator, patient_verified, time_last_ate, time_last_drank, consent_signed, surgical_site_verified, s_right, s_left, s_both, iol_verified_id, iol_type, iol_size, metal_in_body, m_comments, falls_mobility, removable_dental_work_present, d_comments, hearing_aid_present, patient_belongings, belong_id, b_comments, ', 'safe'),
+			array('translator_present_id, name_of_translator, patient_verified, time_last_ate, time_last_drank, consent_signed, surgical_site_verified, s_right, s_left, s_both, iol_verified_id, iol_type, iol_size, metal_in_body, m_comments, falls_mobility, removable_dental_work_present, d_comments, hearing_aid_present, patient_belongings, belong_id, b_comments, ', 'required'),
+			array('id, event_id, translator_present_id, name_of_translator, patient_verified, time_last_ate, time_last_drank, consent_signed, surgical_site_verified, s_right, s_left, s_both, iol_verified_id, iol_type, iol_size, metal_in_body, m_comments, falls_mobility, removable_dental_work_present, d_comments, hearing_aid_present, patient_belongings, belong_id, b_comments, ', 'safe', 'on' => 'search'),
 		);
 	}
 
@@ -116,6 +108,8 @@ class Element_OphNuPreoperative_PreoperativeAssessment  extends  BaseEventTypeEl
 			'wristbands' => array(self::HAS_MANY, 'Element_OphNuPreoperative_PreoperativeAssessment_Wristband_Assignment', 'element_id'),
 			'iol_verified' => array(self::BELONGS_TO, 'OphNuPreoperative_PreoperativeAssessment_IolVerified', 'iol_verified_id'),
 			'fallss' => array(self::HAS_MANY, 'Element_OphNuPreoperative_PreoperativeAssessment_Falls_Assignment', 'element_id'),
+			'dentals' => array(self::HAS_MANY, 'Element_OphNuPreoperative_PreoperativeAssessment_Dental_Assignment', 'element_id'),
+			'hearing_aids' => array(self::HAS_MANY, 'Element_OphNuPreoperative_PreoperativeAssessment_HearingAid_Assignment', 'element_id'),
 			'belong' => array(self::BELONGS_TO, 'OphNuPreoperative_PreoperativeAssessment_Belong', 'belong_id'),
 		);
 	}
@@ -147,18 +141,10 @@ class Element_OphNuPreoperative_PreoperativeAssessment  extends  BaseEventTypeEl
 			'falls_mobility' => 'Falls / Mobility',
 			'falls' => 'Falls / Mobility',
 			'removable_dental_work_present' => 'Removable Dental work present?',
-			'full_uppers' => 'Full Uppers',
-			'fu_removed' => 'Removed?',
-			'full_lowers' => 'Full Lowers',
-			'fl_removed' => 'Removed?',
-			'd_other' => 'Other',
-			'other_removed' => 'Removed?',
+			'dental' => 'Items',
 			'd_comments' => 'Comments',
-			'hearing_aid_present' => 'Hearing Aid Present',
-			'h_right' => 'Right',
-			'h_r_removed' => 'Removed?',
-			'h_left' => 'Left',
-			'h_r_removed' => 'Removed?',
+			'hearing_aid_present' => 'Hearing Aid Present?',
+			'hearing_aid' => 'Hearing Aid',
 			'patient_belongings' => 'Patient Belongings',
 			'belong_id' => 'Patient Belongings',
 			'b_comments' => 'Comments',
@@ -194,18 +180,10 @@ class Element_OphNuPreoperative_PreoperativeAssessment  extends  BaseEventTypeEl
 		$criteria->compare('falls_mobility', $this->falls_mobility);
 		$criteria->compare('falls', $this->falls);
 		$criteria->compare('removable_dental_work_present', $this->removable_dental_work_present);
-		$criteria->compare('full_uppers', $this->full_uppers);
-		$criteria->compare('fu_removed', $this->fu_removed);
-		$criteria->compare('full_lowers', $this->full_lowers);
-		$criteria->compare('fl_removed', $this->fl_removed);
-		$criteria->compare('d_other', $this->d_other);
-		$criteria->compare('other_removed', $this->other_removed);
+		$criteria->compare('dental', $this->dental);
 		$criteria->compare('d_comments', $this->d_comments);
 		$criteria->compare('hearing_aid_present', $this->hearing_aid_present);
-		$criteria->compare('h_right', $this->h_right);
-		$criteria->compare('h_r_removed', $this->h_r_removed);
-		$criteria->compare('h_left', $this->h_left);
-		$criteria->compare('h_r_removed', $this->h_r_removed);
+		$criteria->compare('hearing_aid', $this->hearing_aid);
 		$criteria->compare('patient_belongings', $this->patient_belongings);
 		$criteria->compare('belong_id', $this->belong_id);
 		$criteria->compare('b_comments', $this->b_comments);
@@ -226,6 +204,20 @@ class Element_OphNuPreoperative_PreoperativeAssessment  extends  BaseEventTypeEl
 	public function getophnupreoperative_preoperative_falls_defaults() {
 		$ids = array();
 		foreach (OphNuPreoperative_PreoperativeAssessment_Falls::model()->findAll('`default` = ?',array(1)) as $item) {
+			$ids[] = $item->id;
+		}
+		return $ids;
+	}
+	public function getophnupreoperative_preoperative_dental_defaults() {
+		$ids = array();
+		foreach (OphNuPreoperative_PreoperativeAssessment_Dental::model()->findAll('`default` = ?',array(1)) as $item) {
+			$ids[] = $item->id;
+		}
+		return $ids;
+	}
+	public function getophnupreoperative_preoperative_hearing_aid_defaults() {
+		$ids = array();
+		foreach (OphNuPreoperative_PreoperativeAssessment_HearingAid::model()->findAll('`default` = ?',array(1)) as $item) {
 			$ids[] = $item->id;
 		}
 		return $ids;
@@ -285,6 +277,64 @@ class Element_OphNuPreoperative_PreoperativeAssessment  extends  BaseEventTypeEl
 			foreach ($existing_ids as $id) {
 				if (!in_array($id,$_POST['MultiSelect_falls'])) {
 					$item = Element_OphNuPreoperative_PreoperativeAssessment_Falls_Assignment::model()->find('element_id = :elementId and ophnupreoperative_preoperative_falls_id = :lookupfieldId',array(':elementId' => $this->id, ':lookupfieldId' => $id));
+					if (!$item->delete()) {
+						throw new Exception('Unable to delete MultiSelect item: '.print_r($item->getErrors(),true));
+					}
+				}
+			}
+		}
+		if (!empty($_POST['MultiSelect_dental'])) {
+
+			$existing_ids = array();
+
+			foreach (Element_OphNuPreoperative_PreoperativeAssessment_Dental_Assignment::model()->findAll('element_id = :elementId', array(':elementId' => $this->id)) as $item) {
+				$existing_ids[] = $item->ophnupreoperative_preoperative_dental_id;
+			}
+
+			foreach ($_POST['MultiSelect_dental'] as $id) {
+				if (!in_array($id,$existing_ids)) {
+					$item = new Element_OphNuPreoperative_PreoperativeAssessment_Dental_Assignment;
+					$item->element_id = $this->id;
+					$item->ophnupreoperative_preoperative_dental_id = $id;
+
+					if (!$item->save()) {
+						throw new Exception('Unable to save MultiSelect item: '.print_r($item->getErrors(),true));
+					}
+				}
+			}
+
+			foreach ($existing_ids as $id) {
+				if (!in_array($id,$_POST['MultiSelect_dental'])) {
+					$item = Element_OphNuPreoperative_PreoperativeAssessment_Dental_Assignment::model()->find('element_id = :elementId and ophnupreoperative_preoperative_dental_id = :lookupfieldId',array(':elementId' => $this->id, ':lookupfieldId' => $id));
+					if (!$item->delete()) {
+						throw new Exception('Unable to delete MultiSelect item: '.print_r($item->getErrors(),true));
+					}
+				}
+			}
+		}
+		if (!empty($_POST['MultiSelect_hearing_aid'])) {
+
+			$existing_ids = array();
+
+			foreach (Element_OphNuPreoperative_PreoperativeAssessment_HearingAid_Assignment::model()->findAll('element_id = :elementId', array(':elementId' => $this->id)) as $item) {
+				$existing_ids[] = $item->ophnupreoperative_preoperative_hearing_aid_id;
+			}
+
+			foreach ($_POST['MultiSelect_hearing_aid'] as $id) {
+				if (!in_array($id,$existing_ids)) {
+					$item = new Element_OphNuPreoperative_PreoperativeAssessment_HearingAid_Assignment;
+					$item->element_id = $this->id;
+					$item->ophnupreoperative_preoperative_hearing_aid_id = $id;
+
+					if (!$item->save()) {
+						throw new Exception('Unable to save MultiSelect item: '.print_r($item->getErrors(),true));
+					}
+				}
+			}
+
+			foreach ($existing_ids as $id) {
+				if (!in_array($id,$_POST['MultiSelect_hearing_aid'])) {
+					$item = Element_OphNuPreoperative_PreoperativeAssessment_HearingAid_Assignment::model()->find('element_id = :elementId and ophnupreoperative_preoperative_hearing_aid_id = :lookupfieldId',array(':elementId' => $this->id, ':lookupfieldId' => $id));
 					if (!$item->delete()) {
 						throw new Exception('Unable to delete MultiSelect item: '.print_r($item->getErrors(),true));
 					}

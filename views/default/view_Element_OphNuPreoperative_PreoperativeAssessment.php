@@ -115,28 +115,15 @@
 			<div class="large-10 column end"><div class="data-value"><?php echo $element->removable_dental_work_present ? 'Yes' : 'No'?></div></div>
 		</div>
 		<div class="row data-row">
-			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('full_uppers'))?></div></div>
-			<div class="large-10 column end"><div class="data-value"><?php echo $element->full_uppers ? 'Yes' : 'No'?></div></div>
-		</div>
-		<div class="row data-row">
-			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('fu_removed'))?></div></div>
-			<div class="large-10 column end"><div class="data-value"><?php echo $element->fu_removed ? 'Yes' : 'No'?></div></div>
-		</div>
-		<div class="row data-row">
-			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('full_lowers'))?></div></div>
-			<div class="large-10 column end"><div class="data-value"><?php echo $element->full_lowers ? 'Yes' : 'No'?></div></div>
-		</div>
-		<div class="row data-row">
-			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('fl_removed'))?></div></div>
-			<div class="large-10 column end"><div class="data-value"><?php echo $element->fl_removed ? 'Yes' : 'No'?></div></div>
-		</div>
-		<div class="row data-row">
-			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('d_other'))?></div></div>
-			<div class="large-10 column end"><div class="data-value"><?php echo $element->d_other ? 'Yes' : 'No'?></div></div>
-		</div>
-		<div class="row data-row">
-			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('other_removed'))?></div></div>
-			<div class="large-10 column end"><div class="data-value"><?php echo $element->other_removed ? 'Yes' : 'No'?></div></div>
+			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('dental'))?>:</div></div>
+			<div class="large-10 column end"><div class="data-value"><?php if (!$element->dentals) {?>
+							None
+						<?php } else {?>
+								<?php foreach ($element->dentals as $item) {
+									echo $item->ophnupreoperative_preoperative_dental->name?><br/>
+								<?php }?>
+						<?php }?>
+			</div></div>
 		</div>
 		<div class="row data-row">
 			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('d_comments'))?></div></div>
@@ -147,20 +134,15 @@
 			<div class="large-10 column end"><div class="data-value"><?php echo $element->hearing_aid_present ? 'Yes' : 'No'?></div></div>
 		</div>
 		<div class="row data-row">
-			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('h_right'))?></div></div>
-			<div class="large-10 column end"><div class="data-value"><?php echo $element->h_right ? 'Yes' : 'No'?></div></div>
-		</div>
-		<div class="row data-row">
-			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('h_r_removed'))?></div></div>
-			<div class="large-10 column end"><div class="data-value"><?php echo $element->h_r_removed ? 'Yes' : 'No'?></div></div>
-		</div>
-		<div class="row data-row">
-			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('h_left'))?></div></div>
-			<div class="large-10 column end"><div class="data-value"><?php echo $element->h_left ? 'Yes' : 'No'?></div></div>
-		</div>
-		<div class="row data-row">
-			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('h_r_removed'))?></div></div>
-			<div class="large-10 column end"><div class="data-value"><?php echo $element->h_r_removed ? 'Yes' : 'No'?></div></div>
+			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('hearing_aid'))?>:</div></div>
+			<div class="large-10 column end"><div class="data-value"><?php if (!$element->hearing_aids) {?>
+							None
+						<?php } else {?>
+								<?php foreach ($element->hearing_aids as $item) {
+									echo $item->ophnupreoperative_preoperative_hearing_aid->name?><br/>
+								<?php }?>
+						<?php }?>
+			</div></div>
 		</div>
 		<div class="row data-row">
 			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('patient_belongings'))?>:</div></div>

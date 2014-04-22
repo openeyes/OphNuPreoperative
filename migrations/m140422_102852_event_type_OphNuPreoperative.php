@@ -1,5 +1,5 @@
 <?php 
-class m140422_100553_event_type_OphNuPreoperative extends CDbMigration
+class m140422_102852_event_type_OphNuPreoperative extends CDbMigration
 {
 	public function up()
 	{
@@ -151,6 +151,45 @@ class m140422_100553_event_type_OphNuPreoperative extends CDbMigration
 		$this->insert('ophnupreoperative_preoperative_falls',array('name'=>'Cane','display_order'=>5));
 		$this->insert('ophnupreoperative_preoperative_falls',array('name'=>'Parents','display_order'=>6));
 
+		$this->createTable('ophnupreoperative_preoperative_dental', array(
+				'id' => 'int(10) unsigned NOT NULL AUTO_INCREMENT',
+				'name' => 'varchar(128) COLLATE utf8_bin NOT NULL',
+				'display_order' => 'int(10) unsigned NOT NULL DEFAULT 1',
+				'default' => 'tinyint(1) unsigned NOT NULL DEFAULT 0',
+				'last_modified_user_id' => 'int(10) unsigned NOT NULL DEFAULT 1',
+				'last_modified_date' => 'datetime NOT NULL DEFAULT \'1901-01-01 00:00:00\'',
+				'created_user_id' => 'int(10) unsigned NOT NULL DEFAULT 1',
+				'created_date' => 'datetime NOT NULL DEFAULT \'1901-01-01 00:00:00\'',
+				'PRIMARY KEY (`id`)',
+				'KEY `ophnupreoperative_preoperative_dental_lmui_fk` (`last_modified_user_id`)',
+				'KEY `ophnupreoperative_preoperative_dental_cui_fk` (`created_user_id`)',
+				'CONSTRAINT `ophnupreoperative_preoperative_dental_lmui_fk` FOREIGN KEY (`last_modified_user_id`) REFERENCES `user` (`id`)',
+				'CONSTRAINT `ophnupreoperative_preoperative_dental_cui_fk` FOREIGN KEY (`created_user_id`) REFERENCES `user` (`id`)',
+			), 'ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin');
+
+		$this->insert('ophnupreoperative_preoperative_dental',array('name'=>'Full Uppers Removed','display_order'=>1));
+		$this->insert('ophnupreoperative_preoperative_dental',array('name'=>'Full Lowers Removed','display_order'=>2));
+		$this->insert('ophnupreoperative_preoperative_dental',array('name'=>'Other Removed','display_order'=>3));
+
+		$this->createTable('ophnupreoperative_preoperative_hearing_aid', array(
+				'id' => 'int(10) unsigned NOT NULL AUTO_INCREMENT',
+				'name' => 'varchar(128) COLLATE utf8_bin NOT NULL',
+				'display_order' => 'int(10) unsigned NOT NULL DEFAULT 1',
+				'default' => 'tinyint(1) unsigned NOT NULL DEFAULT 0',
+				'last_modified_user_id' => 'int(10) unsigned NOT NULL DEFAULT 1',
+				'last_modified_date' => 'datetime NOT NULL DEFAULT \'1901-01-01 00:00:00\'',
+				'created_user_id' => 'int(10) unsigned NOT NULL DEFAULT 1',
+				'created_date' => 'datetime NOT NULL DEFAULT \'1901-01-01 00:00:00\'',
+				'PRIMARY KEY (`id`)',
+				'KEY `ophnupreoperative_preoperative_hearing_aid_lmui_fk` (`last_modified_user_id`)',
+				'KEY `ophnupreoperative_preoperative_hearing_aid_cui_fk` (`created_user_id`)',
+				'CONSTRAINT `ophnupreoperative_preoperative_hearing_aid_lmui_fk` FOREIGN KEY (`last_modified_user_id`) REFERENCES `user` (`id`)',
+				'CONSTRAINT `ophnupreoperative_preoperative_hearing_aid_cui_fk` FOREIGN KEY (`created_user_id`) REFERENCES `user` (`id`)',
+			), 'ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin');
+
+		$this->insert('ophnupreoperative_preoperative_hearing_aid',array('name'=>'Left Removed','display_order'=>1));
+		$this->insert('ophnupreoperative_preoperative_hearing_aid',array('name'=>'Right Removed','display_order'=>2));
+
 		$this->createTable('ophnupreoperative_preoperative_belong', array(
 				'id' => 'int(10) unsigned NOT NULL AUTO_INCREMENT',
 				'name' => 'varchar(128) COLLATE utf8_bin NOT NULL',
@@ -210,29 +249,9 @@ class m140422_100553_event_type_OphNuPreoperative extends CDbMigration
 
 				'removable_dental_work_present' => 'tinyint(1) unsigned NOT NULL DEFAULT 0',
 
-				'full_uppers' => 'tinyint(1) unsigned NOT NULL',
-
-				'fu_removed' => 'tinyint(1) unsigned NOT NULL',
-
-				'full_lowers' => 'tinyint(1) unsigned NOT NULL',
-
-				'fl_removed' => 'tinyint(1) unsigned NOT NULL',
-
-				'd_other' => 'tinyint(1) unsigned NOT NULL',
-
-				'other_removed' => 'tinyint(1) unsigned NOT NULL',
-
 				'd_comments' => 'varchar(255) COLLATE utf8_bin DEFAULT \'\'',
 
 				'hearing_aid_present' => 'tinyint(1) unsigned NOT NULL DEFAULT 0',
-
-				'h_right' => 'tinyint(1) unsigned NOT NULL',
-
-				'h_r_removed' => 'tinyint(1) unsigned NOT NULL',
-
-				'h_left' => 'tinyint(1) unsigned NOT NULL',
-
-				'h_r_removed' => 'tinyint(1) unsigned NOT NULL',
 
 				'patient_belongings' => 'tinyint(1) unsigned NOT NULL DEFAULT 0',
 
@@ -295,6 +314,44 @@ class m140422_100553_event_type_OphNuPreoperative extends CDbMigration
 				'CONSTRAINT `et_ophnupreoperative_preoperative_falls_assignment_cui_fk` FOREIGN KEY (`created_user_id`) REFERENCES `user` (`id`)',
 				'CONSTRAINT `et_ophnupreoperative_preoperative_falls_assignment_ele_fk` FOREIGN KEY (`element_id`) REFERENCES `et_ophnupreoperative_preoperative` (`id`)',
 				'CONSTRAINT `et_ophnupreoperative_preoperative_falls_assignment_lku_fk` FOREIGN KEY (`ophnupreoperative_preoperative_falls_id`) REFERENCES `ophnupreoperative_preoperative_falls` (`id`)',
+			), 'ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin');
+
+		$this->createTable('et_ophnupreoperative_preoperative_dental_assignment', array(
+				'id' => 'int(10) unsigned NOT NULL AUTO_INCREMENT',
+				'element_id' => 'int(10) unsigned NOT NULL',
+				'ophnupreoperative_preoperative_dental_id' => 'int(10) unsigned NOT NULL',
+				'last_modified_user_id' => 'int(10) unsigned NOT NULL DEFAULT 1',
+				'last_modified_date' => 'datetime NOT NULL DEFAULT \'1901-01-01 00:00:00\'',
+				'created_user_id' => 'int(10) unsigned NOT NULL DEFAULT 1',
+				'created_date' => 'datetime NOT NULL DEFAULT \'1901-01-01 00:00:00\'',
+				'PRIMARY KEY (`id`)',
+				'KEY `et_ophnupreoperative_preoperative_dental_assignment_lmui_fk` (`last_modified_user_id`)',
+				'KEY `et_ophnupreoperative_preoperative_dental_assignment_cui_fk` (`created_user_id`)',
+				'KEY `et_ophnupreoperative_preoperative_dental_assignment_ele_fk` (`element_id`)',
+				'KEY `et_ophnupreoperative_preoperative_dental_assignment_lku_fk` (`ophnupreoperative_preoperative_dental_id`)',
+				'CONSTRAINT `et_ophnupreoperative_preoperative_dental_assignment_lmui_fk` FOREIGN KEY (`last_modified_user_id`) REFERENCES `user` (`id`)',
+				'CONSTRAINT `et_ophnupreoperative_preoperative_dental_assignment_cui_fk` FOREIGN KEY (`created_user_id`) REFERENCES `user` (`id`)',
+				'CONSTRAINT `et_ophnupreoperative_preoperative_dental_assignment_ele_fk` FOREIGN KEY (`element_id`) REFERENCES `et_ophnupreoperative_preoperative` (`id`)',
+				'CONSTRAINT `et_ophnupreoperative_preoperative_dental_assignment_lku_fk` FOREIGN KEY (`ophnupreoperative_preoperative_dental_id`) REFERENCES `ophnupreoperative_preoperative_dental` (`id`)',
+			), 'ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin');
+
+		$this->createTable('et_ophnupreoperative_preoperative_hearing_aid_assignment', array(
+				'id' => 'int(10) unsigned NOT NULL AUTO_INCREMENT',
+				'element_id' => 'int(10) unsigned NOT NULL',
+				'ophnupreoperative_preoperative_hearing_aid_id' => 'int(10) unsigned NOT NULL',
+				'last_modified_user_id' => 'int(10) unsigned NOT NULL DEFAULT 1',
+				'last_modified_date' => 'datetime NOT NULL DEFAULT \'1901-01-01 00:00:00\'',
+				'created_user_id' => 'int(10) unsigned NOT NULL DEFAULT 1',
+				'created_date' => 'datetime NOT NULL DEFAULT \'1901-01-01 00:00:00\'',
+				'PRIMARY KEY (`id`)',
+				'KEY `et_ophnupreoperative_preoperative_hearing_aid_assignment_lmui_fk` (`last_modified_user_id`)',
+				'KEY `et_ophnupreoperative_preoperative_hearing_aid_assignment_cui_fk` (`created_user_id`)',
+				'KEY `et_ophnupreoperative_preoperative_hearing_aid_assignment_ele_fk` (`element_id`)',
+				'KEY `et_ophnupreoperative_preoperative_hearing_aid_assignment_lku_fk` (`ophnupreoperative_preoperative_hearing_aid_id`)',
+				'CONSTRAINT `et_ophnupreoperative_preoperative_hearing_aid_assignment_lmui_fk` FOREIGN KEY (`last_modified_user_id`) REFERENCES `user` (`id`)',
+				'CONSTRAINT `et_ophnupreoperative_preoperative_hearing_aid_assignment_cui_fk` FOREIGN KEY (`created_user_id`) REFERENCES `user` (`id`)',
+				'CONSTRAINT `et_ophnupreoperative_preoperative_hearing_aid_assignment_ele_fk` FOREIGN KEY (`element_id`) REFERENCES `et_ophnupreoperative_preoperative` (`id`)',
+				'CONSTRAINT `et_ophnupreoperative_preoperative_hearing_aid_assignment_lku_fk` FOREIGN KEY (`ophnupreoperative_preoperative_hearing_aid_id`) REFERENCES `ophnupreoperative_preoperative_hearing_aid` (`id`)',
 			), 'ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin');
 
 		$this->createTable('ophnupreoperative_baseline_location', array(
@@ -723,6 +780,8 @@ class m140422_100553_event_type_OphNuPreoperative extends CDbMigration
 
 		$this->dropTable('et_ophnupreoperative_preoperative_wristband_assignment');
 		$this->dropTable('et_ophnupreoperative_preoperative_falls_assignment');
+		$this->dropTable('et_ophnupreoperative_preoperative_dental_assignment');
+		$this->dropTable('et_ophnupreoperative_preoperative_hearing_aid_assignment');
 		$this->dropTable('et_ophnupreoperative_preoperative');
 
 
@@ -730,6 +789,8 @@ class m140422_100553_event_type_OphNuPreoperative extends CDbMigration
 		$this->dropTable('ophnupreoperative_preoperative_wristband');
 		$this->dropTable('ophnupreoperative_preoperative_iol_verified');
 		$this->dropTable('ophnupreoperative_preoperative_falls');
+		$this->dropTable('ophnupreoperative_preoperative_dental');
+		$this->dropTable('ophnupreoperative_preoperative_hearing_aid');
 		$this->dropTable('ophnupreoperative_preoperative_belong');
 
 		$this->dropTable('et_ophnupreoperative_baseline_obs_assignment');
