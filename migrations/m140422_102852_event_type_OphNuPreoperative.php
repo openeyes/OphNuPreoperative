@@ -92,7 +92,7 @@ class m140422_102852_event_type_OphNuPreoperative extends CDbMigration
 				'id' => 'int(10) unsigned NOT NULL AUTO_INCREMENT',
 				'name' => 'varchar(128) COLLATE utf8_bin NOT NULL',
 				'display_order' => 'int(10) unsigned NOT NULL DEFAULT 1',
-				'default' => 'tinyint(1) unsigned NOT NULL',
+				'default' => 'tinyint(1) unsigned NOT NULL DEFAULT 0',
 				'last_modified_user_id' => 'int(10) unsigned NOT NULL DEFAULT 1',
 				'last_modified_date' => 'datetime NOT NULL DEFAULT \'1901-01-01 00:00:00\'',
 				'created_user_id' => 'int(10) unsigned NOT NULL DEFAULT 1',
@@ -109,6 +109,25 @@ class m140422_102852_event_type_OphNuPreoperative extends CDbMigration
 		$this->insert('ophnupreoperative_preoperative_wristband',array('name'=>'Sickle Cell','display_order'=>3));
 		$this->insert('ophnupreoperative_preoperative_wristband',array('name'=>'Allergies','display_order'=>4));
 		$this->insert('ophnupreoperative_preoperative_wristband',array('name'=>'Diabetes','display_order'=>5));
+
+		$this->createTable('ophnupreoperative_preoperative_site', array(
+				'id' => 'int(10) unsigned NOT NULL AUTO_INCREMENT',
+				'name' => 'varchar(128) COLLATE utf8_bin NOT NULL',
+				'display_order' => 'int(10) unsigned NOT NULL DEFAULT 1',
+				'last_modified_user_id' => 'int(10) unsigned NOT NULL DEFAULT 1',
+				'last_modified_date' => 'datetime NOT NULL DEFAULT \'1901-01-01 00:00:00\'',
+				'created_user_id' => 'int(10) unsigned NOT NULL DEFAULT 1',
+				'created_date' => 'datetime NOT NULL DEFAULT \'1901-01-01 00:00:00\'',
+				'PRIMARY KEY (`id`)',
+				'KEY `ophnupreoperative_preoperative_site_lmui_fk` (`last_modified_user_id`)',
+				'KEY `ophnupreoperative_preoperative_site_cui_fk` (`created_user_id`)',
+				'CONSTRAINT `ophnupreoperative_preoperative_site_lmui_fk` FOREIGN KEY (`last_modified_user_id`) REFERENCES `user` (`id`)',
+				'CONSTRAINT `ophnupreoperative_preoperative_site_cui_fk` FOREIGN KEY (`created_user_id`) REFERENCES `user` (`id`)',
+			), 'ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin');
+
+		$this->insert('ophnupreoperative_preoperative_site',array('name'=>'Left','display_order'=>1));
+		$this->insert('ophnupreoperative_preoperative_site',array('name'=>'Right','display_order'=>2));
+		$this->insert('ophnupreoperative_preoperative_site',array('name'=>'Both','display_order'=>3));
 
 		$this->createTable('ophnupreoperative_preoperative_iol_verified', array(
 				'id' => 'int(10) unsigned NOT NULL AUTO_INCREMENT',
@@ -132,7 +151,7 @@ class m140422_102852_event_type_OphNuPreoperative extends CDbMigration
 				'id' => 'int(10) unsigned NOT NULL AUTO_INCREMENT',
 				'name' => 'varchar(128) COLLATE utf8_bin NOT NULL',
 				'display_order' => 'int(10) unsigned NOT NULL DEFAULT 1',
-				'default' => 'tinyint(1) unsigned NOT NULL',
+				'default' => 'tinyint(1) unsigned NOT NULL DEFAULT 0',
 				'last_modified_user_id' => 'int(10) unsigned NOT NULL DEFAULT 1',
 				'last_modified_date' => 'datetime NOT NULL DEFAULT \'1901-01-01 00:00:00\'',
 				'created_user_id' => 'int(10) unsigned NOT NULL DEFAULT 1',
@@ -155,7 +174,7 @@ class m140422_102852_event_type_OphNuPreoperative extends CDbMigration
 				'id' => 'int(10) unsigned NOT NULL AUTO_INCREMENT',
 				'name' => 'varchar(128) COLLATE utf8_bin NOT NULL',
 				'display_order' => 'int(10) unsigned NOT NULL DEFAULT 1',
-				'default' => 'tinyint(1) unsigned NOT NULL',
+				'default' => 'tinyint(1) unsigned NOT NULL DEFAULT 0',
 				'last_modified_user_id' => 'int(10) unsigned NOT NULL DEFAULT 1',
 				'last_modified_date' => 'datetime NOT NULL DEFAULT \'1901-01-01 00:00:00\'',
 				'created_user_id' => 'int(10) unsigned NOT NULL DEFAULT 1',
@@ -175,7 +194,7 @@ class m140422_102852_event_type_OphNuPreoperative extends CDbMigration
 				'id' => 'int(10) unsigned NOT NULL AUTO_INCREMENT',
 				'name' => 'varchar(128) COLLATE utf8_bin NOT NULL',
 				'display_order' => 'int(10) unsigned NOT NULL DEFAULT 1',
-				'default' => 'tinyint(1) unsigned NOT NULL',
+				'default' => 'tinyint(1) unsigned NOT NULL DEFAULT 0',
 				'last_modified_user_id' => 'int(10) unsigned NOT NULL DEFAULT 1',
 				'last_modified_date' => 'datetime NOT NULL DEFAULT \'1901-01-01 00:00:00\'',
 				'created_user_id' => 'int(10) unsigned NOT NULL DEFAULT 1',
@@ -229,11 +248,7 @@ class m140422_102852_event_type_OphNuPreoperative extends CDbMigration
 
 				'surgical_site_verified' => 'tinyint(1) unsigned NOT NULL',
 
-				's_right' => 'tinyint(1) unsigned NOT NULL',
-
-				's_left' => 'tinyint(1) unsigned NOT NULL',
-
-				's_both' => 'tinyint(1) unsigned NOT NULL',
+				'site_id' => 'int(10) unsigned NOT NULL',
 
 				'iol_verified_id' => 'int(10) unsigned NOT NULL',
 
@@ -268,12 +283,14 @@ class m140422_102852_event_type_OphNuPreoperative extends CDbMigration
 				'KEY `et_ophnupreoperative_preoperative_cui_fk` (`created_user_id`)',
 				'KEY `et_ophnupreoperative_preoperative_ev_fk` (`event_id`)',
 				'KEY `ophnupreoperative_preoperative_translator_present_fk` (`translator_present_id`)',
+				'KEY `ophnupreoperative_preoperative_site_fk` (`site_id`)',
 				'KEY `ophnupreoperative_preoperative_iol_verified_fk` (`iol_verified_id`)',
 				'KEY `ophnupreoperative_preoperative_belong_fk` (`belong_id`)',
 				'CONSTRAINT `et_ophnupreoperative_preoperative_lmui_fk` FOREIGN KEY (`last_modified_user_id`) REFERENCES `user` (`id`)',
 				'CONSTRAINT `et_ophnupreoperative_preoperative_cui_fk` FOREIGN KEY (`created_user_id`) REFERENCES `user` (`id`)',
 				'CONSTRAINT `et_ophnupreoperative_preoperative_ev_fk` FOREIGN KEY (`event_id`) REFERENCES `event` (`id`)',
 				'CONSTRAINT `ophnupreoperative_preoperative_translator_present_fk` FOREIGN KEY (`translator_present_id`) REFERENCES `ophnupreoperative_preoperative_translator_present` (`id`)',
+				'CONSTRAINT `ophnupreoperative_preoperative_site_fk` FOREIGN KEY (`site_id`) REFERENCES `ophnupreoperative_preoperative_site` (`id`)',
 				'CONSTRAINT `ophnupreoperative_preoperative_iol_verified_fk` FOREIGN KEY (`iol_verified_id`) REFERENCES `ophnupreoperative_preoperative_iol_verified` (`id`)',
 				'CONSTRAINT `ophnupreoperative_preoperative_belong_fk` FOREIGN KEY (`belong_id`) REFERENCES `ophnupreoperative_preoperative_belong` (`id`)',
 			), 'ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin');
@@ -461,7 +478,7 @@ class m140422_102852_event_type_OphNuPreoperative extends CDbMigration
 				'id' => 'int(10) unsigned NOT NULL AUTO_INCREMENT',
 				'name' => 'varchar(128) COLLATE utf8_bin NOT NULL',
 				'display_order' => 'int(10) unsigned NOT NULL DEFAULT 1',
-				'default' => 'tinyint(1) unsigned NOT NULL',
+				'default' => 'tinyint(1) unsigned NOT NULL DEFAULT 0',
 				'last_modified_user_id' => 'int(10) unsigned NOT NULL DEFAULT 1',
 				'last_modified_date' => 'datetime NOT NULL DEFAULT \'1901-01-01 00:00:00\'',
 				'created_user_id' => 'int(10) unsigned NOT NULL DEFAULT 1',
@@ -684,7 +701,7 @@ class m140422_102852_event_type_OphNuPreoperative extends CDbMigration
 				'id' => 'int(10) unsigned NOT NULL AUTO_INCREMENT',
 				'name' => 'varchar(128) COLLATE utf8_bin NOT NULL',
 				'display_order' => 'int(10) unsigned NOT NULL DEFAULT 1',
-				'default' => 'tinyint(1) unsigned NOT NULL',
+				'default' => 'tinyint(1) unsigned NOT NULL DEFAULT 0',
 				'last_modified_user_id' => 'int(10) unsigned NOT NULL DEFAULT 1',
 				'last_modified_date' => 'datetime NOT NULL DEFAULT \'1901-01-01 00:00:00\'',
 				'created_user_id' => 'int(10) unsigned NOT NULL DEFAULT 1',
@@ -787,6 +804,7 @@ class m140422_102852_event_type_OphNuPreoperative extends CDbMigration
 
 		$this->dropTable('ophnupreoperative_preoperative_translator_present');
 		$this->dropTable('ophnupreoperative_preoperative_wristband');
+		$this->dropTable('ophnupreoperative_preoperative_site');
 		$this->dropTable('ophnupreoperative_preoperative_iol_verified');
 		$this->dropTable('ophnupreoperative_preoperative_falls');
 		$this->dropTable('ophnupreoperative_preoperative_dental');

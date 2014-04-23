@@ -60,20 +60,12 @@
 			<div class="large-10 column end"><div class="data-value"><?php echo $element->consent_signed ? 'Yes' : 'No'?></div></div>
 		</div>
 		<div class="row data-row">
-			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('surgical_site_verified'))?></div></div>
+			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('surgical_site_verified'))?>:</div></div>
 			<div class="large-10 column end"><div class="data-value"><?php echo $element->surgical_site_verified ? 'Yes' : 'No'?></div></div>
 		</div>
 		<div class="row data-row">
-			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('s_right'))?></div></div>
-			<div class="large-10 column end"><div class="data-value"><?php echo $element->s_right ? 'Yes' : 'No'?></div></div>
-		</div>
-		<div class="row data-row">
-			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('s_left'))?></div></div>
-			<div class="large-10 column end"><div class="data-value"><?php echo $element->s_left ? 'Yes' : 'No'?></div></div>
-		</div>
-		<div class="row data-row">
-			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('s_both'))?></div></div>
-			<div class="large-10 column end"><div class="data-value"><?php echo $element->s_both ? 'Yes' : 'No'?></div></div>
+			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('site_id'))?></div></div>
+			<div class="large-10 column end"><div class="data-value"><?php echo $element->site ? $element->site->name : 'None'?></div></div>
 		</div>
 		<div class="row data-row">
 			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('iol_verified_id'))?></div></div>

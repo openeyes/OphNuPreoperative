@@ -64,20 +64,12 @@
 			<td><span class="big"><?php echo $element->consent_signed ? 'Yes' : 'No'?></span></td>
 		</tr>
 		<tr>
-			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('surgical_site_verified'))?></td>
+			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('surgical_site_verified'))?>:</td>
 			<td><span class="big"><?php echo $element->surgical_site_verified ? 'Yes' : 'No'?></span></td>
 		</tr>
 		<tr>
-			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('s_right'))?></td>
-			<td><span class="big"><?php echo $element->s_right ? 'Yes' : 'No'?></span></td>
-		</tr>
-		<tr>
-			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('s_left'))?></td>
-			<td><span class="big"><?php echo $element->s_left ? 'Yes' : 'No'?></span></td>
-		</tr>
-		<tr>
-			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('s_both'))?></td>
-			<td><span class="big"><?php echo $element->s_both ? 'Yes' : 'No'?></span></td>
+			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('site_id'))?></td>
+			<td><span class="big"><?php echo $element->site ? $element->site->name : 'None'?></span></td>
 		</tr>
 		<tr>
 			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('iol_verified_id'))?></td>
