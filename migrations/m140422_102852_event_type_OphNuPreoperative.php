@@ -595,7 +595,7 @@ class m140422_102852_event_type_OphNuPreoperative extends CDbMigration
 
 				'comments' => 'varchar(255) COLLATE utf8_bin DEFAULT \'\'',
 
-				'o_comments' => 'tinyint(1) unsigned NOT NULL',
+				'o_comments' => 'varchar(255) COLLATE utf8_bin DEFAULT \'\'',
 
 				'mews_score' => 'varchar(255) COLLATE utf8_bin DEFAULT \'\'',
 

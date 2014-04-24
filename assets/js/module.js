@@ -39,6 +39,31 @@ $(document).ready(function() {
 		}
 	});
 
+	$(".collapse").hide();
+
+	$("input:radio").each(function(){
+		if($(this).is(':checked') && $(this).val()==1){
+			$(this).closest("fieldset").next(".collapse").show();
+		}
+	});
+
+	$(document.body).on('click', '[type="radio"]', function(e) {
+		var button = $(e.currentTarget);
+		var div = button.closest("fieldset").next(".collapse");
+		if(div)	{
+			button.val()==1 ? div.show() :	hideAndBlank(div);
+		}
+	});
+
+	function hideAndBlank(div) {
+		div.hide();
+		div.find('input').removeAttr('checked');
+		div.find('[type=text]').val('');
+		div.find('a.MultiSelectRemove').map(function() {
+			$(this).click();
+		});
+	}
+
 });
 
 function ucfirst(str) { str += ''; var f = str.charAt(0).toUpperCase(); return f + str.substr(1); }

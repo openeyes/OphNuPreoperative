@@ -112,8 +112,8 @@
 			</div></div>
 		</div>
 		<div class="row data-row">
-			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('o_comments'))?>:</div></div>
-			<div class="large-10 column end"><div class="data-value"><?php echo $element->o_comments ? 'Yes' : 'No'?></div></div>
+			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('o_comments'))?></div></div>
+			<div class="large-10 column end"><div class="data-value"><?php echo CHtml::encode($element->o_comments)?></div></div>
 		</div>
 		<div class="row data-row">
 			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('mews_score'))?></div></div>

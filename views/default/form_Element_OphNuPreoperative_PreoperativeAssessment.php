@@ -51,7 +51,7 @@
 	<?php echo $form->multiSelectList($element, 'MultiSelect_hearing_aid', 'hearing_aids', 'ophnupreoperative_preoperative_hearing_aid_id', CHtml::listData(OphNuPreoperative_PreoperativeAssessment_HearingAid::model()->findAll(array('order'=>'display_order asc')),'id','name'), $element->ophnupreoperative_preoperative_hearing_aid_defaults, array('empty' => '- Please select -', 'label' => 'Hearing Aid'), !$element->hearing_aid_present==1)?>
 	<?php echo $form->radioBoolean($element, 'patient_belongings', array('class' => 'linked-fields', 'data-linked-fields' => 'belong_id', 'data-linked-values' => 'Yes'))?>
 	<?php echo $form->dropDownList($element, 'belong_id', CHtml::listData(OphNuPreoperative_PreoperativeAssessment_Belong::model()->findAll(array('order'=> 'display_order asc')),'id','name'),array('empty'=>'- Please select -', 'class' => 'linked-fields', 'data-linked-fields' => 'b_comments', 'data-linked-values' => 'Other'),$element->patient_belongings!=1)?>
-	<?php echo $form->textField($element, 'b_comments', array('hide' => !$element->patient_belongings==1))?>
+	<?php echo $form->textField($element, 'b_comments', array('hide' => !$element->belong_id==4))?>
 	</div>
 	
 </section>

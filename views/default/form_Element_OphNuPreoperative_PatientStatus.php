@@ -29,8 +29,8 @@
 
 		<div class="element-fields">
 			<?php echo $form->dropDownList($element, 'patient_status_id', CHtml::listData(OphNuPreoperative_PatientStatus_PatientStatus::model()->findAll(array('order'=> 'display_order asc')),'id','name'),array('empty'=>'- Please select -'))?>
-	<?php echo $form->multiSelectList($element, 'MultiSelect_cancel', 'cancels', 'ophnupreoperative_patientstatus_cancel_id', CHtml::listData(OphNuPreoperative_PatientStatus_Cancel::model()->findAll(array('order'=>'display_order asc')),'id','name'), $element->ophnupreoperative_patientstatus_cancel_defaults, array('empty' => '- Please select -', 'label' => 'Reason for cancelation'))?>
-	<?php echo $form->textField($element, 'res_comments', array('size' => '10'))?>
+	<?php echo $form->multiSelectList($element, 'MultiSelect_cancel', 'cancels', 'ophnupreoperative_patientstatus_cancel_id', CHtml::listData(OphNuPreoperative_PatientStatus_Cancel::model()->findAll(array('order'=>'display_order asc')),'id','name'), $element->ophnupreoperative_patientstatus_cancel_defaults, array('empty' => '- Please select -', 'label' => 'Reason for cancelation','class' => 'linked-fields', 'data-linked-fields' => 'res_comments', 'data-linked-values' => 'Other'))?>
+	<?php echo $form->textField($element, 'res_comments',  array('hide' => !$element->hasMultiSelectValue('cancels','Other')))?>
 	</div>
 	
 </section>

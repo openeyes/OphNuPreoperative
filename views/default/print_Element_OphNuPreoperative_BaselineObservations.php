@@ -116,8 +116,8 @@
 			</td>
 		</tr>
 		<tr>
-			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('o_comments'))?>:</td>
-			<td><span class="big"><?php echo $element->o_comments ? 'Yes' : 'No'?></span></td>
+			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('o_comments'))?></td>
+			<td><span class="big"><?php echo CHtml::encode($element->o_comments)?></span></td>
 		</tr>
 		<tr>
 			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('mews_score'))?></td>

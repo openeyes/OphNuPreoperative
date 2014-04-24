@@ -42,7 +42,7 @@
  * @property string $p_comments
  * @property integer $skin_id
  * @property string $comments
- * @property integer $o_comments
+ * @property string $o_comments
  * @property string $mews_score
  * @property integer $iv_inserted
  * @property string $iv_location
