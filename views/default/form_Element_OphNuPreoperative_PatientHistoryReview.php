@@ -29,7 +29,7 @@
 
 		<div class="element-fields">
 			<?php echo $form->checkBox($element, 'medical_history_verified')?>
-	<?php echo $form->radioBoolean($element, 'medical_discrepancy_found', array('class' => 'linked-fields', 'data-linked-fields' => 'comments','data-linked-value' => 'Yes'))?>
+	<?php echo $form->radioBoolean($element, 'medical_discrepancy_found', array('class' => 'linked-fields', 'data-linked-fields' => 'comments','data-linked-values' => 'Yes'))?>
 	<?php echo $form->textField($element, 'comments',  array('hide' => !$element->medical_discrepancy_found==1))?>
 	<?php echo $form->checkBox($element, 'allergies_verified')?>
 	<?php echo $form->checkBox($element, 'medication_history_verified')?>
