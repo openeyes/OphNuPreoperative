@@ -27,10 +27,10 @@
 		<h3 class="element-title"><?php echo $element->elementType->name; ?></h3>
 	</header>
 
-		<div class="element-fields">
-			<?php echo $form->dropDownList($element, 'patient_status_id', CHtml::listData(OphNuPreoperative_PatientStatus_PatientStatus::model()->findAll(array('order'=> 'display_order asc')),'id','name'),array('empty'=>'- Please select -'))?>
-	<?php echo $form->multiSelectList($element, 'MultiSelect_cancel', 'cancels', 'ophnupreoperative_patientstatus_cancel_id', CHtml::listData(OphNuPreoperative_PatientStatus_Cancel::model()->findAll(array('order'=>'display_order asc')),'id','name'), $element->ophnupreoperative_patientstatus_cancel_defaults, array('empty' => '- Please select -', 'label' => 'Reason for cancelation','class' => 'linked-fields', 'data-linked-fields' => 'res_comments', 'data-linked-values' => 'Other'))?>
-	<?php echo $form->textField($element, 'res_comments',  array('hide' => !$element->hasMultiSelectValue('cancels','Other')))?>
+	<div class="element-fields">
+		<?php echo $form->dropDownList($element, 'patient_status_id', CHtml::listData(OphNuPreoperative_PatientStatus_PatientStatus::model()->findAll(array('order'=> 'display_order asc')),'id','name'),array('empty'=>'- Please select -'), false, array('label' => 3, 'field' => 4))?>
+		<?php echo $form->multiSelectList($element, 'MultiSelect_cancel', 'cancels', 'ophnupreoperative_patientstatus_cancel_id', CHtml::listData(OphNuPreoperative_PatientStatus_Cancel::model()->findAll(array('order'=>'display_order asc')),'id','name'), array(), array('empty' => '- Please select -', 'label' => 'Reason for cancelation','class' => 'linked-fields', 'data-linked-fields' => 'res_comments', 'data-linked-values' => 'Other'), false, false, null, false, false, array('label' => 3, 'field' => 4))?>
+		<?php echo $form->textField($element, 'res_comments',  array('hide' => !$element->hasMultiSelectValue('cancels','Other')), array(), array('label' => 3, 'field' => 4))?>
+		<?php echo $form->textArea($element, 'comments', array(), false, array(), array('label' => 3, 'field' => 4))?>
 	</div>
-	
 </section>

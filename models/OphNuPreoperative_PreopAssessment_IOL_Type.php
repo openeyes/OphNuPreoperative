@@ -1,5 +1,4 @@
-<?php
-/**
+<?php /**
  * OpenEyes
  *
  * (C) Moorfields Eye Hospital NHS Foundation Trust, 2008-2011
@@ -18,13 +17,11 @@
  */
 
 /**
- * This is the model class for table "et_ophnupreoperative_patientstatus".
+ * This is the model class for table "ophnupreoperative_preopassessment_iol_type".
  *
  * The followings are the available columns in table:
  * @property string $id
- * @property integer $event_id
- * @property integer $patient_status_id
- * @property string $res_comments
+ * @property string $name
  *
  * The followings are the available model relations:
  *
@@ -33,11 +30,9 @@
  * @property Event $event
  * @property User $user
  * @property User $usermodified
- * @property OphNuPreoperative_PatientStatus_PatientStatus $patient_status
- * @property Element_OphNuPreoperative_PatientStatus_Cancel_Assignment $cancels
  */
 
-class Element_OphNuPreoperative_PatientStatus  extends  BaseEventTypeElement
+class OphNuPreoperative_PreopAssessment_IOL_Type extends BaseActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
@@ -53,7 +48,7 @@ class Element_OphNuPreoperative_PatientStatus  extends  BaseEventTypeElement
 	 */
 	public function tableName()
 	{
-		return 'et_ophnupreoperative_patientstatus';
+		return 'ophnupreoperative_preopassessment_iol_type';
 	}
 
 	/**
@@ -62,9 +57,9 @@ class Element_OphNuPreoperative_PatientStatus  extends  BaseEventTypeElement
 	public function rules()
 	{
 		return array(
-			array('event_id, patient_status_id, res_comments, comments', 'safe'),
-			array('patient_status_id', 'required'),
-			array('id, event_id, patient_status_id, res_comments, ', 'safe', 'on' => 'search'),
+			array('name', 'safe'),
+			array('name', 'required'),
+			array('id, name', 'safe', 'on' => 'search'),
 		);
 	}
 
@@ -79,8 +74,6 @@ class Element_OphNuPreoperative_PatientStatus  extends  BaseEventTypeElement
 			'event' => array(self::BELONGS_TO, 'Event', 'event_id'),
 			'user' => array(self::BELONGS_TO, 'User', 'created_user_id'),
 			'usermodified' => array(self::BELONGS_TO, 'User', 'last_modified_user_id'),
-			'patient_status' => array(self::BELONGS_TO, 'OphNuPreoperative_PatientStatus_PatientStatus', 'patient_status_id'),
-			'cancels' => array(self::HAS_MANY, 'Element_OphNuPreoperative_PatientStatus_Cancel_Assignment', 'element_id'),
 		);
 	}
 
@@ -91,10 +84,7 @@ class Element_OphNuPreoperative_PatientStatus  extends  BaseEventTypeElement
 	{
 		return array(
 			'id' => 'ID',
-			'event_id' => 'Event',
-			'patient_status_id' => 'Patient status',
-			'cancel' => 'Reason for cancelation',
-			'res_comments' => 'Other reason',
+			'name' => 'Name',
 		);
 	}
 
@@ -107,13 +97,11 @@ class Element_OphNuPreoperative_PatientStatus  extends  BaseEventTypeElement
 		$criteria = new CDbCriteria;
 
 		$criteria->compare('id', $this->id, true);
-		$criteria->compare('event_id', $this->event_id, true);
-		$criteria->compare('patient_status_id', $this->patient_status_id);
-		$criteria->compare('cancel', $this->cancel);
-		$criteria->compare('res_comments', $this->res_comments);
+		$criteria->compare('name', $this->name, true);
 
 		return new CActiveDataProvider(get_class($this), array(
 			'criteria' => $criteria,
 		));
 	}
 }
+?>

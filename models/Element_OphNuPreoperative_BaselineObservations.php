@@ -94,8 +94,8 @@ class Element_OphNuPreoperative_BaselineObservations  extends  BaseEventTypeElem
 	public function rules()
 	{
 		return array(
-			array('event_id, blood_pressure, bpm, temperature, res_rate, sao2, blood_sugar, bloodsugar_na, urine_passed, time, avpu, is_patient_experiencing_pain, location_id, side_id, type_of_pain_id, pain_score_method_id, pain_score, p_comments, skin_id, comments, o_comments, mews_score, iv_inserted, iv_location, size_id, fluid_type_id, volume_given_id, rate, ', 'safe'),
-			array('blood_pressure, bpm, temperature, res_rate, sao2, blood_sugar, bloodsugar_na, urine_passed, time, avpu, is_patient_experiencing_pain, location_id, side_id, type_of_pain_id, pain_score_method_id, pain_score, p_comments, skin_id, comments, o_comments, mews_score, iv_inserted, iv_location, size_id, fluid_type_id, volume_given_id, rate, ', 'required'),
+			array('event_id, bp_systolic, bp_diastolic, bpm, temperature, res_rate, sao2, blood_sugar, bloodsugar_na, urine_passed, time, avpu, is_patient_experiencing_pain, location_id, side_id, type_of_pain_id, pain_score_method_id, pain_score, p_comments, skin_id, comments, o_comments, mews_score, iv_inserted, iv_location, size_id, fluid_type_id, volume_given_id, rate, ', 'safe'),
+			array('bp_systolic, bp_diastolic, bpm, temperature, res_rate, sao2, blood_sugar, bloodsugar_na, urine_passed, avpu, is_patient_experiencing_pain, skin_id, mews_score, iv_inserted', 'required'),
 			array('id, event_id, blood_pressure, bpm, temperature, res_rate, sao2, blood_sugar, bloodsugar_na, urine_passed, time, avpu, is_patient_experiencing_pain, location_id, side_id, type_of_pain_id, pain_score_method_id, pain_score, p_comments, skin_id, comments, o_comments, mews_score, iv_inserted, iv_location, size_id, fluid_type_id, volume_given_id, rate, ', 'safe', 'on' => 'search'),
 		);
 	}
@@ -131,34 +131,35 @@ class Element_OphNuPreoperative_BaselineObservations  extends  BaseEventTypeElem
 		return array(
 			'id' => 'ID',
 			'event_id' => 'Event',
-			'blood_pressure' => 'Blood Pressure (mmHg)',
-			'bpm' => 'Heart Rate / Pulse (bpm)',
-			'temperature' => 'Temperature (C)',
-			'res_rate' => 'Respiratory Rate (insp/min)',
-			'sao2' => 'SaO2 (%)',
-			'blood_sugar' => 'Blood Sugar',
+			'bp_systolic' => 'Blood pressure (systolic)',
+			'bp_diastolic' => 'Blood pressure (diastolic)',
+			'bpm' => 'Heart rate / pulse',
+			'temperature' => 'Temperature',
+			'res_rate' => 'Respiratory rate',
+			'sao2' => 'SaO2',
+			'blood_sugar' => 'Blood glucose',
 			'bloodsugar_na' => 'N/A',
-			'urine_passed' => 'Urine Passed',
-			'time' => 'Time',
+			'urine_passed' => 'Urine passed',
+			'time' => 'Time urine passed',
 			'avpu' => 'AVPU',
-			'is_patient_experiencing_pain' => 'Is Patient Experiencing Pain',
-			'location_id' => 'Location',
-			'side_id' => 'Side',
+			'is_patient_experiencing_pain' => 'Is patient experiencing pain',
+			'location_id' => 'Pain location',
+			'side_id' => 'Pain side',
 			'type_of_pain_id' => 'Type of pain',
-			'pain_score_method_id' => 'Pain Score Method',
-			'pain_score' => 'Pain Score',
-			'p_comments' => 'Comments',
+			'pain_score_method_id' => 'Pain score method',
+			'pain_score' => 'Pain score',
+			'p_comments' => 'Pain score comments',
 			'skin_id' => 'Skin assessment',
-			'comments' => 'Comments',
-			'obs' => 'Pre-op Observations',
-			'o_comments' => 'Comments',
-			'mews_score' => 'MEWS Score',
-			'iv_inserted' => 'IV Inserted',
-			'iv_location' => 'Location',
-			'size_id' => 'Size',
-			'fluid_type_id' => 'Fluid Type',
-			'volume_given_id' => 'Volume Given',
-			'rate' => 'Rate (mL/hr)',
+			'comments' => 'Skin assessment notes',
+			'obs' => 'Pre-op observations',
+			'o_comments' => 'Pre-op observation notes',
+			'mews_score' => 'MEWS score',
+			'iv_inserted' => 'IV inserted',
+			'iv_location' => 'IV location',
+			'size_id' => 'IV size',
+			'fluid_type_id' => 'IV fluid type',
+			'volume_given_id' => 'IV volume given',
+			'rate' => 'IV rate',
 		);
 	}
 
@@ -206,48 +207,43 @@ class Element_OphNuPreoperative_BaselineObservations  extends  BaseEventTypeElem
 		));
 	}
 
-
-	public function getophnupreoperative_baseline_obs_defaults() {
-		$ids = array();
-		foreach (OphNuPreoperative_BaselineObservations_Obs::model()->findAll('`default` = ?',array(1)) as $item) {
-			$ids[] = $item->id;
-		}
-		return $ids;
-	}
-
-	protected function afterSave()
+	public function beforeValidate()
 	{
-		if (!empty($_POST['MultiSelect_obs'])) {
-
-			$existing_ids = array();
-
-			foreach (Element_OphNuPreoperative_BaselineObservations_Obs_Assignment::model()->findAll('element_id = :elementId', array(':elementId' => $this->id)) as $item) {
-				$existing_ids[] = $item->ophnupreoperative_baseline_obs_id;
-			}
-
-			foreach ($_POST['MultiSelect_obs'] as $id) {
-				if (!in_array($id,$existing_ids)) {
-					$item = new Element_OphNuPreoperative_BaselineObservations_Obs_Assignment;
-					$item->element_id = $this->id;
-					$item->ophnupreoperative_baseline_obs_id = $id;
-
-					if (!$item->save()) {
-						throw new Exception('Unable to save MultiSelect item: '.print_r($item->getErrors(),true));
-					}
-				}
-			}
-
-			foreach ($existing_ids as $id) {
-				if (!in_array($id,$_POST['MultiSelect_obs'])) {
-					$item = Element_OphNuPreoperative_BaselineObservations_Obs_Assignment::model()->find('element_id = :elementId and ophnupreoperative_baseline_obs_id = :lookupfieldId',array(':elementId' => $this->id, ':lookupfieldId' => $id));
-					if (!$item->delete()) {
-						throw new Exception('Unable to delete MultiSelect item: '.print_r($item->getErrors(),true));
-					}
+		if ($this->is_patient_experiencing_pain) {
+			foreach (array('location_id','side_id','type_of_pain_id','pain_score_method_id','pain_score') as $field) {
+				if (!$this->$field) {
+					$this->addError($field,$this->getAttributeLabel($field).' cannot be blank.');
 				}
 			}
 		}
 
-		return parent::afterSave();
+		if ($this->skin && $this->skin->name == 'Other (please specify)') {
+			if (!$this->comments) {
+				$this->addError('comments',$this->getAttributeLabel('comments').' cannot be blank.');
+			}
+		}
+
+		if ($this->hasMultiSelectValue('obss','Other (please specify)')) {
+			if (!$this->o_comments) {
+				$this->addError('o_comments',$this->getAttributeLabel('o_comments').' cannot be blank.');
+			}
+		}
+
+		if ($this->iv_inserted) {
+			foreach (array('iv_location','size_id','fluid_type_id','volume_given_id','rate') as $field) {
+				if (!$this->$field) {
+					$this->addError($field,$this->getAttributeLabel($field).' cannot be blank.');
+				}
+			}
+		}
+
+		if ($this->urine_passed) {
+			if (!$this->time) {
+				$this->addError('time',$this->getAttributeLabel('time').' cannot be blank.');
+			}
+		}
+
+		return parent::beforeValidate();
 	}
 }
 ?>

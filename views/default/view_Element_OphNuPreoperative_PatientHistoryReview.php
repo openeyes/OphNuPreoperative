@@ -23,26 +23,63 @@
 		<h3 class="element-title"><?php echo $element->elementType->name?></h3>
 	</header>
 
-		<div class="element-data">
-				<div class="row data-row">
-			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('medical_history_verified'))?></div></div>
-			<div class="large-10 column end"><div class="data-value"><?php echo $element->medical_history_verified ? 'Yes' : 'No'?></div></div>
+	<div class="element-data">
+		<div class="row data-row">
+			<div class="large-3 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('medical_history_verified'))?></div></div>
+			<div class="large-9 column end"><div class="data-value"><?php echo $element->medical_history_verified ? 'Yes' : 'No'?></div></div>
 		</div>
 		<div class="row data-row">
-			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('medical_discrepancy_found'))?>:</div></div>
-			<div class="large-10 column end"><div class="data-value"><?php echo $element->medical_discrepancy_found ? 'Yes' : 'No'?></div></div>
+			<div class="large-3 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('medical_discrepancy_found'))?>:</div></div>
+			<div class="large-9 column end"><div class="data-value"><?php echo $element->medical_discrepancy_found ? 'Yes' : 'No'?></div></div>
 		</div>
-		<div class="row data-row">
-			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('comments'))?></div></div>
-			<div class="large-10 column end"><div class="data-value"><?php echo CHtml::encode($element->comments)?></div></div>
-		</div>
-		<div class="row data-row">
-			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('allergies_verified'))?></div></div>
-			<div class="large-10 column end"><div class="data-value"><?php echo $element->allergies_verified ? 'Yes' : 'No'?></div></div>
-		</div>
-		<div class="row data-row">
-			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('medication_history_verified'))?></div></div>
-			<div class="large-10 column end"><div class="data-value"><?php echo $element->medication_history_verified ? 'Yes' : 'No'?></div></div>
-		</div>
+		<?php if ($element->medical_discrepancy_found) {?>
+			<div class="row data-row">
+				<div class="large-3 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('comments'))?></div></div>
+				<div class="large-9 column end"><div class="data-value"><?php echo CHtml::encode($element->comments)?></div></div>
 			</div>
+		<?php }?>
+		<?php $this->widget('application.widgets.MedicationSelection', array(
+			'element' => $element,
+			'relation' => 'medications',
+			'input_name' => 'medication_history',
+			'edit' => false,
+		))?>
+		<div class="row data-row">
+			<div class="large-3 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('medication_history_verified'))?></div></div>
+			<div class="large-9 column end"><div class="data-value"><?php echo $element->medication_history_verified ? 'Yes' : 'No'?></div></div>
+		</div>
+		<div class="row data-row">
+			<div class="large-3 column">
+				<div class="data-label">Allergies:</div>
+			</div>
+			<div class="large-9 column end">
+				<table class="grid allergies">
+					<thead>
+						<tr>
+							<th>Allergy</th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php if (empty($element->allergies)) {?>
+							<tr class="no_allergies">
+								<td>
+									No allergies have been entered for this patient.
+								</td>
+							</tr>
+						<?php } else {?>
+							<?php foreach ($element->allergies as $i => $allergy) {?>
+								<tr>
+									<td><?php echo $allergy->allergy->name?></td>
+								</tr>
+							<?php }?>
+						<?php }?>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="row data-row">
+			<div class="large-3 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('allergies_verified'))?></div></div>
+			<div class="large-9 column end"><div class="data-value"><?php echo $element->allergies_verified ? 'Yes' : 'No'?></div></div>
+		</div>
+	</div>
 </section>

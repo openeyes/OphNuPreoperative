@@ -27,31 +27,50 @@
 		<h3 class="element-title"><?php echo $element->elementType->name; ?></h3>
 	</header>
 
-		<div class="element-fields">
-	<?php echo $form->radioButtons($element, 'translator_present_id', 'ophnupreoperative_preoperative_translator_present', null, false, false, false, false, array('class' => 'linked-fields', 'data-linked-fields' => 'name_of_translator', 'data-linked-values' => 'Yes'))?>
-	<?php echo $form->textField($element, 'name_of_translator', array('hide' => !$element->translator_present_id==1))?>
-	<?php echo $form->checkBox($element, 'patient_verified')?>
-	<?php echo $form->multiSelectList($element, 'MultiSelect_wristband', 'wristbands', 'ophnupreoperative_preoperative_wristband_id', CHtml::listData(OphNuPreoperative_PreoperativeAssessment_Wristband::model()->findAll(array('order'=>'display_order asc')),'id','name'), $element->ophnupreoperative_preoperative_wristband_defaults, array('empty' => '- Please select -', 'label' => 'Special Attention Wristband attached?'))?>
-	<?php echo $form->textField($element, 'time_last_ate', array('size' => '10'))?>
-	<?php echo $form->textField($element, 'time_last_drank', array('size' => '10'))?>
-	<?php echo $form->checkBox($element, 'consent_signed')?>
-	<?php echo $form->radioBoolean($element, 'surgical_site_verified', array('class' => 'linked-fields', 'data-linked-fields' => 'site_id', 'data-linked-values' => 'Yes'))?>
-	<?php echo $form->radioButtons($element, 'site_id', 'ophnupreoperative_preoperative_site',null,false,!$element->surgical_site_verified==1)?>
-	<?php echo $form->radioButtons($element, 'iol_verified_id', 'ophnupreoperative_preoperative_iol_verified', null, false, false, false, false, array('class' => 'linked-fields', 'data-linked-fields' => 'iol_type,iol_size', 'data-linked-values' => 'Yes'))?>
-	<?php echo $form->textField($element, 'iol_type', array('hide' => !$element->translator_present_id==1))?>
-	<?php echo $form->textField($element, 'iol_size', array('hide' => !$element->translator_present_id==1))?>
-	<?php echo $form->radioBoolean($element, 'metal_in_body',array('class' => 'linked-fields', 'data-linked-fields' => 'm_comments', 'data-linked-values' => 'Yes'))?>
-	<?php echo $form->textField($element, 'm_comments', array('hide' => !$element->translator_present_id==1))?>
-	<?php echo $form->radioBoolean($element, 'falls_mobility',array('class' => 'linked-fields', 'data-linked-fields' => 'MultiSelect_falls', 'data-linked-values' => 'Yes'))?>
-	<?php echo $form->multiSelectList($element, 'MultiSelect_falls', 'fallss', 'ophnupreoperative_preoperative_falls_id', CHtml::listData(OphNuPreoperative_PreoperativeAssessment_Falls::model()->findAll(array('order'=>'display_order asc')),'id','name'), $element->ophnupreoperative_preoperative_falls_defaults, array('empty' => '- Please select -', 'label' => 'Falls / Mobility'), !$element->falls_mobility==1)?>
-	<?php echo $form->radioBoolean($element, 'removable_dental_work_present', array('class' => 'linked-fields', 'data-linked-fields' => 'MultiSelect_dental', 'data-linked-values' => 'Yes'))?>
-	<?php echo $form->multiSelectList($element, 'MultiSelect_dental', 'dentals', 'ophnupreoperative_preoperative_dental_id', CHtml::listData(OphNuPreoperative_PreoperativeAssessment_Dental::model()->findAll(array('order'=>'display_order asc')),'id','name'), $element->ophnupreoperative_preoperative_dental_defaults, array('empty' => '- Please select -', 'label' => 'Items', 'class' => 'linked-fields', 'data-linked-fields' => 'd_comments', 'data-linked-values' => 'Other Removed'),!$element->removable_dental_work_present==1)?>
-	<?php echo $form->textField($element, 'd_comments', array('hide' => !$element->hasMultiSelectValue('dentals','Other Removed')))?>
-	<?php echo $form->radioBoolean($element, 'hearing_aid_present', array('class' => 'linked-fields', 'data-linked-fields' => 'MultiSelect_hearing_aid', 'data-linked-values' => 'Yes'))?>
-	<?php echo $form->multiSelectList($element, 'MultiSelect_hearing_aid', 'hearing_aids', 'ophnupreoperative_preoperative_hearing_aid_id', CHtml::listData(OphNuPreoperative_PreoperativeAssessment_HearingAid::model()->findAll(array('order'=>'display_order asc')),'id','name'), $element->ophnupreoperative_preoperative_hearing_aid_defaults, array('empty' => '- Please select -', 'label' => 'Hearing Aid'), !$element->hearing_aid_present==1)?>
-	<?php echo $form->radioBoolean($element, 'patient_belongings', array('class' => 'linked-fields', 'data-linked-fields' => 'belong_id', 'data-linked-values' => 'Yes'))?>
-	<?php echo $form->dropDownList($element, 'belong_id', CHtml::listData(OphNuPreoperative_PreoperativeAssessment_Belong::model()->findAll(array('order'=> 'display_order asc')),'id','name'),array('empty'=>'- Please select -', 'class' => 'linked-fields', 'data-linked-fields' => 'b_comments', 'data-linked-values' => 'Other'),$element->patient_belongings!=1)?>
-	<?php echo $form->textField($element, 'b_comments', array('hide' => !$element->belong_id==4))?>
+	<div class="element-fields">
+		<?php echo $form->radioButtons($element, 'translator_present_id', 'ophnupreoperative_preoperative_translator_present', null, false, false, false, false, array('class' => 'linked-fields', 'data-linked-fields' => 'name_of_translator', 'data-linked-values' => 'Yes'), array('label' => 3, 'field' => 4))?>
+		<?php echo $form->textField($element, 'name_of_translator', array('hide' => !$element->translator_present || $element->translator_present->name != 'Yes'), array(), array('label' => 3, 'field' => 4))?>
+		<?php echo $form->checkBox($element, 'patient_verified', array('text-align'=>'right'), array('label' => 3, 'field' => 4))?>
+		<?php echo $form->multiSelectList($element, 'MultiSelect_wristband', 'wristbands', 'ophnupreoperative_preoperative_wristband_id', CHtml::listData(OphNuPreoperative_PreoperativeAssessment_Wristband::model()->findAll(array('order'=>'display_order asc')),'id','name'), array(), array('empty' => '- Please select -', 'label' => 'Special attention wristband attached?'), false, false, null, false, false, array('label' => 3, 'field' => 4))?>
+		<div class="row field-row">
+			<div class="large-3 column">
+				<label for="Element_OphCiPatientadmission_NpoStatus_date_last_ate_0">
+					<?php echo $element->getAttributeLabel('date_last_ate')?>:
+				</label>
+			</div>
+			<div class="large-4 column end">
+				<?php echo $form->datePicker($element, 'date_last_ate', array('maxDate' => 'today'), array('style'=>'width: 110px; display: inline-block;','nowrapper' => true))?>
+				<?php echo $form->textField($element, 'date_last_ate_time', array('nowrapper' => true, 'style' => 'width: 50px; display: inline-block;'))?>
+			</div>
+		</div>
+		<div class="row field-row">
+			<div class="large-3 column">
+				<label for="Element_OphCiPatientadmission_NpoStatus_date_last_drank_0">
+					<?php echo $element->getAttributeLabel('date_last_drank')?>:
+				</label>
+			</div>
+			<div class="large-4 column end">
+				<?php echo $form->datePicker($element, 'date_last_drank', array('maxDate' => 'today'), array('style'=>'width: 110px; display: inline-block;','nowrapper' => true))?>
+				<?php echo $form->textField($element, 'date_last_drank_time', array('nowrapper' => true, 'style' => 'width: 50px; display: inline-block;'))?>
+			</div>
+		</div>
+		<?php echo $form->checkBox($element, 'consent_signed', array('text-align'=>'right'), array('label' => 3, 'field' => 4))?>
+		<?php echo $form->radioBoolean($element, 'surgical_site_verified', array('class' => 'linked-fields', 'data-linked-fields' => 'site_id', 'data-linked-values' => 'Yes'), array('label' => 3, 'field' => 4))?>
+		<?php echo $form->radioButtons($element, 'site_id', 'ophnupreoperative_preoperative_site',null,false,!$element->surgical_site_verified==1,false,false,array(),array('label' => 3, 'field' => 4))?>
+		<?php echo $form->radioButtons($element, 'iol_verified_id', 'ophnupreoperative_preoperative_iol_verified', null, false, false, false, false, array('class' => 'linked-fields', 'data-linked-fields' => 'iol_type_id,iol_size_id', 'data-linked-values' => 'Yes'), array('label' => 3, 'field' => 4))?>
+		<?php echo $form->dropDownList($element, 'iol_type_id', CHtml::listData(OphNuPreoperative_PreopAssessment_IOL_Type::model()->findAll(array('order'=>'display_order asc')),'id','name'), array('empty' => '- Please select -'),!$element->iol_verified_id,array('label' => 3, 'field' => 4))?>
+		<?php echo $form->dropDownList($element, 'iol_size_id', CHtml::listData(OphNuPreoperative_PreopAssessment_IOL_Size::model()->findAll(array('order'=>'display_order asc')),'id','name'), array('empty' => '- Please select -'),!$element->iol_verified_id,array('label' => 3, 'field' => 4))?>
+		<?php echo $form->radioBoolean($element, 'metal_in_body',array('class' => 'linked-fields', 'data-linked-fields' => 'm_comments', 'data-linked-values' => 'Yes'), array('label' => 3, 'field' => 4))?>
+		<?php echo $form->textField($element, 'm_comments', array('hide' => !$element->metal_in_body), array(), array('label' => 3, 'field' => 4))?>
+		<?php echo $form->radioBoolean($element, 'falls_mobility',array('class' => 'linked-fields', 'data-linked-fields' => 'MultiSelect_falls', 'data-linked-values' => 'Yes'), array('label' => 3, 'field' => 4))?>
+		<?php echo $form->multiSelectList($element, 'MultiSelect_falls', 'fallss', 'ophnupreoperative_preoperative_falls_id', CHtml::listData(OphNuPreoperative_PreoperativeAssessment_Falls::model()->findAll(array('order'=>'display_order asc')),'id','name'), array(), array('empty' => '- Please select -', 'label' => 'Falls / mobility items'), !$element->falls_mobility, false,null,false,false,array('label' => 3, 'field' => 4))?>
+		<?php echo $form->radioBoolean($element, 'removable_dental_work_present', array('class' => 'linked-fields', 'data-linked-fields' => 'MultiSelect_dental', 'data-linked-values' => 'Yes'), array('label' => 3, 'field' => 4))?>
+		<?php echo $form->multiSelectList($element, 'MultiSelect_dental', 'dentals', 'ophnupreoperative_preoperative_dental_id', CHtml::listData(OphNuPreoperative_PreoperativeAssessment_Dental::model()->findAll(array('order'=>'display_order asc')),'id','name'), array(), array('empty' => '- Please select -', 'label' => 'Items', 'class' => 'linked-fields', 'data-linked-fields' => 'd_comments', 'data-linked-values' => 'Other Removed'),!$element->removable_dental_work_present, false,null,false,false,array('label' => 3, 'field' => 4))?>
+		<?php echo $form->textField($element, 'd_comments', array('hide' => !$element->hasMultiSelectValue('dentals','Other Removed')), array(), array('label' => 3, 'field' => 4))?>
+		<?php echo $form->radioBoolean($element, 'hearing_aid_present', array('class' => 'linked-fields', 'data-linked-fields' => 'MultiSelect_hearing_aid', 'data-linked-values' => 'Yes'), array('label' => 3, 'field' => 4))?>
+		<?php echo $form->multiSelectList($element, 'MultiSelect_hearing_aid', 'hearing_aids', 'ophnupreoperative_preoperative_hearing_aid_id', CHtml::listData(OphNuPreoperative_PreoperativeAssessment_HearingAid::model()->findAll(array('order'=>'display_order asc')),'id','name'), array(), array('empty' => '- Please select -', 'label' => 'Hearing aid'), !$element->hearing_aid_present, false,null,false,false,array('label' => 3, 'field' => 4))?>
+		<?php echo $form->radioBoolean($element, 'patient_belongings', array('class' => 'linked-fields', 'data-linked-fields' => 'MultiSelect_belongings', 'data-linked-values' => 'Yes'), array('label' => 3, 'field' => 4))?>
+		<?php echo $form->multiSelectList($element, 'MultiSelect_belongings', 'belongings', 'belong_id', CHtml::listData(OphNuPreoperative_PreoperativeAssessment_Belong::model()->findAll(array('order'=> 'display_order asc')),'id','name'),array(),array('empty' => '- Please select -', 'label' => 'Belonging items','class'=>'linked-fields','data-linked-fields'=>'b_comments','data-linked-values'=>'Other (please specify)'), !$element->patient_belongings, false,null,false,false,array('label'=>3,'field'=>4))?>
+		<?php echo $form->textField($element, 'b_comments', array('hide' => !$element->hasMultiSelectValue('belongings','Other (please specify)')), array(), array('label' => 3, 'field' => 4))?>
 	</div>
-	
 </section>

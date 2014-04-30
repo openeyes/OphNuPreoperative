@@ -23,14 +23,14 @@
 		<h3 class="element-title"><?php echo $element->elementType->name?></h3>
 	</header>
 
-		<div class="element-data">
-				<div class="row data-row">
-			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('patient_status_id'))?></div></div>
-			<div class="large-10 column end"><div class="data-value"><?php echo $element->patient_status ? $element->patient_status->name : 'None'?></div></div>
+	<div class="element-data">
+		<div class="row data-row">
+			<div class="large-3 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('patient_status_id'))?></div></div>
+			<div class="large-9 column end"><div class="data-value"><?php echo $element->patient_status ? $element->patient_status->name : 'None'?></div></div>
 		</div>
 		<div class="row data-row">
-			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('cancel'))?>:</div></div>
-			<div class="large-10 column end"><div class="data-value"><?php if (!$element->cancels) {?>
+			<div class="large-3 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('cancel'))?>:</div></div>
+			<div class="large-9 column end"><div class="data-value"><?php if (!$element->cancels) {?>
 							None
 						<?php } else {?>
 								<?php foreach ($element->cancels as $item) {
@@ -39,9 +39,17 @@
 						<?php }?>
 			</div></div>
 		</div>
-		<div class="row data-row">
-			<div class="large-2 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('res_comments'))?></div></div>
-			<div class="large-10 column end"><div class="data-value"><?php echo CHtml::encode($element->res_comments)?></div></div>
-		</div>
+		<?php if ($element->hasMultiSelectValue('cancels','Other (please specify)')) {?>
+			<div class="row data-row">
+				<div class="large-3 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('res_comments'))?></div></div>
+				<div class="large-9 column end"><div class="data-value"><?php echo CHtml::encode($element->res_comments)?></div></div>
 			</div>
+		<?php }?>
+		<?php if ($element->comments) {?>
+			<div class="row data-row">
+				<div class="large-3 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('comments'))?></div></div>
+				<div class="large-9 column end"><div class="data-value"><?php echo CHtml::encode($element->comments)?></div></div>
+			</div>
+		<?php }?>
+	</div>
 </section>

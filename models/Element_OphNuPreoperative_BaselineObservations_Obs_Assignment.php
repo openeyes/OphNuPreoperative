@@ -102,5 +102,10 @@ class Element_OphNuPreoperative_BaselineObservations_Obs_Assignment extends Base
 			'criteria' => $criteria,
 		));
 	}
+	
+	public function getName()
+	{
+		return $this->ophnupreoperative_baseline_obs->name;
+	}
 }
 ?>

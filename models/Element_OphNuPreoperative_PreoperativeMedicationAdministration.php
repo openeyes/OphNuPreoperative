@@ -23,7 +23,7 @@
  * The followings are the available columns in table:
  * @property string $id
  * @property integer $event_id
- * @property string $pre-operative_medication_administration
+ * @property string $comments
  *
  * The followings are the available model relations:
  *
@@ -34,7 +34,7 @@
  * @property User $usermodified
  */
 
-class Element_OphNuPreoperative_PreOperativeMedicationAdministration  extends  BaseEventTypeElement
+class Element_OphNuPreoperative_PreOperativeMedicationAdministration	extends  BaseEventTypeElement
 {
 	/**
 	 * Returns the static model of the specified AR class.
@@ -59,9 +59,9 @@ class Element_OphNuPreoperative_PreOperativeMedicationAdministration  extends  B
 	public function rules()
 	{
 		return array(
-			array('event_id, pre-operative_medication_administration, ', 'safe'),
-			array('pre-operative_medication_administration, ', 'required'),
-			array('id, event_id, pre-operative_medication_administration, ', 'safe', 'on' => 'search'),
+			array('event_id, comments, ', 'safe'),
+			array('comments, ', 'required'),
+			array('id, event_id, comments, ', 'safe', 'on' => 'search'),
 		);
 	}
 
@@ -76,6 +76,7 @@ class Element_OphNuPreoperative_PreOperativeMedicationAdministration  extends  B
 			'event' => array(self::BELONGS_TO, 'Event', 'event_id'),
 			'user' => array(self::BELONGS_TO, 'User', 'created_user_id'),
 			'usermodified' => array(self::BELONGS_TO, 'User', 'last_modified_user_id'),
+			'medications' => array(self::HAS_MANY, 'OphNuPreoperative_PreoperativeMedicationAdministration_Medication', 'element_id'),
 		);
 	}
 
@@ -87,7 +88,7 @@ class Element_OphNuPreoperative_PreOperativeMedicationAdministration  extends  B
 		return array(
 			'id' => 'ID',
 			'event_id' => 'Event',
-			'pre-operative_medication_administration' => 'Pre-Operative Medication Administration',
+			'comments' => 'Comments',
 		);
 	}
 
@@ -101,19 +102,43 @@ class Element_OphNuPreoperative_PreOperativeMedicationAdministration  extends  B
 
 		$criteria->compare('id', $this->id, true);
 		$criteria->compare('event_id', $this->event_id, true);
-		$criteria->compare('pre-operative_medication_administration', $this->pre-operative_medication_administration);
+		$criteria->compare('comments', $this->comments);
 
 		return new CActiveDataProvider(get_class($this), array(
 			'criteria' => $criteria,
 		));
 	}
 
-
-
-	protected function afterSave()
+	public function updateMedications($medication_ids=array(),$drug_ids=array(),$route_ids=array(),$option_ids=array(),$frequency_ids=array(),$start_dates=array())
 	{
+		$ids = array();
 
-		return parent::afterSave();
+		foreach ($drug_ids as $i => $drug_id) {
+			if (!$medication_ids[$i] || !$medication = OphNuPreoperative_PreoperativeMedicationAdministration_Medication::model()->findByPk($medication_ids[$i])) {
+				$medication = new OphNuPreoperative_PreoperativeMedicationAdministration_Medication;
+				$medication->element_id = $this->id;
+			}
+
+			$medication->drug_id = $drug_id;
+			$medication->route_id = $route_ids[$i];
+			$medication->option_id = $option_ids[$i];
+			$medication->frequency_id = $frequency_ids[$i];
+			$medication->start_date = $start_dates[$i];
+
+			if (!$medication->save()) {
+				throw new Exception("Unable to save medication: ".print_r($medication->getErrors(),true));
+			}
+
+			$ids[] = $medication->id;
+		}
+
+		$criteria = new CDbCriteria;
+		$criteria->addCondition('element_id = :element_id');
+		$criteria->params[':element_id'] = $this->id;
+
+		!empty($ids) && $criteria->addNotInCondition('id',$ids);
+
+		OphNuPreoperative_PreoperativeMedicationAdministration_Medication::model()->deleteAll($criteria);
 	}
 }
 ?>

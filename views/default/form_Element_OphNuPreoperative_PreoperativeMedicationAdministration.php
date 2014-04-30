@@ -27,8 +27,13 @@
 		<h3 class="element-title"><?php echo $element->elementType->name; ?></h3>
 	</header>
 
-		<div class="element-fields">
-			<?php echo $form->textArea($element, 'pre-operative_medication_administration', array('rows' => 6, 'cols' => 80))?>
+	<div class="element-fields">
+		<?php $form->widget('application.widgets.MedicationSelection', array(
+			'element' => $element,
+			'relation' => 'medications',
+			'input_name' => 'administered_medications',
+			'no_medications_text' => 'No medications have been administered to this patient.',
+		))?>
+		<?php echo $form->textArea($element, 'comments', array(), false, array(), array('label' => 3, 'field' => 4))?>
 	</div>
-	
 </section>

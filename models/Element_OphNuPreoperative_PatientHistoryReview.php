@@ -38,7 +38,7 @@
  * @property User $usermodified
  */
 
-class Element_OphNuPreoperative_PatientHistoryReview  extends  BaseEventTypeElement
+class Element_OphNuPreoperative_PatientHistoryReview	extends  BaseEventTypeElement
 {
 	/**
 	 * Returns the static model of the specified AR class.
@@ -63,8 +63,8 @@ class Element_OphNuPreoperative_PatientHistoryReview  extends  BaseEventTypeElem
 	public function rules()
 	{
 		return array(
-			array('event_id, medical_history_verified, medical_discrepancy_found, comments, allergies_verified, medication_history_verified, ', 'safe'),
-			array('medical_history_verified, medical_discrepancy_found, comments, allergies_verified, medication_history_verified, ', 'required'),
+			array('event_id, medical_history_verified, medical_discrepancy_found, comments, allergies_verified, medication_history_verified, patient_has_no_allergies', 'safe'),
+			array('medical_history_verified, medical_discrepancy_found, allergies_verified, medication_history_verified, ', 'required'),
 			array('id, event_id, medical_history_verified, medical_discrepancy_found, comments, allergies_verified, medication_history_verified, ', 'safe', 'on' => 'search'),
 		);
 	}
@@ -80,6 +80,8 @@ class Element_OphNuPreoperative_PatientHistoryReview  extends  BaseEventTypeElem
 			'event' => array(self::BELONGS_TO, 'Event', 'event_id'),
 			'user' => array(self::BELONGS_TO, 'User', 'created_user_id'),
 			'usermodified' => array(self::BELONGS_TO, 'User', 'last_modified_user_id'),
+			'medications' => array(self::HAS_MANY, 'OphNuPreoperative_PatientHistory_Medication', 'element_id'),
+			'allergies' => array(self::HAS_MANY, 'OphNuPreoperative_PatientHistory_Allergy', 'element_id'),
 		);
 	}
 
@@ -91,12 +93,24 @@ class Element_OphNuPreoperative_PatientHistoryReview  extends  BaseEventTypeElem
 		return array(
 			'id' => 'ID',
 			'event_id' => 'Event',
-			'medical_history_verified' => 'Medical History Verfied',
-			'medical_discrepancy_found' => 'Medical History discrepancy found?',
-			'comments' => 'Comments',
-			'allergies_verified' => 'Allergies Verified',
-			'medication_history_verified' => 'Medication History Verified',
+			'medical_history_verified' => 'Medical history verified',
+			'medical_discrepancy_found' => 'Medical history discrepancy found?',
+			'comments' => 'Discrepancy notes',
+			'allergies_verified' => 'Allergies verified',
+			'medication_history_verified' => 'Medication history verified',
+			'patient_has_no_allergies' => 'Confirm patient has no allergies',
 		);
+	}
+
+	public function beforeValidate()
+	{
+		if ($this->medical_discrepancy_found) {
+			if (!$this->comments) {
+				$this->addError('comments',$this->getAttributeLabel('comments').' cannot be blank.');
+			}
+		}
+
+		return parent::beforeValidate();
 	}
 
 	/**
@@ -120,12 +134,140 @@ class Element_OphNuPreoperative_PatientHistoryReview  extends  BaseEventTypeElem
 		));
 	}
 
-
-
-	protected function afterSave()
+	public function updateMedications($medication_ids=array(),$drug_ids=array(),$route_ids=array(),$option_ids=array(),$frequency_ids=array(),$start_dates=array())
 	{
+		$ids = array();
+
+		foreach ($drug_ids as $i => $drug_id) {
+			if (!$medication_ids[$i] || !$medication = OphNuPreoperative_PatientHistory_Medication::model()->findByPk($medication_ids[$i])) {
+				$medication = new OphNuPreoperative_PatientHistory_Medication;
+				$medication->element_id = $this->id;
+			}
+
+			$medication->drug_id = $drug_id;
+			$medication->route_id = $route_ids[$i];
+			$medication->option_id = $option_ids[$i];
+			$medication->frequency_id = $frequency_ids[$i];
+			$medication->start_date = $start_dates[$i];
+
+			if (!$medication->save()) {
+				throw new Exception("Unable to save medication: ".print_r($medication->getErrors(),true));
+			}
+
+			$ids[] = $medication->id;
+		}
+
+		$criteria = new CDbCriteria;
+		$criteria->addCondition('element_id = :element_id');
+		$criteria->params[':element_id'] = $this->id;
+
+		!empty($ids) && $criteria->addNotInCondition('id',$ids);
+
+		OphNuPreoperative_PatientHistory_Medication::model()->deleteAll($criteria);
+	}
+
+	public function afterSave()
+	{
+		if (Yii::app()->getController()->action->id == 'create') {
+			$patient = $this->event->episode->patient;
+
+			foreach ($this->medications as $medication) {
+				if (!Medication::model()->find('patient_id=? and drug_id=? and route_id=? and option_id=? and frequency_id=? and start_date=?',array($patient->id,$medication->drug_id,$medication->route_id,$medication->option_id,$medication->frequency_id,$medication->start_date))) {
+					$_medication = new Medication;
+					$_medication->patient_id = $patient->id;
+
+					foreach (array('drug_id','route_id','option_id','frequency_id','start_date') as $field) {
+						$_medication->$field = $medication->$field;
+					}
+
+					if (!$_medication->save()) {
+						throw new Exception("Unable to save medication: ".print_r($_medication->getErrors(),true));
+					}
+				}
+			}
+
+			$ids = array();
+
+			foreach ($this->allergies as $allergy) {
+				if (!$paa = PatientAllergyAssignment::model()->find('patient_id=? and allergy_id=?',array($patient->id,$allergy->allergy_id))) {
+					$paa = new PatientAllergyAssignment;
+					$paa->patient_id = $patient->id;
+					$paa->allergy_id = $allergy->allergy_id;
+
+					if (!$paa->save()) {
+						throw new Exception("Unable to save allergy assignment: ".print_r($paa->getErrors(),true));
+					}
+				}
+
+				$ids[] = $paa->id;
+			}
+
+			$criteria = new CDbCriteria;
+			$criteria->addCondition('patient_id = :patient_id');
+			$criteria->params[':patient_id'] = $patient->id;
+			!empty($ids) && $criteria->addNotInCondition('id',$ids);
+
+			PatientAllergyAssignment::model()->deleteAll($criteria);
+
+			if (empty($this->allergies) && $this->patient_has_no_allergies) {
+				if (!$patient->no_allergies_date) {
+					$patient->no_allergies_date = date('Y-m-d H:i:s');
+
+					if (!$patient->save()) {
+						throw new Exception("Unable to save patient: ".print_r($patient->getErrors(),true));
+					}
+				}
+			} else if (!empty($this->allergies) && $patient->no_allergies_date) {
+				$patient->no_allergies_date = null;
+
+				if (!$patient->save()) {
+					throw new Exception("Unable to save patient: ".print_r($patient->getErrors(),true));
+				}
+			}
+		}
 
 		return parent::afterSave();
+	}
+
+	public function getAvailableAllergyList()
+	{
+		$allergy_ids = array();
+
+		foreach ($this->allergies as $allergy) {
+			$allergy_ids[] = $allergy->allergy_id;
+		}
+
+		$criteria = new CDbCriteria;
+		!empty($allergy_ids) && $criteria->addNotInCondition('id',$allergy_ids);
+		$criteria->order = 'name asc';
+
+		return CHtml::listData(Allergy::model()->findAll($criteria),'id','name');
+	}
+
+	public function updateAllergies($allergy_ids)
+	{
+		$ids = array();
+
+		foreach ($allergy_ids as $allergy_id) {
+			if (!$allergy = OphNuPreoperative_PatientHistory_Allergy::model()->find('element_id=? and allergy_id=?',array($this->id,$allergy_id))) {
+				$allergy = new OphNuPreoperative_PatientHistory_Allergy;
+				$allergy->element_id = $this->id;
+				$allergy->allergy_id = $allergy_id;
+
+				if (!$allergy->save()) {
+					throw new Exception("Unable to save allergy: ".print_r($allergy->getErrors(),true));
+				}
+			}
+
+			$ids[] = $allergy->id;
+		}
+
+		$criteria = new CDbCriteria;
+		$criteria->addCondition('element_id = :element_id');
+		$criteria->params[':element_id'] = $this->id;
+		!empty($ids) && $criteria->addNotInCondition('id',$ids);
+
+		OphNuPreoperative_PatientHistory_Allergy::model()->deleteAll($criteria);
 	}
 }
 ?>

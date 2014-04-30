@@ -102,5 +102,10 @@ class Element_OphNuPreoperative_PatientStatus_Cancel_Assignment extends BaseActi
 			'criteria' => $criteria,
 		));
 	}
+
+	public function getName()
+	{
+		return $this->ophnupreoperative_patientstatus_cancel->name;
+	}
 }
 ?>
