@@ -231,6 +231,19 @@ class DefaultController extends BaseEventTypeController
 		}
 
 		$element->hearing_aids = $hearing_aids;
+
+		$identifiers = array();
+
+		if (!empty($data['MultiSelect_identifiers'])) {
+			foreach ($data['MultiSelect_identifiers'] as $identifier_id) {
+				$assignment = new OphNuPreoperative_PreoperativeAssessment_Identifier_Assignment;
+				$assignment->identifier_id = $identifier_id;
+
+				$identifiers[] = $assignment;
+			}
+		}
+
+		$element->identifiers = $identifiers;
 	}
 
 	protected function saveComplexAttributes_Element_OphNuPreoperative_PreoperativeAssessment($element, $data, $index)
@@ -239,6 +252,7 @@ class DefaultController extends BaseEventTypeController
 		$element->updateMultiSelectData('Element_OphNuPreoperative_PreoperativeAssessment_Falls_Assignment',empty($data['MultiSelect_falls']) ? array() : $data['MultiSelect_falls'],'ophnupreoperative_preoperative_falls_id');
 		$element->updateMultiSelectData('Element_OphNuPreoperative_PreoperativeAssessment_Dental_Assignment',empty($data['MultiSelect_dental']) ? array() : $data['MultiSelect_dental'],'ophnupreoperative_preoperative_dental_id');
 		$element->updateMultiSelectData('Element_OphNuPreoperative_PreoperativeAssessment_HearingAid_Assignment',empty($data['MultiSelect_hearing_aid']) ? array() : $data['MultiSelect_hearing_aid'],'ophnupreoperative_preoperative_hearing_aid_id');
+		$element->updateMultiSelectData('OphNuPreoperative_PreoperativeAssessment_Identifier_Assignment',empty($data['MultiSelect_identifiers']) ? array() : $data['MultiSelect_identifiers'],'identifier_id');
 	}
 
 	protected function setComplexAttributes_Element_OphNuPreoperative_BaselineObservations($element, $data, $index)

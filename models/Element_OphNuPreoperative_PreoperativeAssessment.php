@@ -116,6 +116,7 @@ class Element_OphNuPreoperative_PreoperativeAssessment	extends  BaseEventTypeEle
 			'iol_type' => array(self::BELONGS_TO, 'OphNuPreoperative_PreopAssessment_IOL_Type', 'iol_type_id'),
 			'iol_size' => array(self::BELONGS_TO, 'OphNuPreoperative_PreopAssessment_IOL_Size', 'iol_size_id'),
 			'belongings' => array(self::HAS_MANY, 'OphNuPreoperative_PreoperativeAssessment_Belong_Assignment', 'element_id'),
+			'identifiers' => array(self::HAS_MANY, 'OphNuPreoperative_PreoperativeAssessment_Identifier_Assignment', 'element_id'),
 		);
 	}
 
@@ -153,6 +154,7 @@ class Element_OphNuPreoperative_PreoperativeAssessment	extends  BaseEventTypeEle
 			'patient_belongings' => 'Patient belongings',
 			'belong_id' => 'Belonging items',
 			'b_comments' => 'Belonging notes',
+			'identifiers' => 'Two identifiers',
 		);
 	}
 
@@ -272,6 +274,12 @@ class Element_OphNuPreoperative_PreoperativeAssessment	extends  BaseEventTypeEle
 		if ($this->hasMultiSelectValue('belongings','Other (please specify)')) {
 			if (!$this->b_comments) {
 				$this->addError('b_comments',$this->getAttributeLabel('b_comments').' cannot be blank.');
+			}
+		}
+
+		if ($this->patient_verified) {
+			if (count($this->identifiers) != 2) {
+				$this->addError('identifiers','Please select exactly 2 patient identifiers');
 			}
 		}
 

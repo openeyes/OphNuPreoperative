@@ -38,6 +38,19 @@
 			<div class="large-3 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('patient_verified'))?></div></div>
 			<div class="large-9 column end"><div class="data-value"><?php echo $element->patient_verified ? 'Yes' : 'No'?></div></div>
 		</div>
+		<?php if ($element->patient_verified) {?>
+			<div class="row data-row">
+				<div class="large-3 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('identifiers'))?>:</div></div>
+				<div class="large-9 column end"><div class="data-value"><?php if (!$element->identifiers) {?>
+								None
+							<?php } else {?>
+									<?php foreach ($element->identifiers as $item) {
+										echo $item->identifier->name?><br/>
+									<?php }?>
+							<?php }?>
+				</div></div>
+			</div>
+		<?php }?>
 		<div class="row data-row">
 			<div class="large-3 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('wristband'))?>:</div></div>
 			<div class="large-9 column end"><div class="data-value"><?php if (!$element->wristbands) {?>

@@ -30,7 +30,8 @@
 	<div class="element-fields">
 		<?php echo $form->radioButtons($element, 'translator_present_id', 'ophnupreoperative_preoperative_translator_present', null, false, false, false, false, array('class' => 'linked-fields', 'data-linked-fields' => 'name_of_translator', 'data-linked-values' => 'Yes'), array('label' => 3, 'field' => 4))?>
 		<?php echo $form->textField($element, 'name_of_translator', array('hide' => !$element->translator_present || $element->translator_present->name != 'Yes'), array(), array('label' => 3, 'field' => 4))?>
-		<?php echo $form->checkBox($element, 'patient_verified', array('text-align'=>'right'), array('label' => 3, 'field' => 4))?>
+		<?php echo $form->checkBox($element, 'patient_verified', array('text-align'=>'right','class'=>'linked-fields','data-linked-fields'=>'MultiSelect_identifiers','data-linked-values'=>'1'), array('label' => 3, 'field' => 4))?>
+		<?php echo $form->multiSelectList($element, 'MultiSelect_identifiers', 'identifiers', 'identifier_id', CHtml::listData(OphNuPreoperative_PreoperativeAssessment_Identifier::model()->findAll(array('order'=>'display_order asc')),'id','name'), array(), array('empty' => '- Please select -', 'label' => 'Two identifiers'), !$element->patient_verified, false, null, false, false, array('label' => 3, 'field' => 4))?>
 		<?php echo $form->multiSelectList($element, 'MultiSelect_wristband', 'wristbands', 'ophnupreoperative_preoperative_wristband_id', CHtml::listData(OphNuPreoperative_PreoperativeAssessment_Wristband::model()->findAll(array('order'=>'display_order asc')),'id','name'), array(), array('empty' => '- Please select -', 'label' => 'Special attention wristband attached?'), false, false, null, false, false, array('label' => 3, 'field' => 4))?>
 		<div class="row field-row">
 			<div class="large-3 column">
