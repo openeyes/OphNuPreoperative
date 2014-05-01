@@ -61,7 +61,7 @@
  * @property OphNuPreoperative_PreoperativeAssessment_Belong $belong
  */
 
-class Element_OphNuPreoperative_PreOperativeAssessment	extends  BaseEventTypeElement
+class Element_OphNuPreoperative_PreoperativeAssessment	extends  BaseEventTypeElement
 {
 	public $date_last_ate_time;
 	public $date_last_drank_time;
