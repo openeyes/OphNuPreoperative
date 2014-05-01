@@ -102,5 +102,10 @@ class Element_OphNuPreoperative_PreOperativeAssessment_Dental_Assignment extends
 			'criteria' => $criteria,
 		));
 	}
+
+	public function getName()
+	{
+		return $this->ophnupreoperative_preoperative_dental->name;
+	}
 }
 ?>

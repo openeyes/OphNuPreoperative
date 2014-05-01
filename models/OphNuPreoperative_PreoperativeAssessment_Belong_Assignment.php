@@ -103,5 +103,10 @@ class OphNuPreoperative_PreoperativeAssessment_Belong_Assignment extends BaseAct
 			'criteria' => $criteria,
 		));
 	}
+
+	public function getName()
+	{
+		return $this->belong->name;
+	}
 }
 ?>
