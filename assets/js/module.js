@@ -110,6 +110,14 @@ $(document).ready(function() {
 		$('.addAllergy').slideDown('fast');
 	});
 
+	$('#Element_OphNuPreoperative_BaselineObservations_bloodsugar_na').click(function() {
+		if ($(this).is(':checked')) {
+			$('#Element_OphNuPreoperative_BaselineObservations_blood_sugar').attr('disabled','disabled');
+			$('#Element_OphNuPreoperative_BaselineObservations_blood_sugar').val('');
+		} else {
+			$('#Element_OphNuPreoperative_BaselineObservations_blood_sugar').removeAttr('disabled');
+		}
+	});
 });
 
 function ucfirst(str) { str += ''; var f = str.charAt(0).toUpperCase(); return f + str.substr(1); }

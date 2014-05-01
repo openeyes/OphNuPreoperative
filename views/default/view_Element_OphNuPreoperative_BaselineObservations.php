@@ -46,11 +46,7 @@
 		</div>
 		<div class="row data-row">
 			<div class="large-3 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('blood_sugar'))?></div></div>
-			<div class="large-9 column end"><div class="data-value"><?php echo CHtml::encode($element->blood_sugar)?></div></div>
-		</div>
-		<div class="row data-row">
-			<div class="large-3 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('bloodsugar_na'))?></div></div>
-			<div class="large-9 column end"><div class="data-value"><?php echo $element->bloodsugar_na ? 'Yes' : 'No'?></div></div>
+			<div class="large-9 column end"><div class="data-value"><?php echo $element->bloodsugar_na ? 'N/A' : CHtml::encode($element->blood_sugar)?></div></div>
 		</div>
 		<div class="row data-row">
 			<div class="large-3 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('urine_passed'))?>:</div></div>
