@@ -37,6 +37,7 @@
 			'relation' => 'medications',
 			'input_name' => 'medication_history',
 		))?>
+		<?php echo $form->checkBox($element, 'allergies_verified', array('text-align'=>'right'), array('label' => 3, 'field' => 4))?>
 		<?php $form->widget('application.widgets.AllergySelection', array(
 			'form' => $form,
 			'element' => $element,
@@ -44,6 +45,5 @@
 			'input_name' => 'allergies',
 			'no_allergies_field' => 'patient_has_no_allergies',
 		))?>
-		<?php echo $form->checkBox($element, 'allergies_verified', array('text-align'=>'right'), array('label' => 3, 'field' => 4))?>
 	</div>
 </section>
