@@ -38,16 +38,16 @@
 				<div class="large-9 column end"><div class="data-value"><?php echo CHtml::encode($element->comments)?></div></div>
 			</div>
 		<?php }?>
+		<div class="row data-row">
+			<div class="large-3 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('medication_history_verified'))?></div></div>
+			<div class="large-9 column end"><div class="data-value"><?php echo $element->medication_history_verified ? 'Yes' : 'No'?></div></div>
+		</div>
 		<?php $this->widget('application.widgets.MedicationSelection', array(
 			'element' => $element,
 			'relation' => 'medications',
 			'input_name' => 'medication_history',
 			'edit' => false,
 		))?>
-		<div class="row data-row">
-			<div class="large-3 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('medication_history_verified'))?></div></div>
-			<div class="large-9 column end"><div class="data-value"><?php echo $element->medication_history_verified ? 'Yes' : 'No'?></div></div>
-		</div>
 		<?php $this->widget('application.widgets.AllergySelection', array(
 			'form' => $form,
 			'element' => $element,
