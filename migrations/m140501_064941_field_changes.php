@@ -40,7 +40,7 @@ class m140501_064941_field_changes extends CDbMigration
 				'CONSTRAINT `ophnupreoperative_preoperative_identifier_assignment_lmui_fk` FOREIGN KEY (`last_modified_user_id`) REFERENCES `user` (`id`)',
 				'CONSTRAINT `ophnupreoperative_preoperative_identifier_assignment_cui_fk` FOREIGN KEY (`created_user_id`) REFERENCES `user` (`id`)',
 				'CONSTRAINT `ophnupreoperative_preoperative_identifier_assignment_ele_fk` FOREIGN KEY (`element_id`) REFERENCES `et_ophnupreoperative_preoperative` (`id`)',
-				'CONSTRAINT `ophnupreoperative_preoperative_identifier_assignment_idi_fk` FOREIGN KEY (`identifier_id`) REFERENCES `ophnupreoperative_preoperative_identifier_assignment` (`id`)',
+				'CONSTRAINT `ophnupreoperative_preoperative_identifier_assignment_idi_fk` FOREIGN KEY (`identifier_id`) REFERENCES `ophnupreoperative_preoperative_identifier` (`id`)',
 			), 'ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin');
 	}
 
