@@ -48,7 +48,7 @@
 				</label>
 			</div>
 			<div class="large-2 column end">
-				<?php echo $form->textField($element, 'bpm', array('nowrapper' => true), array(), array('label' => 3, 'field' => 1))?>
+				<?php echo $form->textField($element, 'bpm', array('nowrapper' => true, 'class' => 'smallPreopInput'), array(), array('label' => 3, 'field' => 1))?>
 				<span class="metric">bpm</span>
 			</div>
 		</div>
@@ -59,7 +59,7 @@
 				</label>
 			</div>
 			<div class="large-2 column end">
-				<?php echo $form->textField($element, 'temperature', array('nowrapper' => true), array(), array('label' => 3, 'field' => 1))?>
+				<?php echo $form->textField($element, 'temperature', array('nowrapper' => true, 'class' => 'smallPreopInput'), array(), array('label' => 3, 'field' => 1))?>
 				<span class="metric">C</span>
 			</div>
 		</div>
@@ -70,7 +70,7 @@
 				</label>
 			</div>
 			<div class="large-2 column end">
-				<?php echo $form->textField($element, 'res_rate', array('nowrapper' => true), array(), array('label' => 3, 'field' => 1))?>
+				<?php echo $form->textField($element, 'res_rate', array('nowrapper' => true, 'class' => 'smallPreopInput'), array(), array('label' => 3, 'field' => 1))?>
 				<span class="metric">insp/min</span>
 			</div>
 		</div>
@@ -81,7 +81,7 @@
 				</label>
 			</div>
 			<div class="large-2 column end">
-				<?php echo $form->textField($element, 'sao2', array('nowrapper' => true), array(), array('label' => 3, 'field' => 1))?>
+				<?php echo $form->textField($element, 'sao2', array('nowrapper' => true, 'class' => 'smallPreopInput'), array(), array('label' => 3, 'field' => 1))?>
 				<span class="metric">%</span>
 			</div>
 		</div>

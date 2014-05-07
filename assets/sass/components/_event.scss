@@ -24,57 +24,19 @@
 	}
 }
 
+.metric {
+	display: inline;
+	font-size: 0.8125em;
+}
+
+.smallPreopInput {
+	display: inline !important;
+	width: 5em !important;
+}
+
 #div_Element_OphNuPreoperative_BaselineObservations_bp_systolic {
 	input {
 		display: inline;
-	}
-	.metric {
-		display: inline;
-		font-size: 0.8125em;
-	}
-}
-
-#div_Element_OphNuPreoperative_BaselineObservations_bpm {
-	input {
-		display: inline;
-		width: 5em;
-	}
-	.metric {
-		display: inline;
-		font-size: 0.8125em;
-	}
-}
-
-#div_Element_OphNuPreoperative_BaselineObservations_res_rate {
-	input {
-		display: inline;
-		width: 5em;
-	}
-	.metric {
-		display: inline;
-		font-size: 0.8125em;
-	}
-}
-
-#div_Element_OphNuPreoperative_BaselineObservations_sao2 {
-	input {
-		display: inline;
-		width: 5em;
-	}
-	.metric {
-		display: inline;
-		font-size: 0.8125em;
-	}
-}
-
-#div_Element_OphNuPreoperative_BaselineObservations_rate {
-	input {
-		display: inline;
-		width: 5em;
-	}
-	.metric {
-		display: inline;
-		font-size: 0.8125em;
 	}
 }
 

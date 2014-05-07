@@ -33,7 +33,7 @@
 		<?php echo $form->checkBox($element, 'patient_verified', array('text-align'=>'right','class'=>'linked-fields','data-linked-fields'=>'MultiSelect_identifiers','data-linked-values'=>'1'), array('label' => 3, 'field' => 4))?>
 		<?php echo $form->multiSelectList($element, 'MultiSelect_identifiers', 'identifiers', 'identifier_id', CHtml::listData(OphNuPreoperative_PreoperativeAssessment_Identifier::model()->findAll(array('order'=>'display_order asc')),'id','name'), array(), array('empty' => '- Please select -', 'label' => 'Two identifiers'), !$element->patient_verified, false, null, false, false, array('label' => 3, 'field' => 4))?>
 		<?php echo $form->multiSelectList($element, 'MultiSelect_wristband', 'wristbands', 'ophnupreoperative_preoperative_wristband_id', CHtml::listData(OphNuPreoperative_PreoperativeAssessment_Wristband::model()->findAll(array('order'=>'display_order asc')),'id','name'), array(), array('empty' => '- Please select -', 'label' => 'Special attention wristband attached?'), false, false, null, false, false, array('label' => 3, 'field' => 4))?>
-		<div class="row field-row">
+		<div id="Element_OphCiPatientadmission_NpoStatus_date_last_ate" class="row field-row">
 			<div class="large-3 column">
 				<label for="Element_OphCiPatientadmission_NpoStatus_date_last_ate_0">
 					<?php echo $element->getAttributeLabel('date_last_ate')?>:
@@ -41,10 +41,11 @@
 			</div>
 			<div class="large-4 column end">
 				<?php echo $form->datePicker($element, 'date_last_ate', array('maxDate' => 'today'), array('null'=>true,'style'=>'width: 110px; display: inline-block;','nowrapper' => true))?>
-				<?php echo $form->textField($element, 'date_last_ate_time', array('nowrapper' => true, 'style' => 'width: 50px; display: inline-block;'))?> <span class="metric">Time</span>
+				<?php echo $form->textField($element, 'date_last_ate_time', array('nowrapper' => true, 'style' => 'width: 50px; display: inline-block;'))?>
+				<span class="metric">Time</span>
 			</div>
 		</div>
-		<div class="row field-row">
+		<div id="Element_OphCiPatientadmission_NpoStatus_date_last_drank" class="row field-row">
 			<div class="large-3 column">
 				<label for="Element_OphCiPatientadmission_NpoStatus_date_last_drank_0">
 					<?php echo $element->getAttributeLabel('date_last_drank')?>:
@@ -52,7 +53,8 @@
 			</div>
 			<div class="large-4 column end">
 				<?php echo $form->datePicker($element, 'date_last_drank', array('maxDate' => 'today'), array('null'=>true,'style'=>'width: 110px; display: inline-block;','nowrapper' => true))?>
-				<?php echo $form->textField($element, 'date_last_drank_time', array('nowrapper' => true, 'style' => 'width: 50px; display: inline-block;'))?> <span class="metric">Time</span>
+				<?php echo $form->textField($element, 'date_last_drank_time', array('nowrapper' => true, 'style' => 'width: 50px; display: inline-block;'))?>
+				<span class="metric">Time</span>
 			</div>
 		</div>
 		<?php echo $form->checkBox($element, 'consent_signed', array('text-align'=>'right'), array('label' => 3, 'field' => 4))?>
