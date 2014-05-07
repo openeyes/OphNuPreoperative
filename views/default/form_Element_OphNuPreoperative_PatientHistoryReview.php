@@ -28,7 +28,7 @@
 	</header>
 
 	<div class="element-fields">
-		<?php echo $form->checkBox($element, 'medical_history_verified', array('text-align'=>'right'), array('label' => 3, 'field' => 4))?>
+		<?php echo $form->checkBox($element, 'medical_history_verified', array('text-align'=>'right','label'=>'Medical History'), array('label' => 3, 'field' => 4))?>
 		<?php echo $form->radioBoolean($element, 'medical_discrepancy_found', array('class' => 'linked-fields', 'data-linked-fields' => 'comments','data-linked-values' => 'Yes'), array('label' => 3, 'field' => 4))?>
 		<?php echo $form->textField($element, 'comments',  array('hide' => !$element->medical_discrepancy_found==1), array(), array('label' => 3, 'field' => 4))?>
 		<?php $form->widget('application.widgets.MedicationSelection', array(
