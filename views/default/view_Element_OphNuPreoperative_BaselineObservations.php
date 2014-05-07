@@ -95,10 +95,17 @@
 			<?php }?>
 		<?php }?>
 		<div class="row data-row">
-			<div class="large-3 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('skin_id'))?></div></div>
-			<div class="large-9 column end"><div class="data-value"><?php echo $element->skin ? $element->skin->name : 'None'?></div></div>
+			<div class="large-3 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('skins'))?>:</div></div>
+			<div class="large-9 column end"><div class="data-value"><?php if (!$element->skins) {?>
+							None
+						<?php } else {?>
+								<?php foreach ($element->skins as $item) {
+									echo $item->skin->name?><br/>
+								<?php }?>
+						<?php }?>
+			</div></div>
 		</div>
-		<?php if ($element->skin && $element->skin->name == 'Other (please specify)') {?>
+		<?php if ($element->hasMultiSelectValue('skins','Other (please specify)')) {?>
 			<div class="row data-row">
 				<div class="large-3 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('comments'))?></div></div>
 				<div class="large-9 column end"><div class="data-value"><?php echo CHtml::encode($element->comments)?></div></div>

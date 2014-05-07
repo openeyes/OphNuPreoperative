@@ -92,3 +92,8 @@
 #Element_OphNuPreoperative_BaselineObservations_bp_diastolic {
   width: 3em;
 }
+
+/* line 89, ../sass/components/_event.scss */
+#Element_OphNuPreoperative_BaselineObservations_bloodsugar_na {
+  width: 1em !important;
+}

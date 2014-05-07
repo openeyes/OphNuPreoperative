@@ -283,11 +283,25 @@ class DefaultController extends BaseEventTypeController
 		}
 
 		$element->obss = $observations;
+
+		$skins = array();
+
+		if (!empty($data['MultiSelect_skins'])) {
+			foreach ($data['MultiSelect_skins'] as $skin_id) {
+				$assignment = new OphNuPreoperative_BaselineObservations_Skin_Assignment;
+				$assignment->skin_id = $skin_id;
+
+				$skins[] = $assignment;
+			}
+		}
+
+		$element->skins = $skins;
 	}
 
 	protected function saveComplexAttributes_Element_OphNuPreoperative_BaselineObservations($element, $data, $index)
 	{
 		$element->updateMultiSelectData('Element_OphNuPreoperative_BaselineObservations_Obs_Assignment',empty($data['MultiSelect_obs']) ? array() : $data['MultiSelect_obs'],'ophnupreoperative_baseline_obs_id');
+		$element->updateMultiSelectData('OphNuPreoperative_BaselineObservations_Skin_Assignment',empty($data['MultiSelect_skins']) ? array() : $data['MultiSelect_skins'],'skin_id');
 	}
 
 	protected function setComplexAttributes_Element_OphNuPreoperative_PreoperativeMedicationAdministration($element, $data, $index)

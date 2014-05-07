@@ -94,9 +94,9 @@ class Element_OphNuPreoperative_BaselineObservations  extends  BaseEventTypeElem
 	public function rules()
 	{
 		return array(
-			array('event_id, bp_systolic, bp_diastolic, bpm, temperature, res_rate, sao2, blood_sugar, bloodsugar_na, urine_passed, time, avpu, is_patient_experiencing_pain, location_id, side_id, type_of_pain_id, pain_score_method_id, pain_score, p_comments, skin_id, comments, o_comments, mews_score, iv_inserted, iv_location, size_id, fluid_type_id, volume_given_id, rate, ', 'safe'),
-			array('bp_systolic, bp_diastolic, bpm, temperature, res_rate, sao2, blood_sugar, bloodsugar_na, urine_passed, avpu, is_patient_experiencing_pain, skin_id, mews_score, iv_inserted', 'required'),
-			array('id, event_id, blood_pressure, bpm, temperature, res_rate, sao2, blood_sugar, bloodsugar_na, urine_passed, time, avpu, is_patient_experiencing_pain, location_id, side_id, type_of_pain_id, pain_score_method_id, pain_score, p_comments, skin_id, comments, o_comments, mews_score, iv_inserted, iv_location, size_id, fluid_type_id, volume_given_id, rate, ', 'safe', 'on' => 'search'),
+			array('event_id, bp_systolic, bp_diastolic, bpm, temperature, res_rate, sao2, blood_sugar, bloodsugar_na, urine_passed, time, avpu, is_patient_experiencing_pain, location_id, side_id, type_of_pain_id, pain_score_method_id, pain_score, p_comments, comments, o_comments, mews_score, iv_inserted, iv_location, size_id, fluid_type_id, volume_given_id, rate, ', 'safe'),
+			array('bp_systolic, bp_diastolic, bpm, temperature, res_rate, sao2, bloodsugar_na, urine_passed, avpu, is_patient_experiencing_pain, mews_score, iv_inserted', 'required'),
+			array('id, event_id, blood_pressure, bpm, temperature, res_rate, sao2, blood_sugar, bloodsugar_na, urine_passed, time, avpu, is_patient_experiencing_pain, location_id, side_id, type_of_pain_id, pain_score_method_id, pain_score, p_comments, comments, o_comments, mews_score, iv_inserted, iv_location, size_id, fluid_type_id, volume_given_id, rate, ', 'safe', 'on' => 'search'),
 		);
 	}
 
@@ -115,11 +115,11 @@ class Element_OphNuPreoperative_BaselineObservations  extends  BaseEventTypeElem
 			'side' => array(self::BELONGS_TO, 'OphNuPreoperative_BaselineObservations_Side', 'side_id'),
 			'type_of_pain' => array(self::BELONGS_TO, 'OphNuPreoperative_BaselineObservations_TypeOfPain', 'type_of_pain_id'),
 			'pain_score_method' => array(self::BELONGS_TO, 'OphNuPreoperative_BaselineObservations_PainScoreMethod', 'pain_score_method_id'),
-			'skin' => array(self::BELONGS_TO, 'OphNuPreoperative_BaselineObservations_Skin', 'skin_id'),
 			'obss' => array(self::HAS_MANY, 'Element_OphNuPreoperative_BaselineObservations_Obs_Assignment', 'element_id'),
 			'size' => array(self::BELONGS_TO, 'OphNuPreoperative_BaselineObservations_Size', 'size_id'),
 			'fluid_type' => array(self::BELONGS_TO, 'OphNuPreoperative_BaselineObservations_FluidType', 'fluid_type_id'),
 			'volume_given' => array(self::BELONGS_TO, 'OphNuPreoperative_BaselineObservations_VolumeGiven', 'volume_given_id'),
+			'skins' => array(self::HAS_MANY, 'OphNuPreoperative_BaselineObservations_Skin_Assignment', 'element_id'),
 		);
 	}
 
@@ -149,7 +149,6 @@ class Element_OphNuPreoperative_BaselineObservations  extends  BaseEventTypeElem
 			'pain_score_method_id' => 'Pain score method',
 			'pain_score' => 'Pain score',
 			'p_comments' => 'Pain score comments',
-			'skin_id' => 'Skin assessment',
 			'comments' => 'Skin assessment notes',
 			'obs' => 'Pre-op observations',
 			'o_comments' => 'Pre-op observation notes',
@@ -160,6 +159,7 @@ class Element_OphNuPreoperative_BaselineObservations  extends  BaseEventTypeElem
 			'fluid_type_id' => 'IV fluid type',
 			'volume_given_id' => 'IV volume given',
 			'rate' => 'IV rate',
+			'skins' => 'Skin assessment',
 		);
 	}
 
@@ -190,7 +190,6 @@ class Element_OphNuPreoperative_BaselineObservations  extends  BaseEventTypeElem
 		$criteria->compare('pain_score_method_id', $this->pain_score_method_id);
 		$criteria->compare('pain_score', $this->pain_score);
 		$criteria->compare('p_comments', $this->p_comments);
-		$criteria->compare('skin_id', $this->skin_id);
 		$criteria->compare('comments', $this->comments);
 		$criteria->compare('obs', $this->obs);
 		$criteria->compare('o_comments', $this->o_comments);
@@ -217,7 +216,7 @@ class Element_OphNuPreoperative_BaselineObservations  extends  BaseEventTypeElem
 			}
 		}
 
-		if ($this->skin && $this->skin->name == 'Other (please specify)') {
+		if ($this->hasMultiSelectValue('skins','Other (please specify)')) {
 			if (!$this->comments) {
 				$this->addError('comments',$this->getAttributeLabel('comments').' cannot be blank.');
 			}
@@ -240,6 +239,12 @@ class Element_OphNuPreoperative_BaselineObservations  extends  BaseEventTypeElem
 		if ($this->urine_passed) {
 			if (!$this->time) {
 				$this->addError('time',$this->getAttributeLabel('time').' cannot be blank.');
+			}
+		}
+
+		if (!$this->bloodsugar_na) {
+			if (!$this->blood_sugar) {
+				$this->addError('blood_sugar',$this->getAttributeLabel('blood_sugar').' cannot be blank.');
 			}
 		}
 
