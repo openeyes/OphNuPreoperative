@@ -198,12 +198,6 @@ class Element_OphNuPreoperative_PreoperativeAssessment	extends  BaseEventTypeEle
 		));
 	}
 
-	public function setDefaultOptions()
-	{
-		$this->date_last_ate_time = date('H:i');
-		$this->date_last_drank_time = date('H:i');
-	}
-
 	public function beforeSave()
 	{
 		$this->date_last_ate .= ' '.$this->date_last_ate_time;
