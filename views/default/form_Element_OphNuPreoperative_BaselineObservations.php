@@ -52,7 +52,17 @@
 				<span class="metric">bpm</span>
 			</div>
 		</div>
-		<?php echo $form->textField($element, 'temperature', array(), array(), array('label' => 3, 'field' => 1))?>
+		<div id="div_Element_OphNuPreoperative_BaselineObservations_bpm" class="row field-row">
+			<div class="large-3 column">
+				<label for="Element_OphNuPreoperative_BaselineObservations_bpm">
+					<?php echo $element->getAttributeLabel('temperature')?>:
+				</label>
+			</div>
+			<div class="large-2 column end">
+				<?php echo $form->textField($element, 'temperature', array('nowrapper' => true), array(), array('label' => 3, 'field' => 1))?>
+				<span class="metric">C</span>
+			</div>
+		</div>
 		<div id="div_Element_OphNuPreoperative_BaselineObservations_res_rate" class="row field-row">
 			<div class="large-3 column">
 				<label for="Element_OphNuPreoperative_BaselineObservations_res_rate">
