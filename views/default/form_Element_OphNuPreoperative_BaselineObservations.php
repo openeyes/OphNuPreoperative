@@ -85,8 +85,20 @@
 				<span class="metric">%</span>
 			</div>
 		</div>
-		<?php echo $form->textField($element, 'blood_sugar', $element->bloodsugar_na ? array('disabled' => 'disabled') : array(), array(), array('label' => 3, 'field' => 1))?>
-		<?php echo $form->checkBox($element, 'bloodsugar_na', array('text-align' => 'right'), array('label' => 3, 'field' => 4))?>
+		<div id="div_Element_OphNuPreoperative_BaselineObservations_sao2" class="row field-row">
+			<div class="large-3 column">
+				<label for="Element_OphNuPreoperative_BaselineObservations_sao2">
+					<?php echo $element->getAttributeLabel('blood_sugar')?>:
+				</label>
+			</div>
+			<div class="large-1 column">
+				<?php echo $form->textField($element, 'blood_sugar', $element->bloodsugar_na ? array('nowrapper' => true,'disabled' => 'disabled') : array('nowrapper' => true), array(), array('label' => 3, 'field' => 1))?>
+			</div>
+			<div class="large-2 column end">
+				<?php echo $form->checkBox($element, 'bloodsugar_na', array('nowrapper' => true))?>
+			</div>
+		</div>
+
 		<?php echo $form->radioBoolean($element, 'urine_passed', array('class'=>'linked-fields','data-linked-fields'=>'time','data-linked-values'=>'Yes'), array('label' => 3, 'field' => 4))?>
 		<?php echo $form->textField($element, 'time', array('hide' => !$element->urine_passed), array(), array('label' => 3, 'field' => 1))?>
 		<?php echo $form->textField($element, 'avpu', array(), array(), array('label' => 3, 'field' => 1))?>
