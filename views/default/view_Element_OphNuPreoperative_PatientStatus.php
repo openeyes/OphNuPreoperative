@@ -26,9 +26,9 @@
 	<div class="element-data">
 		<div class="row data-row">
 			<div class="large-3 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('patient_status_id'))?></div></div>
-			<div class="large-9 column end"><div class="data-value"><?php echo $element->patient_status ? $element->patient_status->name : 'None'?></div></div>
+			<div class="large-9 column end"><div class="data-value"><?php echo $element->patient_status ? $element->patient_status->name : 'Not recorded'?></div></div>
 		</div>
-		<?php if ($element->patient_status->name == 'Case Canceled') {?>
+		<?php if ($element->patient_status && $element->patient_status->name == 'Case Canceled') {?>
 			<div class="row data-row">
 				<div class="large-3 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('cancel'))?>:</div></div>
 				<div class="large-9 column end"><div class="data-value"><?php if (!$element->cancels) {?>

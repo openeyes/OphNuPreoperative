@@ -26,9 +26,9 @@
 	<div class="element-data">
 		<div class="row data-row">
 			<div class="large-3 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('translator_present_id'))?></div></div>
-			<div class="large-9 column end"><div class="data-value"><?php echo $element->translator_present ? $element->translator_present->name : 'None'?></div></div>
+			<div class="large-9 column end"><div class="data-value"><?php echo $element->translator_present ? $element->translator_present->name : 'Not recorded'?></div></div>
 		</div>
-		<?php if ($element->translator_present->name == 'Yes') {?>
+		<?php if ($element->translator_present && $element->translator_present->name == 'Yes') {?>
 			<div class="row data-row">
 				<div class="large-3 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('name_of_translator'))?></div></div>
 				<div class="large-9 column end"><div class="data-value"><?php echo CHtml::encode($element->name_of_translator)?></div></div>
@@ -64,11 +64,11 @@
 		</div>
 		<div class="row data-row">
 			<div class="large-3 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('date_last_ate'))?></div></div>
-			<div class="large-9 column end"><div class="data-value"><?php echo CHtml::encode($element->NHSDate('date_last_ate'))?> at <?php echo substr($element->date_last_ate,11,5)?></div></div>
+			<div class="large-9 column end"><div class="data-value"><?php echo $element->date_last_ate ? CHtml::encode($element->NHSDate('date_last_ate')).' at '.substr($element->date_last_ate,11,5) : 'Not recorded'?></div></div>
 		</div>
 		<div class="row data-row">
 			<div class="large-3 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('date_last_drank'))?></div></div>
-			<div class="large-9 column end"><div class="data-value"><?php echo CHtml::encode($element->NHSDate('date_last_drank'))?> at <?php echo substr($element->date_last_drank,11,5)?></div></div>
+			<div class="large-9 column end"><div class="data-value"><?php echo $element->date_last_drank ? CHtml::encode($element->NHSDate('date_last_drank')).' at '.substr($element->date_last_drank,11,5) : 'Not recorded'?></div></div>
 		</div>
 		<div class="row data-row">
 			<div class="large-3 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('consent_signed'))?></div></div>
@@ -76,22 +76,22 @@
 		</div>
 		<div class="row data-row">
 			<div class="large-3 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('surgical_site_verified'))?>:</div></div>
-			<div class="large-9 column end"><div class="data-value"><?php echo $element->surgical_site_verified ? 'Yes' : 'No'?></div></div>
+			<div class="large-9 column end"><div class="data-value"><?php echo is_null($element->surgical_site_verified) ? 'Not recorded' : ($element->surgical_site_verified ? 'Yes' : 'No')?></div></div>
 		</div>
 		<?php if ($element->surgical_site_verified) {?>
 			<div class="row data-row">
 				<div class="large-3 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('site_id'))?></div></div>
-				<div class="large-9 column end"><div class="data-value"><?php echo $element->site ? $element->site->name : 'None'?></div></div>
+				<div class="large-9 column end"><div class="data-value"><?php echo $element->site ? $element->site->name : 'Not recorded'?></div></div>
 			</div>
 		<?php }?>
 		<div class="row data-row">
 			<div class="large-3 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('iol_verified_id'))?></div></div>
-			<div class="large-9 column end"><div class="data-value"><?php echo $element->iol_verified ? $element->iol_verified->name : 'None'?></div></div>
+			<div class="large-9 column end"><div class="data-value"><?php echo is_null($element->iol_verified) ? 'Not recorded' : ($element->iol_verified ? $element->iol_verified->name : 'None')?></div></div>
 		</div>
-		<?php if ($element->iol_verified->name == 'Yes') {?>
+		<?php if ($element->iol_verified && $element->iol_verified->name == 'Yes') {?>
 			<div class="row data-row">
 				<div class="large-3 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('iol_type_id'))?></div></div>
-				<div class="large-9 column end"><div class="data-value"><?php echo $element->iol_type ? $element->iol_type->name : 'None'?></div></div>
+				<div class="large-9 column end"><div class="data-value"><?php echo is_null($element->iol_type) ? 'Not recorded' : ($element->iol_type ? $element->iol_type->name : 'None')?></div></div>
 			</div>
 			<div class="row data-row">
 				<div class="large-3 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('iol_size_id'))?></div></div>
@@ -100,7 +100,7 @@
 		<?php }?>
 		<div class="row data-row">
 			<div class="large-3 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('metal_in_body'))?>:</div></div>
-			<div class="large-9 column end"><div class="data-value"><?php echo $element->metal_in_body ? 'Yes' : 'No'?></div></div>
+			<div class="large-9 column end"><div class="data-value"><?php echo is_null($element->metal_in_body) ? 'Not recorded' : ($element->metal_in_body ? 'Yes' : 'No')?></div></div>
 		</div>
 		<?php if ($element->metal_in_body) {?>
 			<div class="row data-row">
@@ -110,7 +110,7 @@
 		<?php }?>
 		<div class="row data-row">
 			<div class="large-3 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('falls_mobility'))?>:</div></div>
-			<div class="large-9 column end"><div class="data-value"><?php echo $element->falls_mobility ? 'Yes' : 'No'?></div></div>
+			<div class="large-9 column end"><div class="data-value"><?php echo is_null($element->falls_mobility) ? 'Not recorded' : ($element->falls_mobility ? 'Yes' : 'No')?></div></div>
 		</div>
 		<?php if ($element->falls_mobility) {?>
 			<div class="row data-row">
@@ -127,7 +127,7 @@
 		<?php }?>
 		<div class="row data-row">
 			<div class="large-3 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('removable_dental_work_present'))?>:</div></div>
-			<div class="large-9 column end"><div class="data-value"><?php echo $element->removable_dental_work_present ? 'Yes' : 'No'?></div></div>
+			<div class="large-9 column end"><div class="data-value"><?php echo is_null($element->removable_dental_work_present) ? 'Not recorded' : ($element->removable_dental_work_present ? 'Yes' : 'No')?></div></div>
 		</div>
 		<?php if ($element->removable_dental_work_present) {?>
 			<div class="row data-row">
@@ -150,7 +150,7 @@
 		<?php }?>
 		<div class="row data-row">
 			<div class="large-3 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('hearing_aid_present'))?>:</div></div>
-			<div class="large-9 column end"><div class="data-value"><?php echo $element->hearing_aid_present ? 'Yes' : 'No'?></div></div>
+			<div class="large-9 column end"><div class="data-value"><?php echo is_null($element->hearing_aid_present) ? 'Not recorded' : ($element->hearing_aid_present ? 'Yes' : 'No')?></div></div>
 		</div>
 		<?php if ($element->hearing_aid_present) {?>
 			<div class="row data-row">
@@ -167,7 +167,7 @@
 		<?php }?>
 		<div class="row data-row">
 			<div class="large-3 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('patient_belongings'))?>:</div></div>
-			<div class="large-9 column end"><div class="data-value"><?php echo $element->patient_belongings ? 'Yes' : 'No'?></div></div>
+			<div class="large-9 column end"><div class="data-value"><?php echo is_null($element->patient_belongings) ? 'Not recorded' : ($element->patient_belongings ? 'Yes' : 'No')?></div></div>
 		</div>
 		<?php if ($element->patient_belongings) {?>
 			<div class="row data-row">

@@ -90,7 +90,6 @@ class Element_OphNuPreoperative_PreoperativeAssessment	extends  BaseEventTypeEle
 	{
 		return array(
 			array('event_id, translator_present_id, name_of_translator, patient_verified, date_last_ate, date_last_drank, consent_signed, surgical_site_verified, site_id, iol_verified_id, iol_type_id, iol_size_id, metal_in_body, m_comments, falls_mobility, removable_dental_work_present, d_comments, hearing_aid_present, patient_belongings, b_comments, date_last_ate_time, date_last_drank_time', 'safe'),
-			array('translator_present_id, patient_verified, date_last_ate, date_last_drank, date_last_ate_time, date_last_drank_time, consent_signed, surgical_site_verified, iol_verified_id, metal_in_body, falls_mobility, removable_dental_work_present, hearing_aid_present, patient_belongings,', 'required'),
 			array('id, event_id, translator_present_id, name_of_translator, patient_verified, date_last_ate, date_last_drank, consent_signed, surgical_site_verified, site_id, iol_verified_id, iol_type_id, iol_size_id, metal_in_body, m_comments, falls_mobility, removable_dental_work_present, d_comments, hearing_aid_present, patient_belongings, belong_id, b_comments, ', 'safe', 'on' => 'search'),
 		);
 	}
@@ -200,8 +199,17 @@ class Element_OphNuPreoperative_PreoperativeAssessment	extends  BaseEventTypeEle
 
 	public function beforeSave()
 	{
-		$this->date_last_ate .= ' '.$this->date_last_ate_time;
-		$this->date_last_drank .= ' '.$this->date_last_drank_time;
+		if ($this->date_last_ate) {
+			$this->date_last_ate .= ' '.$this->date_last_ate_time;
+		} else {
+			$this->date_last_ate = null;
+		}
+
+		if ($this->date_last_drank) {
+			$this->date_last_drank .= ' '.$this->date_last_drank_time;
+		} else {
+			$this->date_last_drank = null;
+		}
 
 		return parent::beforeSave();
 	}
@@ -247,16 +255,20 @@ class Element_OphNuPreoperative_PreoperativeAssessment	extends  BaseEventTypeEle
 			}
 		}
 
-		if (!preg_match('/^([0-9]{1,2}):([0-9]{2})$/',$this->date_last_ate_time,$m) || $m[1] > 23 || $m[2] > 59) {
-			$this->addError('date_last_ate_time','Invalid time format for '.$this->getAttributeLabel('date_last_ate_time'));
-		} else {
-			$this->date_last_ate = date('Y-m-d',strtotime($this->date_last_ate)).' '.str_pad($m[1],2,"0",STR_PAD_LEFT).":".$m[2].":00";
+		if ($this->date_last_ate) {
+			if (!preg_match('/^([0-9]{1,2}):([0-9]{2})$/',$this->date_last_ate_time,$m) || $m[1] > 23 || $m[2] > 59) {
+				$this->addError('date_last_ate_time','Invalid time format for '.$this->getAttributeLabel('date_last_ate_time'));
+			} else {
+				$this->date_last_ate = date('Y-m-d',strtotime($this->date_last_ate)).' '.str_pad($m[1],2,"0",STR_PAD_LEFT).":".$m[2].":00";
+			}
 		}
 
-		if (!preg_match('/^([0-9]{1,2}):([0-9]{2})$/',$this->date_last_drank_time,$m) || $m[1] > 23 || $m[2] > 59) {
-			$this->addError('date_last_drank_time','Invalid time format for '.$this->getAttributeLabel('date_last_drank_time'));
-		} else {
-			$this->date_last_drank = date('Y-m-d',strtotime($this->date_last_drank)).' '.str_pad($m[1],2,"0",STR_PAD_LEFT).":".$m[2].":00";
+		if ($this->date_last_drank) {
+			if (!preg_match('/^([0-9]{1,2}):([0-9]{2})$/',$this->date_last_drank_time,$m) || $m[1] > 23 || $m[2] > 59) {
+				$this->addError('date_last_drank_time','Invalid time format for '.$this->getAttributeLabel('date_last_drank_time'));
+			} else {
+				$this->date_last_drank = date('Y-m-d',strtotime($this->date_last_drank)).' '.str_pad($m[1],2,"0",STR_PAD_LEFT).":".$m[2].":00";
+			}
 		}
 
 		if ($this->patient_belongings) {

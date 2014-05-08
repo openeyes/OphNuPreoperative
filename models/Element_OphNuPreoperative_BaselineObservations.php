@@ -95,7 +95,6 @@ class Element_OphNuPreoperative_BaselineObservations  extends  BaseEventTypeElem
 	{
 		return array(
 			array('event_id, bp_systolic, bp_diastolic, bpm, temperature, res_rate, sao2, blood_sugar, bloodsugar_na, urine_passed, time, avpu, is_patient_experiencing_pain, location_id, side_id, type_of_pain_id, pain_score_method_id, pain_score, p_comments, comments, o_comments, mews_score, iv_inserted, iv_location, size_id, fluid_type_id, volume_given_id, rate, ', 'safe'),
-			array('bp_systolic, bp_diastolic, bpm, temperature, res_rate, sao2, bloodsugar_na, urine_passed, avpu, is_patient_experiencing_pain, mews_score, iv_inserted', 'required'),
 			array('id, event_id, blood_pressure, bpm, temperature, res_rate, sao2, blood_sugar, bloodsugar_na, urine_passed, time, avpu, is_patient_experiencing_pain, location_id, side_id, type_of_pain_id, pain_score_method_id, pain_score, p_comments, comments, o_comments, mews_score, iv_inserted, iv_location, size_id, fluid_type_id, volume_given_id, rate, ', 'safe', 'on' => 'search'),
 		);
 	}
@@ -239,12 +238,6 @@ class Element_OphNuPreoperative_BaselineObservations  extends  BaseEventTypeElem
 		if ($this->urine_passed) {
 			if (!$this->time) {
 				$this->addError('time',$this->getAttributeLabel('time').' cannot be blank.');
-			}
-		}
-
-		if (!$this->bloodsugar_na) {
-			if (!$this->blood_sugar) {
-				$this->addError('blood_sugar',$this->getAttributeLabel('blood_sugar').' cannot be blank.');
 			}
 		}
 

@@ -30,7 +30,7 @@
 		</div>
 		<div class="row data-row">
 			<div class="large-3 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('medical_discrepancy_found'))?>:</div></div>
-			<div class="large-9 column end"><div class="data-value"><?php echo $element->medical_discrepancy_found ? 'Yes' : 'No'?></div></div>
+			<div class="large-9 column end"><div class="data-value"><?php echo is_null($element->medical_discrepancy_found) ? 'Not recorded' : ($element->medical_discrepancy_found ? 'Yes' : 'No')?></div></div>
 		</div>
 		<?php if ($element->medical_discrepancy_found) {?>
 			<div class="row data-row">

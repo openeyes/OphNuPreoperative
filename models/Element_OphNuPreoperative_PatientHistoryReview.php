@@ -64,7 +64,6 @@ class Element_OphNuPreoperative_PatientHistoryReview	extends  BaseEventTypeEleme
 	{
 		return array(
 			array('event_id, medical_history_verified, medical_discrepancy_found, comments, allergies_verified, medication_history_verified, patient_has_no_allergies', 'safe'),
-			array('medical_history_verified, medical_discrepancy_found, allergies_verified, medication_history_verified, ', 'required'),
 			array('id, event_id, medical_history_verified, medical_discrepancy_found, comments, allergies_verified, medication_history_verified, ', 'safe', 'on' => 'search'),
 		);
 	}

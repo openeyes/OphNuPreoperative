@@ -63,7 +63,6 @@ class Element_OphNuPreoperative_PatientStatus  extends  BaseEventTypeElement
 	{
 		return array(
 			array('event_id, patient_status_id, res_comments, comments', 'safe'),
-			array('patient_status_id', 'required'),
 			array('id, event_id, patient_status_id, res_comments, ', 'safe', 'on' => 'search'),
 		);
 	}
