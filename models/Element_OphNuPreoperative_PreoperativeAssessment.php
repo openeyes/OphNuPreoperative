@@ -253,6 +253,12 @@ class Element_OphNuPreoperative_PreoperativeAssessment	extends  BaseEventTypeEle
 			if (empty($this->dentals)) {
 				$this->addError('dentals','Please enter at least one dental item');
 			}
+
+			if ($this->hasMultiSelectValue('dentals','Other (please specify)')) {
+				if (!$this->d_comments) {
+					$this->addError('d_comments',$this->getAttributeLabel('d_comments').' cannot be blank');
+				}
+			}
 		}
 
 		if ($this->date_last_ate) {
