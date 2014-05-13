@@ -155,7 +155,7 @@
 			</div>
 			<div class="row data-row">
 				<div class="large-3 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('rate'))?></div></div>
-				<div class="large-9 column end"><div class="data-value"><?php echo CHtml::encode($element->rate)?></div></div>
+				<div class="large-9 column end"><div class="data-value"><?php echo CHtml::encode($element->rate)?> mL/hr</div></div>
 			</div>
 		<?php }?>
 	</div>
