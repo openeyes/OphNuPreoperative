@@ -261,6 +261,12 @@ class Element_OphNuPreoperative_PreoperativeAssessment	extends  BaseEventTypeEle
 			}
 		}
 
+		if ($this->hearing_aid_present) {
+			if (empty($this->hearing_aids)) {
+				$this->addError('hearing_aids',$this->getAttributeLabel('hearing_aids').' cannot be blank');
+			}
+		}
+
 		if ($this->date_last_ate && strtotime($this->date_last_ate) > strtotime(date('Y-m-d'))) {
 			$this->addError('date_last_ate',$this->getAttributeLabel('date_last_ate').' cannot be in the future.');
 		}
