@@ -22,11 +22,11 @@
 }
 /* line 19, ../sass/components/_event.scss */
 .event .event-content {
-  background-image: url('../img/watermark.png?1398850108');
+  background-image: url('../img/watermark.png?1399977327');
 }
 /* line 22, ../sass/components/_event.scss */
 .event .event-title {
-  background-image: url('../img/medium.png?1398850108');
+  background-image: url('../img/medium.png?1399977327');
 }
 
 /* line 27, ../sass/components/_event.scss */
@@ -46,46 +46,23 @@
   display: inline;
 }
 
-/*
-#div_Element_OphNuPreoperative_BaselineObservations_bpm {
-	input {
-		display: inline;
-		width: 5em;
-	}
-}
-
-#div_Element_OphNuPreoperative_BaselineObservations_res_rate {
-	input {
-		display: inline;
-		width: 5em;
-	}
-}
-
-#div_Element_OphNuPreoperative_BaselineObservations_sao2 {
-	input {
-		display: inline;
-		width: 5em;
-	}
-}
-
-#div_Element_OphNuPreoperative_BaselineObservations_rate {
-	input {
-		display: inline;
-		width: 5em;
-	}
-}
-*/
-/* line 73, ../sass/components/_event.scss */
+/* line 43, ../sass/components/_event.scss */
 #Element_OphNuPreoperative_BaselineObservations_bp_systolic {
   width: 4em;
 }
 
-/* line 77, ../sass/components/_event.scss */
+/* line 47, ../sass/components/_event.scss */
 #Element_OphNuPreoperative_BaselineObservations_bp_diastolic {
   width: 3em;
 }
 
-/* line 81, ../sass/components/_event.scss */
+/* line 51, ../sass/components/_event.scss */
 #Element_OphNuPreoperative_BaselineObservations_bloodsugar_na {
   width: 1em !important;
+}
+
+/* line 55, ../sass/components/_event.scss */
+#Element_OphNuPreoperative_BaselineObservations_rate {
+  width: 5em;
+  display: inline;
 }
