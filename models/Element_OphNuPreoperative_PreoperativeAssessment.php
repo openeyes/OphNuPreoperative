@@ -261,6 +261,14 @@ class Element_OphNuPreoperative_PreoperativeAssessment	extends  BaseEventTypeEle
 			}
 		}
 
+		if ($this->date_last_ate && strtotime($this->date_last_ate) > strtotime(date('Y-m-d'))) {
+			$this->addError('date_last_ate',$this->getAttributeLabel('date_last_ate').' cannot be in the future.');
+		}
+
+		if ($this->date_last_drank && strtotime($this->date_last_drank) > strtotime(date('Y-m-d'))) {
+			$this->addError('date_last_drank',$this->getAttributeLabel('date_last_drank').' cannot be in the future.');
+		}
+
 		if ($this->date_last_ate) {
 			if (!preg_match('/^([0-9]{1,2}):([0-9]{2})$/',$this->date_last_ate_time,$m) || $m[1] > 23 || $m[2] > 59) {
 				$this->addError('date_last_ate_time','Invalid time format for '.$this->getAttributeLabel('date_last_ate_time'));
