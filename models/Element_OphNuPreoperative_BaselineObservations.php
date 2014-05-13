@@ -238,6 +238,10 @@ class Element_OphNuPreoperative_BaselineObservations  extends  BaseEventTypeElem
 		if ($this->urine_passed) {
 			if (!$this->time) {
 				$this->addError('time',$this->getAttributeLabel('time').' cannot be blank.');
+			} else {
+				if (!preg_match('/^([0-9]{1,2}):([0-9]{2})$/',$this->time,$m) || $m[1] > 23 || $m[2] > 59) {
+					$this->addError('time','Invalid time format for '.$this->getAttributeLabel('time'));
+				}
 			}
 		}
 
