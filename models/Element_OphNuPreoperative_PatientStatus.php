@@ -115,4 +115,15 @@ class Element_OphNuPreoperative_PatientStatus  extends  BaseEventTypeElement
 			'criteria' => $criteria,
 		));
 	}
+
+	public function afterValidate()
+	{
+		if ($this->patient_status && $this->patient_status->name == 'Case Canceled') {
+			if (empty($this->cancels)) {
+				$this->addError('cancels','Please select at least one cancellation reason');
+			}
+		}
+
+		return parent::afterValidate();
+	}
 }
