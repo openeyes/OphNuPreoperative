@@ -58,7 +58,7 @@ class OphNuPreoperative_PatientHistory_Medication extends BaseActiveRecord
 	{
 		return array(
 			array('drug_id,route_id,option_id,frequency_id,start_date,end_date', 'safe'),
-			array('drug_id,route_id,frequency_id,start_date', 'required'),
+			array('drug_id,route_id,frequency_id', 'required'),
 			array('id, name', 'safe', 'on' => 'search'),
 		);
 	}
