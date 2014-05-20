@@ -32,7 +32,7 @@
  * @property User $usermodified
  */
 
-class OphNuPreoperative_BaselineObservations_VolumeGiven extends BaseActiveRecord
+class OphNuPreoperative_BaselineObservations_VolumeGiven extends BaseActiveRecordVersioned
 {
 	/**
 	 * Returns the static model of the specified AR class.

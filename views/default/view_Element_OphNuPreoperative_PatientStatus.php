@@ -17,12 +17,6 @@
  * @license http://www.gnu.org/licenses/gpl-3.0.html The GNU General Public License V3.0
  */
 ?>
-
-<section class="element">
-	<header class="element-header">
-		<h3 class="element-title"><?php echo $element->elementType->name?></h3>
-	</header>
-
 	<div class="element-data">
 		<div class="row data-row">
 			<div class="large-3 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('patient_status_id'))?></div></div>
@@ -50,8 +44,7 @@
 		<?php if ($element->comments) {?>
 			<div class="row data-row">
 				<div class="large-3 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('comments'))?></div></div>
-				<div class="large-9 column end"><div class="data-value"><?php $element->textWithLineBreaks('comments')?></div></div>
+				<div class="large-9 column end"><div class="data-value"><?php echo $element->textWithLineBreaks('comments')?></div></div>
 			</div>
 		<?php }?>
 	</div>
-</section>

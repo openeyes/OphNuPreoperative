@@ -17,16 +17,6 @@
  * @license http://www.gnu.org/licenses/gpl-3.0.html The GNU General Public License V3.0
  */
 ?>
-
-<section class="element <?php echo $element->elementType->class_name?>"
-	data-element-type-id="<?php echo $element->elementType->id?>"
-	data-element-type-class="<?php echo $element->elementType->class_name?>"
-	data-element-type-name="<?php echo $element->elementType->name?>"
-	data-element-display-order="<?php echo $element->elementType->display_order?>">
-	<header class="element-header">
-		<h3 class="element-title"><?php echo $element->elementType->name; ?></h3>
-	</header>
-
 	<div class="element-fields">
 		<?php echo $form->checkBox($element, 'medical_history_verified', array('text-align'=>'right','label'=>'Medical History'), array('label' => 3, 'field' => 4))?>
 		<?php echo $form->radioBoolean($element, 'medical_discrepancy_found', array('class' => 'linked-fields', 'data-linked-fields' => 'comments','data-linked-values' => 'Yes'), array('label' => 3, 'field' => 4))?>
@@ -46,4 +36,3 @@
 			'no_allergies_field' => 'patient_has_no_allergies',
 		))?>
 	</div>
-</section>

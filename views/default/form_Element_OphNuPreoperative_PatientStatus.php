@@ -17,20 +17,9 @@
  * @license http://www.gnu.org/licenses/gpl-3.0.html The GNU General Public License V3.0
  */
 ?>
-
-<section class="element <?php echo $element->elementType->class_name?>"
-	data-element-type-id="<?php echo $element->elementType->id?>"
-	data-element-type-class="<?php echo $element->elementType->class_name?>"
-	data-element-type-name="<?php echo $element->elementType->name?>"
-	data-element-display-order="<?php echo $element->elementType->display_order?>">
-	<header class="element-header">
-		<h3 class="element-title"><?php echo $element->elementType->name; ?></h3>
-	</header>
-
 	<div class="element-fields">
 		<?php echo $form->radioButtons($element, 'patient_status_id', CHtml::listData(OphNuPreoperative_PatientStatus_PatientStatus::model()->findAll(array('order'=> 'display_order asc')),'id','name'),null,false,false,false,false,array('class' => 'linked-fields', 'data-linked-fields' => 'MultiSelect_cancel', 'data-linked-values' => 'Case Canceled'),array('label' => 3, 'field' => 9))?>
 		<?php echo $form->multiSelectList($element, 'MultiSelect_cancel', 'cancels', 'ophnupreoperative_patientstatus_cancel_id', CHtml::listData(OphNuPreoperative_PatientStatus_Cancel::model()->findAll(array('order'=>'display_order asc')),'id','name'), array(), array('empty' => '- Please select -', 'label' => 'Reason for cancelation','class' => 'linked-fields', 'data-linked-fields' => 'res_comments', 'data-linked-values' => 'Other'), !($element->patient_status_id==2), false, null, false, false, array('label' => 3, 'field' => 4))?>
 		<?php echo $form->textField($element, 'res_comments',  array('hide' => !$element->hasMultiSelectValue('cancels','Other')), array(), array('label' => 3, 'field' => 4))?>
 		<?php echo $form->textArea($element, 'comments', array(), false, array(), array('label' => 3, 'field' => 4))?>
 	</div>
-</section>

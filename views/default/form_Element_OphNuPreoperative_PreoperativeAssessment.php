@@ -17,18 +17,8 @@
  * @license http://www.gnu.org/licenses/gpl-3.0.html The GNU General Public License V3.0
  */
 ?>
-
-<section class="element <?php echo $element->elementType->class_name?>"
-	data-element-type-id="<?php echo $element->elementType->id?>"
-	data-element-type-class="<?php echo $element->elementType->class_name?>"
-	data-element-type-name="<?php echo $element->elementType->name?>"
-	data-element-display-order="<?php echo $element->elementType->display_order?>">
-	<header class="element-header">
-		<h3 class="element-title"><?php echo $element->elementType->name; ?></h3>
-	</header>
-
 	<div class="element-fields">
-		<?php echo $form->radioButtons($element, 'translator_present_id', 'ophnupreoperative_preoperative_translator_present', null, false, false, false, false, array('class' => 'linked-fields', 'data-linked-fields' => 'name_of_translator', 'data-linked-values' => 'Yes'), array('label' => 3, 'field' => 4))?>
+		<?php echo $form->radioButtons($element, 'translator_present_id', 'OphNuPreoperative_PreoperativeAssessment_TranslatorPresent', null, false, false, false, false, array('class' => 'linked-fields', 'data-linked-fields' => 'name_of_translator', 'data-linked-values' => 'Yes'), array('label' => 3, 'field' => 4))?>
 		<?php echo $form->textField($element, 'name_of_translator', array('hide' => !$element->translator_present || $element->translator_present->name != 'Yes'), array(), array('label' => 3, 'field' => 4))?>
 		<?php echo $form->checkBox($element, 'patient_verified', array('text-align'=>'right','class'=>'linked-fields','data-linked-fields'=>'MultiSelect_identifiers','data-linked-values'=>'1'), array('label' => 3, 'field' => 4))?>
 		<?php echo $form->multiSelectList($element, 'MultiSelect_identifiers', 'identifiers', 'identifier_id', CHtml::listData(OphNuPreoperative_PreoperativeAssessment_Identifier::model()->findAll(array('order'=>'display_order asc')),'id','name'), array(), array('empty' => '- Please select -', 'label' => 'Two identifiers'), !$element->patient_verified, false, null, false, false, array('label' => 3, 'field' => 4))?>
@@ -59,8 +49,8 @@
 		</div>
 		<?php echo $form->checkBox($element, 'consent_signed', array('text-align'=>'right'), array('label' => 3, 'field' => 4))?>
 		<?php echo $form->radioBoolean($element, 'surgical_site_verified', array('class' => 'linked-fields', 'data-linked-fields' => 'site_id', 'data-linked-values' => 'Yes'), array('label' => 3, 'field' => 4))?>
-		<?php echo $form->radioButtons($element, 'site_id', 'ophnupreoperative_preoperative_site',null,false,!$element->surgical_site_verified==1,false,false,array(),array('label' => 3, 'field' => 4))?>
-		<?php echo $form->radioButtons($element, 'iol_verified_id', 'ophnupreoperative_preoperative_iol_verified', null, false, false, false, false, array('class' => 'linked-fields', 'data-linked-fields' => 'iol_type_id,iol_size_id', 'data-linked-values' => 'Yes'), array('label' => 3, 'field' => 4))?>
+		<?php echo $form->radioButtons($element, 'site_id', 'OphNuPreoperative_PreoperativeAssessment_Site',null,false,!$element->surgical_site_verified==1,false,false,array(),array('label' => 3, 'field' => 4))?>
+		<?php echo $form->radioButtons($element, 'iol_verified_id', 'OphNuPreoperative_PreoperativeAssessment_IolVerified', null, false, false, false, false, array('class' => 'linked-fields', 'data-linked-fields' => 'iol_type_id,iol_size_id', 'data-linked-values' => 'Yes'), array('label' => 3, 'field' => 4))?>
 		<?php echo $form->dropDownList($element, 'iol_type_id', CHtml::listData(OphNuPreoperative_PreopAssessment_IOL_Type::model()->findAll(array('order'=>'display_order asc')),'id','name'), array('empty' => '- Please select -'),!$element->iol_verified_id,array('label' => 3, 'field' => 4))?>
 		<?php echo $form->dropDownList($element, 'iol_size_id', CHtml::listData(OphNuPreoperative_PreopAssessment_IOL_Size::model()->findAll(array('order'=>'display_order asc')),'id','name'), array('empty' => '- Please select -'),!$element->iol_verified_id,array('label' => 3, 'field' => 4))?>
 		<?php echo $form->radioBoolean($element, 'metal_in_body',array('class' => 'linked-fields', 'data-linked-fields' => 'm_comments', 'data-linked-values' => 'Yes'), array('label' => 3, 'field' => 4))?>
@@ -76,4 +66,3 @@
 		<?php echo $form->multiSelectList($element, 'MultiSelect_belongings', 'belongings', 'belong_id', CHtml::listData(OphNuPreoperative_PreoperativeAssessment_Belong::model()->findAll(array('order'=> 'display_order asc')),'id','name'),array(),array('empty' => '- Please select -', 'label' => 'Belonging items','class'=>'linked-fields','data-linked-fields'=>'b_comments','data-linked-values'=>'Other (please specify)'), !$element->patient_belongings, false,null,false,false,array('label'=>3,'field'=>4))?>
 		<?php echo $form->textField($element, 'b_comments', array('hide' => !$element->hasMultiSelectValue('belongings','Other (please specify)')), array(), array('label' => 3, 'field' => 4))?>
 	</div>
-</section>

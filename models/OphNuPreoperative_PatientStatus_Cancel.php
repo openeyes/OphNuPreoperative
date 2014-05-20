@@ -32,7 +32,7 @@
  * @property User $usermodified
  */
 
-class OphNuPreoperative_PatientStatus_Cancel extends BaseActiveRecord
+class OphNuPreoperative_PatientStatus_Cancel extends BaseActiveRecordVersioned
 {
 	/**
 	 * Returns the static model of the specified AR class.
