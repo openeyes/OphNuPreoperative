@@ -94,7 +94,7 @@
 							None
 						<?php } else {?>
 								<?php foreach ($element->skins as $item) {
-									echo $item->skin->name?><br/>
+									echo $item->name?><br/>
 								<?php }?>
 						<?php }?>
 			</div></div>
@@ -107,16 +107,16 @@
 		<?php }?>
 		<div class="row data-row">
 			<div class="large-3 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('obs'))?>:</div></div>
-			<div class="large-9 column end"><div class="data-value"><?php if (!$element->obss) {?>
+			<div class="large-9 column end"><div class="data-value"><?php if (!$element->obs) {?>
 							None
 						<?php } else {?>
-								<?php foreach ($element->obss as $item) {
-									echo $item->ophnupreoperative_baseline_obs->name?><br/>
+								<?php foreach ($element->obs as $item) {
+									echo $item->name?><br/>
 								<?php }?>
 						<?php }?>
 			</div></div>
 		</div>
-		<?php if ($element->hasMultiSelectValue('obss','Other (please specify)')) {?>
+		<?php if ($element->hasMultiSelectValue('obs','Other (please specify)')) {?>
 			<div class="row data-row">
 				<div class="large-3 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('o_comments'))?></div></div>
 				<div class="large-9 column end"><div class="data-value"><?php echo CHtml::encode($element->o_comments)?></div></div>

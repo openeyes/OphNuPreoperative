@@ -39,7 +39,7 @@
 								None
 							<?php } else {?>
 									<?php foreach ($element->identifiers as $item) {
-										echo $item->identifier->name?><br/>
+										echo $item->name?><br/>
 									<?php }?>
 							<?php }?>
 				</div></div>
@@ -51,7 +51,7 @@
 							None
 						<?php } else {?>
 								<?php foreach ($element->wristbands as $item) {
-									echo $item->ophnupreoperative_preoperative_wristband->name?><br/>
+									echo $item->name?><br/>
 								<?php }?>
 						<?php }?>
 			</div></div>
@@ -109,11 +109,11 @@
 		<?php if ($element->falls_mobility) {?>
 			<div class="row data-row">
 				<div class="large-3 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('falls'))?>:</div></div>
-				<div class="large-9 column end"><div class="data-value"><?php if (!$element->fallss) {?>
+				<div class="large-9 column end"><div class="data-value"><?php if (!$element->falls) {?>
 								None
 							<?php } else {?>
-									<?php foreach ($element->fallss as $item) {
-										echo $item->ophnupreoperative_preoperative_falls->name?><br/>
+									<?php foreach ($element->falls as $item) {
+										echo $item->name?><br/>
 									<?php }?>
 							<?php }?>
 				</div></div>
@@ -130,7 +130,7 @@
 								None
 							<?php } else {?>
 									<?php foreach ($element->dentals as $item) {
-										echo $item->ophnupreoperative_preoperative_dental->name?><br/>
+										echo $item->name?><br/>
 									<?php }?>
 							<?php }?>
 				</div></div>
@@ -153,7 +153,7 @@
 								None
 							<?php } else {?>
 									<?php foreach ($element->hearing_aids as $item) {
-										echo $item->ophnupreoperative_preoperative_hearing_aid->name?><br/>
+										echo $item->name?><br/>
 									<?php }?>
 							<?php }?>
 				</div></div>
@@ -170,7 +170,7 @@
 								None
 							<?php } else {?>
 									<?php foreach ($element->belongings as $item) {
-										echo $item->belong->name?><br/>
+										echo $item->name?><br/>
 									<?php }?>
 							<?php }?>
 				</div></div>

@@ -29,7 +29,7 @@
 								None
 							<?php } else {?>
 									<?php foreach ($element->cancels as $item) {
-										echo $item->ophnupreoperative_patientstatus_cancel->name?><br/>
+										echo $item->name?><br/>
 									<?php }?>
 							<?php }?>
 				</div></div>

@@ -65,6 +65,7 @@ class Element_OphNuPreoperative_PreoperativeAssessment	extends  BaseEventTypeEle
 {
 	public $date_last_ate_time;
 	public $date_last_drank_time;
+	protected $auto_update_relations = true;
 
 	/**
 	 * Returns the static model of the specified AR class.
@@ -89,7 +90,7 @@ class Element_OphNuPreoperative_PreoperativeAssessment	extends  BaseEventTypeEle
 	public function rules()
 	{
 		return array(
-			array('event_id, translator_present_id, name_of_translator, patient_verified, date_last_ate, date_last_drank, consent_signed, surgical_site_verified, site_id, iol_verified_id, iol_type_id, iol_size_id, metal_in_body, m_comments, falls_mobility, removable_dental_work_present, d_comments, hearing_aid_present, patient_belongings, b_comments, date_last_ate_time, date_last_drank_time', 'safe'),
+			array('event_id, translator_present_id, name_of_translator, patient_verified, date_last_ate, date_last_drank, consent_signed, surgical_site_verified, site_id, iol_verified_id, iol_type_id, iol_size_id, metal_in_body, m_comments, falls_mobility, removable_dental_work_present, d_comments, hearing_aid_present, patient_belongings, b_comments, date_last_ate_time, date_last_drank_time, wristbands, falls, dentals, hearing_aids, belongings, identifiers', 'safe'),
 			array('id, event_id, translator_present_id, name_of_translator, patient_verified, date_last_ate, date_last_drank, consent_signed, surgical_site_verified, site_id, iol_verified_id, iol_type_id, iol_size_id, metal_in_body, m_comments, falls_mobility, removable_dental_work_present, d_comments, hearing_aid_present, patient_belongings, belong_id, b_comments, ', 'safe', 'on' => 'search'),
 		);
 	}
@@ -106,16 +107,22 @@ class Element_OphNuPreoperative_PreoperativeAssessment	extends  BaseEventTypeEle
 			'user' => array(self::BELONGS_TO, 'User', 'created_user_id'),
 			'usermodified' => array(self::BELONGS_TO, 'User', 'last_modified_user_id'),
 			'translator_present' => array(self::BELONGS_TO, 'OphNuPreoperative_PreoperativeAssessment_TranslatorPresent', 'translator_present_id'),
-			'wristbands' => array(self::HAS_MANY, 'Element_OphNuPreoperative_PreOperativeAssessment_Wristband_Assignment', 'element_id'),
+			'wristbands' => array(self::HAS_MANY, 'OphNuPreoperative_PreoperativeAssessment_Wristband', 'ophnupreoperative_preoperative_wristband_id', 'through' => 'wristband_assignment'),
+			'wristband_assignment' => array(self::HAS_MANY, 'Element_OphNuPreoperative_PreOperativeAssessment_Wristband_Assignment', 'element_id'),
 			'site' => array(self::BELONGS_TO, 'OphNuPreoperative_PreoperativeAssessment_Site', 'site_id'),
 			'iol_verified' => array(self::BELONGS_TO, 'OphNuPreoperative_PreoperativeAssessment_IolVerified', 'iol_verified_id'),
-			'fallss' => array(self::HAS_MANY, 'Element_OphNuPreoperative_PreOperativeAssessment_Falls_Assignment', 'element_id'),
-			'dentals' => array(self::HAS_MANY, 'Element_OphNuPreoperative_PreOperativeAssessment_Dental_Assignment', 'element_id'),
-			'hearing_aids' => array(self::HAS_MANY, 'Element_OphNuPreoperative_PreOperativeAssessment_HearingAid_Assignment', 'element_id'),
+			'falls' => array(self::HAS_MANY, 'OphNuPreoperative_PreoperativeAssessment_Falls', 'ophnupreoperative_preoperative_falls_id', 'through' => 'falls_assignment'),
+			'falls_assignment' => array(self::HAS_MANY, 'Element_OphNuPreoperative_PreOperativeAssessment_Falls_Assignment', 'element_id'),
+			'dentals' => array(self::HAS_MANY, 'OphNuPreoperative_PreoperativeAssessment_Dental', 'ophnupreoperative_preoperative_dental_id', 'through' => 'dentals_assignment'),
+			'dentals_assignment' => array(self::HAS_MANY, 'Element_OphNuPreoperative_PreOperativeAssessment_Dental_Assignment', 'element_id'),
+			'hearing_aids' => array(self::HAS_MANY, 'OphNuPreoperative_PreoperativeAssessment_HearingAid', 'ophnupreoperative_preoperative_hearing_aid_id', 'through' => 'hearing_aid_assignment'),
+			'hearing_aid_assignment' => array(self::HAS_MANY, 'Element_OphNuPreoperative_PreOperativeAssessment_HearingAid_Assignment', 'element_id'),
 			'iol_type' => array(self::BELONGS_TO, 'OphNuPreoperative_PreopAssessment_IOL_Type', 'iol_type_id'),
 			'iol_size' => array(self::BELONGS_TO, 'OphNuPreoperative_PreopAssessment_IOL_Size', 'iol_size_id'),
-			'belongings' => array(self::HAS_MANY, 'OphNuPreoperative_PreoperativeAssessment_Belong_Assignment', 'element_id'),
-			'identifiers' => array(self::HAS_MANY, 'OphNuPreoperative_PreoperativeAssessment_Identifier_Assignment', 'element_id'),
+			'belongings' => array(self::HAS_MANY, 'OphNuPreoperative_PreoperativeAssessment_Belong', 'belong_id', 'through' => 'belonging_assignment'),
+			'belonging_assignment' => array(self::HAS_MANY, 'OphNuPreoperative_PreoperativeAssessment_Belong_Assignment', 'element_id'),
+			'identifiers' => array(self::HAS_MANY, 'OphNuPreoperative_PreoperativeAssessment_Identifier', 'identifier_id', 'through' => 'identifier_assignment'),
+			'identifier_assignment' => array(self::HAS_MANY, 'OphNuPreoperative_PreoperativeAssessment_Identifier_Assignment', 'element_id'),
 		);
 	}
 
@@ -244,8 +251,8 @@ class Element_OphNuPreoperative_PreoperativeAssessment	extends  BaseEventTypeEle
 		}
 
 		if ($this->falls_mobility) {
-			if (empty($this->fallss)) {
-				$this->addError('fallss','Please enter at least one fall/mobility item');
+			if (empty($this->falls)) {
+				$this->addError('falls','Please enter at least one fall/mobility item');
 			}
 		}
 

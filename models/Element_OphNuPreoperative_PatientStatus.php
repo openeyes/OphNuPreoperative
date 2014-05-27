@@ -39,6 +39,8 @@
 
 class Element_OphNuPreoperative_PatientStatus  extends  BaseEventTypeElement
 {
+	public $auto_update_relations = true;
+
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @return the static model class
@@ -62,7 +64,7 @@ class Element_OphNuPreoperative_PatientStatus  extends  BaseEventTypeElement
 	public function rules()
 	{
 		return array(
-			array('event_id, patient_status_id, res_comments, comments', 'safe'),
+			array('event_id, patient_status_id, res_comments, comments, cancels', 'safe'),
 			array('id, event_id, patient_status_id, res_comments, ', 'safe', 'on' => 'search'),
 		);
 	}
@@ -79,7 +81,8 @@ class Element_OphNuPreoperative_PatientStatus  extends  BaseEventTypeElement
 			'user' => array(self::BELONGS_TO, 'User', 'created_user_id'),
 			'usermodified' => array(self::BELONGS_TO, 'User', 'last_modified_user_id'),
 			'patient_status' => array(self::BELONGS_TO, 'OphNuPreoperative_PatientStatus_PatientStatus', 'patient_status_id'),
-			'cancels' => array(self::HAS_MANY, 'Element_OphNuPreoperative_PatientStatus_Cancel_Assignment', 'element_id'),
+			'cancels' => array(self::HAS_MANY, 'OphNuPreoperative_PatientStatus_Cancel', 'ophnupreoperative_patientstatus_cancel_id', 'through' => 'cancel_assignment'),
+			'cancel_assignment' => array(self::HAS_MANY, 'Element_OphNuPreoperative_PatientStatus_Cancel_Assignment', 'element_id'),
 		);
 	}
 

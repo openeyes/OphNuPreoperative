@@ -71,6 +71,8 @@
 
 class Element_OphNuPreoperative_BaselineObservations  extends  BaseEventTypeElement
 {
+	public $auto_update_relations = true;
+
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @return the static model class
@@ -94,7 +96,7 @@ class Element_OphNuPreoperative_BaselineObservations  extends  BaseEventTypeElem
 	public function rules()
 	{
 		return array(
-			array('event_id, bp_systolic, bp_diastolic, bpm, temperature, res_rate, sao2, blood_sugar, bloodsugar_na, urine_passed, time, avpu, is_patient_experiencing_pain, location_id, side_id, type_of_pain_id, pain_score_method_id, pain_score, p_comments, comments, o_comments, mews_score, iv_inserted, iv_location, size_id, fluid_type_id, volume_given_id, rate, ', 'safe'),
+			array('event_id, bp_systolic, bp_diastolic, bpm, temperature, res_rate, sao2, blood_sugar, bloodsugar_na, urine_passed, time, avpu, is_patient_experiencing_pain, location_id, side_id, type_of_pain_id, pain_score_method_id, pain_score, p_comments, comments, o_comments, mews_score, iv_inserted, iv_location, size_id, fluid_type_id, volume_given_id, rate, obs, skins', 'safe'),
 			array('id, event_id, blood_pressure, bpm, temperature, res_rate, sao2, blood_sugar, bloodsugar_na, urine_passed, time, avpu, is_patient_experiencing_pain, location_id, side_id, type_of_pain_id, pain_score_method_id, pain_score, p_comments, comments, o_comments, mews_score, iv_inserted, iv_location, size_id, fluid_type_id, volume_given_id, rate, ', 'safe', 'on' => 'search'),
 			array('bp_systolic,bp_diastolic,bpm,temperature,res_rate,sao2,blood_sugar,rate', 'numerical'),
 		);
@@ -115,11 +117,13 @@ class Element_OphNuPreoperative_BaselineObservations  extends  BaseEventTypeElem
 			'side' => array(self::BELONGS_TO, 'OphNuPreoperative_BaselineObservations_Side', 'side_id'),
 			'type_of_pain' => array(self::BELONGS_TO, 'OphNuPreoperative_BaselineObservations_TypeOfPain', 'type_of_pain_id'),
 			'pain_score_method' => array(self::BELONGS_TO, 'OphNuPreoperative_BaselineObservations_PainScoreMethod', 'pain_score_method_id'),
-			'obss' => array(self::HAS_MANY, 'Element_OphNuPreoperative_BaselineObservations_Obs_Assignment', 'element_id'),
+			'obs' => array(self::HAS_MANY, 'OphNuPreoperative_BaselineObservations_Obs', 'ophnupreoperative_baseline_obs_id', 'through' => 'obs_assignment'),
+			'obs_assignment' => array(self::HAS_MANY, 'Element_OphNuPreoperative_BaselineObservations_Obs_Assignment', 'element_id'),
 			'size' => array(self::BELONGS_TO, 'OphNuPreoperative_BaselineObservations_Size', 'size_id'),
 			'fluid_type' => array(self::BELONGS_TO, 'OphNuPreoperative_BaselineObservations_FluidType', 'fluid_type_id'),
 			'volume_given' => array(self::BELONGS_TO, 'OphNuPreoperative_BaselineObservations_VolumeGiven', 'volume_given_id'),
-			'skins' => array(self::HAS_MANY, 'OphNuPreoperative_BaselineObservations_Skin_Assignment', 'element_id'),
+			'skins' => array(self::HAS_MANY, 'OphNuPreoperative_BaselineObservations_Skin', 'skin_id', 'through' => 'skins_assignment'),
+			'skins_assignment' => array(self::HAS_MANY, 'OphNuPreoperative_BaselineObservations_Skin_Assignment', 'element_id'),
 		);
 	}
 
@@ -222,7 +226,7 @@ class Element_OphNuPreoperative_BaselineObservations  extends  BaseEventTypeElem
 			}
 		}
 
-		if ($this->hasMultiSelectValue('obss','Other (please specify)')) {
+		if ($this->hasMultiSelectValue('obs','Other (please specify)')) {
 			if (!$this->o_comments) {
 				$this->addError('o_comments',$this->getAttributeLabel('o_comments').' cannot be blank.');
 			}
