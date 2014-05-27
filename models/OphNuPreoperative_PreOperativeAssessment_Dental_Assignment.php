@@ -17,22 +17,22 @@
  */
 
 /**
- * This is the model class for table "et_ophnupreoperative_patientstatus_cancel_assignment".
+ * This is the model class for table "et_ophnupreoperative_preoperative_dental_agnment".
  *
  * The followings are the available columns in table:
  * @property string $id
  * @property integer $element_id
- * @property integer $ophnupreoperative_patientstatus_cancel_id
+ * @property integer $dental_id
  *
  * The followings are the available model relations:
  *
- * @property Element_OphNuPreoperative_PatientStatus $element
- * @property OphNuPreoperative_PatientStatus_Cancel $ophnupreoperative_patientstatus_cancel
+ * @property Element_OphNuPreoperative_PreoperativeAssessment $element
+ * @property OphNuPreoperative_PreoperativeAssessment_Dental $ophnupreoperative_preoperative_dental
  * @property User $user
  * @property User $usermodified
  */
 
-class Element_OphNuPreoperative_PatientStatus_Cancel_Assignment extends BaseActiveRecordVersioned
+class OphNuPreoperative_PreOperativeAssessment_Dental_Assignment extends BaseActiveRecordVersioned
 {
 	/**
 	 * Returns the static model of the specified AR class.
@@ -48,7 +48,7 @@ class Element_OphNuPreoperative_PatientStatus_Cancel_Assignment extends BaseActi
 	 */
 	public function tableName()
 	{
-		return 'et_ophnupreoperative_patientstatus_cancel_assignment';
+		return 'ophnupreoperative_preoperative_dental_assignment';
 	}
 
 	/**
@@ -57,9 +57,9 @@ class Element_OphNuPreoperative_PatientStatus_Cancel_Assignment extends BaseActi
 	public function rules()
 	{
 		return array(
-			array('element_id, ophnupreoperative_patientstatus_cancel_id', 'safe'),
-			array('element_id, ophnupreoperative_patientstatus_cancel_id', 'required'),
-			array('id, element_id, ophnupreoperative_patientstatus_cancel_id', 'safe', 'on' => 'search'),
+			array('element_id, dental_id', 'safe'),
+			array('element_id, dental_id', 'required'),
+			array('id, element_id, dental_id', 'safe', 'on' => 'search'),
 		);
 	}
 
@@ -69,8 +69,8 @@ class Element_OphNuPreoperative_PatientStatus_Cancel_Assignment extends BaseActi
 	public function relations()
 	{
 		return array(
-			'element' => array(self::BELONGS_TO, 'Element_OphNuPreoperative_PatientStatus', 'element_id'),
-			'ophnupreoperative_patientstatus_cancel' => array(self::BELONGS_TO, 'OphNuPreoperative_PatientStatus_Cancel', 'ophnupreoperative_patientstatus_cancel_id'),
+			'element' => array(self::BELONGS_TO, 'Element_OphNuPreoperative_PreoperativeAssessment', 'element_id'),
+			'ophnupreoperative_preoperative_dental' => array(self::BELONGS_TO, 'OphNuPreoperative_PreoperativeAssessment_Dental', 'dental_id'),
 			'user' => array(self::BELONGS_TO, 'User', 'created_user_id'),
 			'usermodified' => array(self::BELONGS_TO, 'User', 'last_modified_user_id'),
 		);
@@ -105,7 +105,7 @@ class Element_OphNuPreoperative_PatientStatus_Cancel_Assignment extends BaseActi
 
 	public function getName()
 	{
-		return $this->ophnupreoperative_patientstatus_cancel->name;
+		return $this->ophnupreoperative_preoperative_dental->name;
 	}
 }
 ?>

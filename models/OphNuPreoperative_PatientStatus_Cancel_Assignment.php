@@ -17,22 +17,22 @@
  */
 
 /**
- * This is the model class for table "et_ophnupreoperative_preoperative_hearing_aid_assignment".
+ * This is the model class for table "ophnupreoperative_patientstatus_cancel_assignment".
  *
  * The followings are the available columns in table:
  * @property string $id
  * @property integer $element_id
- * @property integer $ophnupreoperative_preoperative_hearing_aid_id
+ * @property integer $cancel_id
  *
  * The followings are the available model relations:
  *
- * @property Element_OphNuPreoperative_PreoperativeAssessment $element
- * @property OphNuPreoperative_PreoperativeAssessment_HearingAid $ophnupreoperative_preoperative_hearing_aid
+ * @property Element_OphNuPreoperative_PatientStatus $element
+ * @property OphNuPreoperative_PatientStatus_Cancel $ophnupreoperative_patientstatus_cancel
  * @property User $user
  * @property User $usermodified
  */
 
-class Element_OphNuPreoperative_PreOperativeAssessment_HearingAid_Assignment extends BaseActiveRecordVersioned
+class OphNuPreoperative_PatientStatus_Cancel_Assignment extends BaseActiveRecordVersioned
 {
 	/**
 	 * Returns the static model of the specified AR class.
@@ -48,7 +48,7 @@ class Element_OphNuPreoperative_PreOperativeAssessment_HearingAid_Assignment ext
 	 */
 	public function tableName()
 	{
-		return 'et_ophnupreoperative_preoperative_hearing_aid_assignment';
+		return 'ophnupreoperative_patientstatus_cancel_assignment';
 	}
 
 	/**
@@ -57,9 +57,9 @@ class Element_OphNuPreoperative_PreOperativeAssessment_HearingAid_Assignment ext
 	public function rules()
 	{
 		return array(
-			array('element_id, ophnupreoperative_preoperative_hearing_aid_id', 'safe'),
-			array('element_id, ophnupreoperative_preoperative_hearing_aid_id', 'required'),
-			array('id, element_id, ophnupreoperative_preoperative_hearing_aid_id', 'safe', 'on' => 'search'),
+			array('element_id, cancel_id', 'safe'),
+			array('element_id, cancel_id', 'required'),
+			array('id, element_id, cancel_id', 'safe', 'on' => 'search'),
 		);
 	}
 
@@ -69,8 +69,8 @@ class Element_OphNuPreoperative_PreOperativeAssessment_HearingAid_Assignment ext
 	public function relations()
 	{
 		return array(
-			'element' => array(self::BELONGS_TO, 'Element_OphNuPreoperative_PreoperativeAssessment', 'element_id'),
-			'ophnupreoperative_preoperative_hearing_aid' => array(self::BELONGS_TO, 'OphNuPreoperative_PreoperativeAssessment_HearingAid', 'ophnupreoperative_preoperative_hearing_aid_id'),
+			'element' => array(self::BELONGS_TO, 'Element_OphNuPreoperative_PatientStatus', 'element_id'),
+			'ophnupreoperative_patientstatus_cancel' => array(self::BELONGS_TO, 'OphNuPreoperative_PatientStatus_Cancel', 'cancel_id'),
 			'user' => array(self::BELONGS_TO, 'User', 'created_user_id'),
 			'usermodified' => array(self::BELONGS_TO, 'User', 'last_modified_user_id'),
 		);
@@ -101,6 +101,11 @@ class Element_OphNuPreoperative_PreOperativeAssessment_HearingAid_Assignment ext
 		return new CActiveDataProvider(get_class($this), array(
 			'criteria' => $criteria,
 		));
+	}
+
+	public function getName()
+	{
+		return $this->ophnupreoperative_patientstatus_cancel->name;
 	}
 }
 ?>

@@ -34,7 +34,7 @@
  * @property User $user
  * @property User $usermodified
  * @property OphNuPreoperative_PatientStatus_PatientStatus $patient_status
- * @property Element_OphNuPreoperative_PatientStatus_Cancel_Assignment $cancels
+ * @property OphNuPreoperative_PatientStatus_Cancel_Assignment $cancels
  */
 
 class Element_OphNuPreoperative_PatientStatus  extends  BaseEventTypeElement
@@ -81,8 +81,8 @@ class Element_OphNuPreoperative_PatientStatus  extends  BaseEventTypeElement
 			'user' => array(self::BELONGS_TO, 'User', 'created_user_id'),
 			'usermodified' => array(self::BELONGS_TO, 'User', 'last_modified_user_id'),
 			'patient_status' => array(self::BELONGS_TO, 'OphNuPreoperative_PatientStatus_PatientStatus', 'patient_status_id'),
-			'cancels' => array(self::HAS_MANY, 'OphNuPreoperative_PatientStatus_Cancel', 'ophnupreoperative_patientstatus_cancel_id', 'through' => 'cancel_assignment'),
-			'cancel_assignment' => array(self::HAS_MANY, 'Element_OphNuPreoperative_PatientStatus_Cancel_Assignment', 'element_id'),
+			'cancels' => array(self::HAS_MANY, 'OphNuPreoperative_PatientStatus_Cancel', 'cancel_id', 'through' => 'cancel_assignment'),
+			'cancel_assignment' => array(self::HAS_MANY, 'OphNuPreoperative_PatientStatus_Cancel_Assignment', 'element_id'),
 		);
 	}
 

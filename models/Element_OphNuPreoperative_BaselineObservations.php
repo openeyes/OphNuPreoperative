@@ -63,7 +63,7 @@
  * @property OphNuPreoperative_BaselineObservations_TypeOfPain $type_of_pain
  * @property OphNuPreoperative_BaselineObservations_PainScoreMethod $pain_score_method
  * @property OphNuPreoperative_BaselineObservations_Skin $skin
- * @property Element_OphNuPreoperative_BaselineObservations_Obs_Assignment $obss
+ * @property OphNuPreoperative_BaselineObservations_Obs_Assignment $obss
  * @property OphNuPreoperative_BaselineObservations_Size $size
  * @property OphNuPreoperative_BaselineObservations_FluidType $fluid_type
  * @property OphNuPreoperative_BaselineObservations_VolumeGiven $volume_given
@@ -117,8 +117,8 @@ class Element_OphNuPreoperative_BaselineObservations  extends  BaseEventTypeElem
 			'side' => array(self::BELONGS_TO, 'OphNuPreoperative_BaselineObservations_Side', 'side_id'),
 			'type_of_pain' => array(self::BELONGS_TO, 'OphNuPreoperative_BaselineObservations_TypeOfPain', 'type_of_pain_id'),
 			'pain_score_method' => array(self::BELONGS_TO, 'OphNuPreoperative_BaselineObservations_PainScoreMethod', 'pain_score_method_id'),
-			'obs' => array(self::HAS_MANY, 'OphNuPreoperative_BaselineObservations_Obs', 'ophnupreoperative_baseline_obs_id', 'through' => 'obs_assignment'),
-			'obs_assignment' => array(self::HAS_MANY, 'Element_OphNuPreoperative_BaselineObservations_Obs_Assignment', 'element_id'),
+			'obs' => array(self::HAS_MANY, 'OphNuPreoperative_BaselineObservations_Obs', 'ob_id', 'through' => 'obs_assignment'),
+			'obs_assignment' => array(self::HAS_MANY, 'OphNuPreoperative_BaselineObservations_Obs_Assignment', 'element_id'),
 			'size' => array(self::BELONGS_TO, 'OphNuPreoperative_BaselineObservations_Size', 'size_id'),
 			'fluid_type' => array(self::BELONGS_TO, 'OphNuPreoperative_BaselineObservations_FluidType', 'fluid_type_id'),
 			'volume_given' => array(self::BELONGS_TO, 'OphNuPreoperative_BaselineObservations_VolumeGiven', 'volume_given_id'),

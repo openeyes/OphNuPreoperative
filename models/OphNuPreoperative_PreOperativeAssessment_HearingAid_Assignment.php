@@ -17,22 +17,22 @@
  */
 
 /**
- * This is the model class for table "et_ophnupreoperative_baseline_obs_assignment".
+ * This is the model class for table "ophnupreoperative_preoperative_hearing_aid_assignment".
  *
  * The followings are the available columns in table:
  * @property string $id
  * @property integer $element_id
- * @property integer $ophnupreoperative_baseline_obs_id
+ * @property integer $hearing_id
  *
  * The followings are the available model relations:
  *
- * @property Element_OphNuPreoperative_BaselineObservations $element
- * @property OphNuPreoperative_BaselineObservations_Obs $ophnupreoperative_baseline_obs
+ * @property Element_OphNuPreoperative_PreoperativeAssessment $element
+ * @property OphNuPreoperative_PreoperativeAssessment_HearingAid $ophnupreoperative_preoperative_hearing_aid
  * @property User $user
  * @property User $usermodified
  */
 
-class Element_OphNuPreoperative_BaselineObservations_Obs_Assignment extends BaseActiveRecordVersioned
+class OphNuPreoperative_PreOperativeAssessment_HearingAid_Assignment extends BaseActiveRecordVersioned
 {
 	/**
 	 * Returns the static model of the specified AR class.
@@ -48,7 +48,7 @@ class Element_OphNuPreoperative_BaselineObservations_Obs_Assignment extends Base
 	 */
 	public function tableName()
 	{
-		return 'et_ophnupreoperative_baseline_obs_assignment';
+		return 'ophnupreoperative_preoperative_hearing_aid_assignment';
 	}
 
 	/**
@@ -57,9 +57,9 @@ class Element_OphNuPreoperative_BaselineObservations_Obs_Assignment extends Base
 	public function rules()
 	{
 		return array(
-			array('element_id, ophnupreoperative_baseline_obs_id', 'safe'),
-			array('element_id, ophnupreoperative_baseline_obs_id', 'required'),
-			array('id, element_id, ophnupreoperative_baseline_obs_id', 'safe', 'on' => 'search'),
+			array('element_id, hearing_id', 'safe'),
+			array('element_id, hearing_id', 'required'),
+			array('id, element_id, hearing_id', 'safe', 'on' => 'search'),
 		);
 	}
 
@@ -69,8 +69,8 @@ class Element_OphNuPreoperative_BaselineObservations_Obs_Assignment extends Base
 	public function relations()
 	{
 		return array(
-			'element' => array(self::BELONGS_TO, 'Element_OphNuPreoperative_BaselineObservations', 'element_id'),
-			'ophnupreoperative_baseline_obs' => array(self::BELONGS_TO, 'OphNuPreoperative_BaselineObservations_Obs', 'ophnupreoperative_baseline_obs_id'),
+			'element' => array(self::BELONGS_TO, 'Element_OphNuPreoperative_PreoperativeAssessment', 'element_id'),
+			'ophnupreoperative_preoperative_hearing_aid' => array(self::BELONGS_TO, 'OphNuPreoperative_PreoperativeAssessment_HearingAid', 'hearing_id'),
 			'user' => array(self::BELONGS_TO, 'User', 'created_user_id'),
 			'usermodified' => array(self::BELONGS_TO, 'User', 'last_modified_user_id'),
 		);
@@ -101,11 +101,6 @@ class Element_OphNuPreoperative_BaselineObservations_Obs_Assignment extends Base
 		return new CActiveDataProvider(get_class($this), array(
 			'criteria' => $criteria,
 		));
-	}
-	
-	public function getName()
-	{
-		return $this->ophnupreoperative_baseline_obs->name;
 	}
 }
 ?>

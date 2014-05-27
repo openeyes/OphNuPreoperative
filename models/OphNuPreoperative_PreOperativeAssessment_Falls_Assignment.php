@@ -17,22 +17,22 @@
  */
 
 /**
- * This is the model class for table "et_ophnupreoperative_preoperative_wristband_assignment".
+ * This is the model class for table "ophnupreoperative_preoperative_falls_assignment".
  *
  * The followings are the available columns in table:
  * @property string $id
  * @property integer $element_id
- * @property integer $ophnupreoperative_preoperative_wristband_id
+ * @property integer $fall_id
  *
  * The followings are the available model relations:
  *
  * @property Element_OphNuPreoperative_PreoperativeAssessment $element
- * @property OphNuPreoperative_PreoperativeAssessment_Wristband $ophnupreoperative_preoperative_wristband
+ * @property OphNuPreoperative_PreoperativeAssessment_Falls $ophnupreoperative_preoperative_falls
  * @property User $user
  * @property User $usermodified
  */
 
-class Element_OphNuPreoperative_PreOperativeAssessment_Wristband_Assignment extends BaseActiveRecordVersioned
+class OphNuPreoperative_PreOperativeAssessment_Falls_Assignment extends BaseActiveRecordVersioned
 {
 	/**
 	 * Returns the static model of the specified AR class.
@@ -48,7 +48,7 @@ class Element_OphNuPreoperative_PreOperativeAssessment_Wristband_Assignment exte
 	 */
 	public function tableName()
 	{
-		return 'et_ophnupreoperative_preoperative_wristband_assignment';
+		return 'ophnupreoperative_preoperative_falls_assignment';
 	}
 
 	/**
@@ -57,9 +57,9 @@ class Element_OphNuPreoperative_PreOperativeAssessment_Wristband_Assignment exte
 	public function rules()
 	{
 		return array(
-			array('element_id, ophnupreoperative_preoperative_wristband_id', 'safe'),
-			array('element_id, ophnupreoperative_preoperative_wristband_id', 'required'),
-			array('id, element_id, ophnupreoperative_preoperative_wristband_id', 'safe', 'on' => 'search'),
+			array('element_id, fall_id', 'safe'),
+			array('element_id, fall_id', 'required'),
+			array('id, element_id, fall_id', 'safe', 'on' => 'search'),
 		);
 	}
 
@@ -70,7 +70,7 @@ class Element_OphNuPreoperative_PreOperativeAssessment_Wristband_Assignment exte
 	{
 		return array(
 			'element' => array(self::BELONGS_TO, 'Element_OphNuPreoperative_PreoperativeAssessment', 'element_id'),
-			'ophnupreoperative_preoperative_wristband' => array(self::BELONGS_TO, 'OphNuPreoperative_PreoperativeAssessment_Wristband', 'ophnupreoperative_preoperative_wristband_id'),
+			'ophnupreoperative_preoperative_falls' => array(self::BELONGS_TO, 'OphNuPreoperative_PreoperativeAssessment_Falls', 'fall_id'),
 			'user' => array(self::BELONGS_TO, 'User', 'created_user_id'),
 			'usermodified' => array(self::BELONGS_TO, 'User', 'last_modified_user_id'),
 		);

@@ -17,22 +17,22 @@
  */
 
 /**
- * This is the model class for table "et_ophnupreoperative_preoperative_dental_assignment".
+ * This is the model class for table "ophnupreoperative_baseline_obs_assignment".
  *
  * The followings are the available columns in table:
  * @property string $id
  * @property integer $element_id
- * @property integer $ophnupreoperative_preoperative_dental_id
+ * @property integer $ob_id
  *
  * The followings are the available model relations:
  *
- * @property Element_OphNuPreoperative_PreoperativeAssessment $element
- * @property OphNuPreoperative_PreoperativeAssessment_Dental $ophnupreoperative_preoperative_dental
+ * @property Element_OphNuPreoperative_BaselineObservations $element
+ * @property OphNuPreoperative_BaselineObservations_Obs $ophnupreoperative_baseline_obs
  * @property User $user
  * @property User $usermodified
  */
 
-class Element_OphNuPreoperative_PreOperativeAssessment_Dental_Assignment extends BaseActiveRecordVersioned
+class OphNuPreoperative_BaselineObservations_Obs_Assignment extends BaseActiveRecordVersioned
 {
 	/**
 	 * Returns the static model of the specified AR class.
@@ -48,7 +48,7 @@ class Element_OphNuPreoperative_PreOperativeAssessment_Dental_Assignment extends
 	 */
 	public function tableName()
 	{
-		return 'et_ophnupreoperative_preoperative_dental_assignment';
+		return 'ophnupreoperative_baseline_obs_assignment';
 	}
 
 	/**
@@ -57,9 +57,9 @@ class Element_OphNuPreoperative_PreOperativeAssessment_Dental_Assignment extends
 	public function rules()
 	{
 		return array(
-			array('element_id, ophnupreoperative_preoperative_dental_id', 'safe'),
-			array('element_id, ophnupreoperative_preoperative_dental_id', 'required'),
-			array('id, element_id, ophnupreoperative_preoperative_dental_id', 'safe', 'on' => 'search'),
+			array('element_id, ob_id', 'safe'),
+			array('element_id, ob_id', 'required'),
+			array('id, element_id, ob_id', 'safe', 'on' => 'search'),
 		);
 	}
 
@@ -69,8 +69,8 @@ class Element_OphNuPreoperative_PreOperativeAssessment_Dental_Assignment extends
 	public function relations()
 	{
 		return array(
-			'element' => array(self::BELONGS_TO, 'Element_OphNuPreoperative_PreoperativeAssessment', 'element_id'),
-			'ophnupreoperative_preoperative_dental' => array(self::BELONGS_TO, 'OphNuPreoperative_PreoperativeAssessment_Dental', 'ophnupreoperative_preoperative_dental_id'),
+			'element' => array(self::BELONGS_TO, 'Element_OphNuPreoperative_BaselineObservations', 'element_id'),
+			'ophnupreoperative_baseline_obs' => array(self::BELONGS_TO, 'OphNuPreoperative_BaselineObservations_Obs', 'ob_id'),
 			'user' => array(self::BELONGS_TO, 'User', 'created_user_id'),
 			'usermodified' => array(self::BELONGS_TO, 'User', 'last_modified_user_id'),
 		);
@@ -102,10 +102,10 @@ class Element_OphNuPreoperative_PreOperativeAssessment_Dental_Assignment extends
 			'criteria' => $criteria,
 		));
 	}
-
+	
 	public function getName()
 	{
-		return $this->ophnupreoperative_preoperative_dental->name;
+		return $this->ophnupreoperative_baseline_obs->name;
 	}
 }
 ?>
