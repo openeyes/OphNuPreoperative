@@ -353,4 +353,12 @@ class DefaultController extends BaseEventTypeController
 	{
 		$element->updateMultiSelectData('Element_OphNuPreoperative_PatientStatus_Cancel_Assignment',empty($data['MultiSelect_cancel']) ? array() : $data['MultiSelect_cancel'],'ophnupreoperative_patientstatus_cancel_id');
 	}
+
+	protected function setElementDefaultOptions_Element_OphNuPreoperative_PreoperativeAssessment($element, $action)
+	{
+		if ($action == 'create') {
+			$element->date_last_ate = date('j M Y');
+			$element->date_last_drank = date('j M Y');
+		}
+	}
 }
