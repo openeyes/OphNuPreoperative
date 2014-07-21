@@ -53,10 +53,6 @@
 			</div>
 		<?php }?>
 		<div class="row data-row">
-			<div class="large-3 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('avpu'))?></div></div>
-			<div class="large-9 column end"><div class="data-value"><?php echo $element->avpu ? CHtml::encode($element->avpu) : 'Not recorded'?></div></div>
-		</div>
-		<div class="row data-row">
 			<div class="large-3 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('is_patient_experiencing_pain'))?>:</div></div>
 			<div class="large-9 column end"><div class="data-value"><?php echo is_null($element->is_patient_experiencing_pain) ? 'Not recorded' : ($element->is_patient_experiencing_pain ? 'Yes' : 'No')?></div></div>
 		</div>
@@ -122,10 +118,6 @@
 				<div class="large-9 column end"><div class="data-value"><?php echo CHtml::encode($element->o_comments)?></div></div>
 			</div>
 		<?php }?>
-		<div class="row data-row">
-			<div class="large-3 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('mews_score'))?></div></div>
-			<div class="large-9 column end"><div class="data-value"><?php echo $element->mews_score ? CHtml::encode($element->mews_score) : 'Not recorded'?></div></div>
-		</div>
 		<div class="row data-row">
 			<div class="large-3 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('iv_inserted'))?></div></div>
 			<div class="large-9 column end"><div class="data-value"><?php echo is_null($element->iv_inserted) ? 'Not recorded' : ($element->iv_inserted ? 'Yes' : 'No')?></div></div>
