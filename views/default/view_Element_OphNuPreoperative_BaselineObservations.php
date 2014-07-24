@@ -52,7 +52,7 @@
 		<?php if ($element->is_patient_experiencing_pain) {?>
 			<div class="row data-row">
 				<div class="large-3 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('location_id'))?></div></div>
-				<div class="large-9 column end"><div class="data-value"><?php echo $element->location ? $element->location->name : 'Not recorded'?></div></div>
+				<div class="large-9 column end"><div class="data-value"><?php echo $element->location ? ($element->location->name == 'Other' ? $element->other_pain_location : $element->location->name) : 'Not recorded'?></div></div>
 			</div>
 			<div class="row data-row">
 				<div class="large-3 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('side_id'))?></div></div>

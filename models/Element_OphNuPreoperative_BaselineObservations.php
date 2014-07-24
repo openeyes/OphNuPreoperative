@@ -94,7 +94,7 @@ class Element_OphNuPreoperative_BaselineObservations  extends  BaseEventTypeElem
 	public function rules()
 	{
 		return array(
-			array('event_id, temperature, blood_sugar, bloodsugar_na, urine_passed, time, is_patient_experiencing_pain, location_id, side_id, type_of_pain_id, pain_score_method_id, pain_score, p_comments, comments, o_comments, iv_inserted, iv_location, size_id, fluid_type_id, volume_given_id, rate, obs, skins', 'safe'),
+			array('event_id, temperature, blood_sugar, bloodsugar_na, urine_passed, time, is_patient_experiencing_pain, location_id, side_id, type_of_pain_id, pain_score_method_id, pain_score, p_comments, comments, o_comments, iv_inserted, iv_location, size_id, fluid_type_id, volume_given_id, rate, obs, skins, other_pain_location', 'safe'),
 			array('id, event_id, temperature, blood_sugar, bloodsugar_na, urine_passed, time, is_patient_experiencing_pain, location_id, side_id, type_of_pain_id, pain_score_method_id, pain_score, p_comments, comments, o_comments, iv_inserted, iv_location, size_id, fluid_type_id, volume_given_id, rate, ', 'safe', 'on' => 'search'),
 			array('temperature,blood_sugar,rate', 'numerical'),
 		);
@@ -161,6 +161,7 @@ class Element_OphNuPreoperative_BaselineObservations  extends  BaseEventTypeElem
 			'volume_given_id' => 'IV volume given',
 			'rate' => 'IV rate',
 			'skins' => 'Skin assessment',
+			'other_pain_location' => 'Other pain location',
 		);
 	}
 
@@ -211,6 +212,12 @@ class Element_OphNuPreoperative_BaselineObservations  extends  BaseEventTypeElem
 			foreach (array('location_id','side_id','type_of_pain_id','pain_score_method_id','pain_score') as $field) {
 				if (!$this->$field) {
 					$this->addError($field,$this->getAttributeLabel($field).' cannot be blank.');
+				}
+			}
+
+			if ($this->location && $this->location->name == 'Other') {
+				if (!$this->other_pain_location) {
+					$this->addError('other_pain_location',$this->getAttributeLabel('other_pain_location').' cannot be blank.');
 				}
 			}
 		}
