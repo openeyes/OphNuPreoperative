@@ -76,20 +76,4 @@
 		<?php echo $form->textField($element, 'comments', array('hide' => !$element->hasMultiSelectValue('skins','Other (please specify)')), array(), array('label' => 3, 'field' => 4))?>
 		<?php echo $form->multiSelectList($element, 'obs', 'obs', 'ob_id', CHtml::listData(OphNuPreoperative_BaselineObservations_Obs::model()->findAll(array('order'=>'display_order asc')),'id','name'), array(), array('empty' => '- Please select -', 'label' => 'Pre-op observations', 'class' => 'linked-fields', 'data-linked-fields' => 'o_comments', 'data-linked-values' => 'Other (please specify)'), false, false, null, false, false, array('label' => 3, 'field' => 4))?>
 		<?php echo $form->textField($element, 'o_comments',  array('hide' => !$element->hasMultiSelectValue('obs','Other (please specify)')), array(), array('label' => 3, 'field' => 4))?>
-		<?php echo $form->checkBox($element, 'iv_inserted', array('text-align'=>'right','class'=>'linked-fields','data-linked-fields'=>'iv_location,size_id,fluid_type_id,volume_given_id,rate','data-linked-values'=>'1'), array('label' => 3, 'field' => 4))?>
-		<?php echo $form->textField($element, 'iv_location', array('hide' => !$element->iv_inserted), array(), array('label' => 3, 'field' => 1))?>
-		<?php echo $form->dropDownList($element, 'size_id', CHtml::listData(OphNuPreoperative_BaselineObservations_Size::model()->findAll(array('order'=> 'display_order asc')),'id','name'),array('empty'=>'- Please select -'), !$element->iv_inserted,array('label'=>3,'field'=>4))?>
-		<?php echo $form->dropDownList($element, 'fluid_type_id', CHtml::listData(OphNuPreoperative_BaselineObservations_FluidType::model()->findAll(array('order'=> 'display_order asc')),'id','name'),array('empty'=>'- Please select -'), !$element->iv_inserted,array('label'=>3,'field'=>4))?>
-		<?php echo $form->dropDownList($element, 'volume_given_id', CHtml::listData(OphNuPreoperative_BaselineObservations_VolumeGiven::model()->findAll(array('order'=> 'display_order asc')),'id','name'),array('empty'=>'- Please select -'), !$element->iv_inserted,array('label'=>3,'field'=>4))?>
-		<div id="div_Element_OphNuPreoperative_BaselineObservations_rate" class="row field-row"<?php if (!$element->iv_inserted) {?> style="display: none;"<?php }?>>
-			<div class="large-3 column">
-				<label for="Element_OphNuPreoperative_BaselineObservations_rate">
-					<?php echo $element->getAttributeLabel('rate')?>:
-				</label>
-			</div>
-			<div class="large-2 column end">
-				<?php echo $form->textField($element, 'rate', array('nowrapper'=>true), array(), array('label' => 3, 'field' => 1))?>
-				<span class="metric">mL/hr</span>
-			</div>
-		</div>
 	</div>

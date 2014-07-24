@@ -67,10 +67,8 @@
  * @property OphNuPreoperative_BaselineObservations_VolumeGiven $volume_given
  */
 
-class Element_OphNuPreoperative_BaselineObservations  extends  BaseEventTypeElement
+class Element_OphNuPreoperative_IVInserted  extends  BaseEventTypeElement
 {
-	public $auto_update_relations = true;
-
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @return the static model class
@@ -85,7 +83,7 @@ class Element_OphNuPreoperative_BaselineObservations  extends  BaseEventTypeElem
 	 */
 	public function tableName()
 	{
-		return 'et_ophnupreoperative_baseline';
+		return 'et_ophnupreoperative_iv_inserted';
 	}
 
 	/**
@@ -94,9 +92,8 @@ class Element_OphNuPreoperative_BaselineObservations  extends  BaseEventTypeElem
 	public function rules()
 	{
 		return array(
-			array('event_id, temperature, blood_sugar, bloodsugar_na, urine_passed, time, is_patient_experiencing_pain, location_id, side_id, type_of_pain_id, pain_score_method_id, pain_score, p_comments, comments, o_comments, obs, skins, other_pain_location', 'safe'),
-			array('id, event_id, temperature, blood_sugar, bloodsugar_na, urine_passed, time, is_patient_experiencing_pain, location_id, side_id, type_of_pain_id, pain_score_method_id, pain_score, p_comments, comments, o_comments', 'safe', 'on' => 'search'),
-			array('temperature,blood_sugar', 'numerical'),
+			array('iv_inserted, iv_location, iv_size_id, fluid_type_id, volume_given_id, rate', 'safe'),
+			array('rate', 'numerical'),
 		);
 	}
 
@@ -111,18 +108,9 @@ class Element_OphNuPreoperative_BaselineObservations  extends  BaseEventTypeElem
 			'event' => array(self::BELONGS_TO, 'Event', 'event_id'),
 			'user' => array(self::BELONGS_TO, 'User', 'created_user_id'),
 			'usermodified' => array(self::BELONGS_TO, 'User', 'last_modified_user_id'),
-			'location' => array(self::BELONGS_TO, 'OphNuPreoperative_BaselineObservations_Location', 'location_id'),
-			'side' => array(self::BELONGS_TO, 'OphNuPreoperative_BaselineObservations_Side', 'side_id'),
-			'type_of_pain' => array(self::BELONGS_TO, 'OphNuPreoperative_BaselineObservations_TypeOfPain', 'type_of_pain_id'),
-			'pain_score_method' => array(self::BELONGS_TO, 'OphNuPreoperative_BaselineObservations_PainScoreMethod', 'pain_score_method_id'),
-			'obs' => array(self::HAS_MANY, 'OphNuPreoperative_BaselineObservations_Obs', 'ob_id', 'through' => 'obs_assignment'),
-			'obs_assignment' => array(self::HAS_MANY, 'OphNuPreoperative_BaselineObservations_Obs_Assignment', 'element_id'),
-			'size' => array(self::BELONGS_TO, 'OphNuPreoperative_BaselineObservations_Size', 'size_id'),
+			'iv_size' => array(self::BELONGS_TO, 'OphNuPreoperative_BaselineObservations_Size', 'iv_size_id'),
 			'fluid_type' => array(self::BELONGS_TO, 'OphNuPreoperative_BaselineObservations_FluidType', 'fluid_type_id'),
 			'volume_given' => array(self::BELONGS_TO, 'OphNuPreoperative_BaselineObservations_VolumeGiven', 'volume_given_id'),
-			'skins' => array(self::HAS_MANY, 'OphNuPreoperative_BaselineObservations_Skin', 'skin_id', 'through' => 'skins_assignment'),
-			'skins_assignment' => array(self::HAS_MANY, 'OphNuPreoperative_BaselineObservations_Skin_Assignment', 'element_id'),
-			'vitals' => array(self::HAS_MANY, 'OphNuPreoperative_Observation', 'element_id'),
 		);
 	}
 
@@ -134,28 +122,12 @@ class Element_OphNuPreoperative_BaselineObservations  extends  BaseEventTypeElem
 		return array(
 			'id' => 'ID',
 			'event_id' => 'Event',
-			'bp_systolic' => 'Blood pressure (systolic)',
-			'bp_diastolic' => 'Blood pressure (diastolic)',
-			'bpm' => 'Heart rate / pulse',
-			'temperature' => 'Temperature',
-			'res_rate' => 'Respiratory rate',
-			'sao2' => 'SaO2',
-			'blood_sugar' => 'Blood glucose',
-			'bloodsugar_na' => 'N/A',
-			'urine_passed' => 'Urine passed',
-			'time' => 'Time urine passed',
-			'is_patient_experiencing_pain' => 'Is patient experiencing pain',
-			'location_id' => 'Pain location',
-			'side_id' => 'Pain side',
-			'type_of_pain_id' => 'Type of pain',
-			'pain_score_method_id' => 'Pain score method',
-			'pain_score' => 'Pain score',
-			'p_comments' => 'Pain score comments',
-			'comments' => 'Skin assessment notes',
-			'obs' => 'Pre-op observations',
-			'o_comments' => 'Pre-op observation notes',
-			'skins' => 'Skin assessment',
-			'other_pain_location' => 'Other pain location',
+			'iv_inserted' => 'IV inserted',
+			'iv_location' => 'IV location',
+			'iv_size_id' => 'IV size',
+			'fluid_type_id' => 'IV fluid type',
+			'volume_given_id' => 'IV volume given',
+			'rate' => 'IV rate',
 		);
 	}
 
@@ -169,25 +141,6 @@ class Element_OphNuPreoperative_BaselineObservations  extends  BaseEventTypeElem
 
 		$criteria->compare('id', $this->id, true);
 		$criteria->compare('event_id', $this->event_id, true);
-		$criteria->compare('blood_pressure', $this->blood_pressure);
-		$criteria->compare('bpm', $this->bpm);
-		$criteria->compare('temperature', $this->temperature);
-		$criteria->compare('res_rate', $this->res_rate);
-		$criteria->compare('sao2', $this->sao2);
-		$criteria->compare('blood_sugar', $this->blood_sugar);
-		$criteria->compare('bloodsugar_na', $this->bloodsugar_na);
-		$criteria->compare('urine_passed', $this->urine_passed);
-		$criteria->compare('time', $this->time);
-		$criteria->compare('is_patient_experiencing_pain', $this->is_patient_experiencing_pain);
-		$criteria->compare('location_id', $this->location_id);
-		$criteria->compare('side_id', $this->side_id);
-		$criteria->compare('type_of_pain_id', $this->type_of_pain_id);
-		$criteria->compare('pain_score_method_id', $this->pain_score_method_id);
-		$criteria->compare('pain_score', $this->pain_score);
-		$criteria->compare('p_comments', $this->p_comments);
-		$criteria->compare('comments', $this->comments);
-		$criteria->compare('obs', $this->obs);
-		$criteria->compare('o_comments', $this->o_comments);
 
 		return new CActiveDataProvider(get_class($this), array(
 			'criteria' => $criteria,
@@ -196,38 +149,10 @@ class Element_OphNuPreoperative_BaselineObservations  extends  BaseEventTypeElem
 
 	public function beforeValidate()
 	{
-		if ($this->is_patient_experiencing_pain) {
-			foreach (array('location_id','side_id','type_of_pain_id','pain_score_method_id','pain_score') as $field) {
+		if ($this->iv_inserted) {
+			foreach (array('iv_location','iv_size_id','fluid_type_id','volume_given_id','rate') as $field) {
 				if (!$this->$field) {
 					$this->addError($field,$this->getAttributeLabel($field).' cannot be blank.');
-				}
-			}
-
-			if ($this->location && $this->location->name == 'Other') {
-				if (!$this->other_pain_location) {
-					$this->addError('other_pain_location',$this->getAttributeLabel('other_pain_location').' cannot be blank.');
-				}
-			}
-		}
-
-		if ($this->hasMultiSelectValue('skins','Other (please specify)')) {
-			if (!$this->comments) {
-				$this->addError('comments',$this->getAttributeLabel('comments').' cannot be blank.');
-			}
-		}
-
-		if ($this->hasMultiSelectValue('obs','Other (please specify)')) {
-			if (!$this->o_comments) {
-				$this->addError('o_comments',$this->getAttributeLabel('o_comments').' cannot be blank.');
-			}
-		}
-
-		if ($this->urine_passed) {
-			if (!$this->time) {
-				$this->addError('time',$this->getAttributeLabel('time').' cannot be blank.');
-			} else {
-				if (!preg_match('/^([0-9]{1,2}):([0-9]{2})$/',$this->time,$m) || $m[1] > 23 || $m[2] > 59) {
-					$this->addError('time','Invalid time format for '.$this->getAttributeLabel('time'));
 				}
 			}
 		}
