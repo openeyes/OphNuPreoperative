@@ -32,7 +32,6 @@
  * @property integer $bloodsugar_na
  * @property integer $urine_passed
  * @property string $time
- * @property string $avpu
  * @property integer $is_patient_experiencing_pain
  * @property integer $location_id
  * @property integer $side_id
@@ -43,7 +42,6 @@
  * @property integer $skin_id
  * @property string $comments
  * @property string $o_comments
- * @property string $mews_score
  * @property integer $iv_inserted
  * @property string $iv_location
  * @property integer $size_id
@@ -96,8 +94,8 @@ class Element_OphNuPreoperative_BaselineObservations  extends  BaseEventTypeElem
 	public function rules()
 	{
 		return array(
-			array('event_id, temperature, blood_sugar, bloodsugar_na, urine_passed, time, avpu, is_patient_experiencing_pain, location_id, side_id, type_of_pain_id, pain_score_method_id, pain_score, p_comments, comments, o_comments, mews_score, iv_inserted, iv_location, size_id, fluid_type_id, volume_given_id, rate, obs, skins', 'safe'),
-			array('id, event_id, temperature, blood_sugar, bloodsugar_na, urine_passed, time, avpu, is_patient_experiencing_pain, location_id, side_id, type_of_pain_id, pain_score_method_id, pain_score, p_comments, comments, o_comments, mews_score, iv_inserted, iv_location, size_id, fluid_type_id, volume_given_id, rate, ', 'safe', 'on' => 'search'),
+			array('event_id, temperature, blood_sugar, bloodsugar_na, urine_passed, time, is_patient_experiencing_pain, location_id, side_id, type_of_pain_id, pain_score_method_id, pain_score, p_comments, comments, o_comments, iv_inserted, iv_location, size_id, fluid_type_id, volume_given_id, rate, obs, skins', 'safe'),
+			array('id, event_id, temperature, blood_sugar, bloodsugar_na, urine_passed, time, is_patient_experiencing_pain, location_id, side_id, type_of_pain_id, pain_score_method_id, pain_score, p_comments, comments, o_comments, iv_inserted, iv_location, size_id, fluid_type_id, volume_given_id, rate, ', 'safe', 'on' => 'search'),
 			array('temperature,blood_sugar,rate', 'numerical'),
 		);
 	}
@@ -146,7 +144,6 @@ class Element_OphNuPreoperative_BaselineObservations  extends  BaseEventTypeElem
 			'bloodsugar_na' => 'N/A',
 			'urine_passed' => 'Urine passed',
 			'time' => 'Time urine passed',
-			'avpu' => 'AVPU',
 			'is_patient_experiencing_pain' => 'Is patient experiencing pain',
 			'location_id' => 'Pain location',
 			'side_id' => 'Pain side',
@@ -157,7 +154,6 @@ class Element_OphNuPreoperative_BaselineObservations  extends  BaseEventTypeElem
 			'comments' => 'Skin assessment notes',
 			'obs' => 'Pre-op observations',
 			'o_comments' => 'Pre-op observation notes',
-			'mews_score' => 'MEWS score',
 			'iv_inserted' => 'IV inserted',
 			'iv_location' => 'IV location',
 			'size_id' => 'IV size',
@@ -187,7 +183,6 @@ class Element_OphNuPreoperative_BaselineObservations  extends  BaseEventTypeElem
 		$criteria->compare('bloodsugar_na', $this->bloodsugar_na);
 		$criteria->compare('urine_passed', $this->urine_passed);
 		$criteria->compare('time', $this->time);
-		$criteria->compare('avpu', $this->avpu);
 		$criteria->compare('is_patient_experiencing_pain', $this->is_patient_experiencing_pain);
 		$criteria->compare('location_id', $this->location_id);
 		$criteria->compare('side_id', $this->side_id);
@@ -198,7 +193,6 @@ class Element_OphNuPreoperative_BaselineObservations  extends  BaseEventTypeElem
 		$criteria->compare('comments', $this->comments);
 		$criteria->compare('obs', $this->obs);
 		$criteria->compare('o_comments', $this->o_comments);
-		$criteria->compare('mews_score', $this->mews_score);
 		$criteria->compare('iv_inserted', $this->iv_inserted);
 		$criteria->compare('iv_location', $this->iv_location);
 		$criteria->compare('size_id', $this->size_id);

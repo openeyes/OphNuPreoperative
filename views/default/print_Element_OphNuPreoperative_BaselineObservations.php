@@ -58,10 +58,6 @@
 			<td><span class="big"><?php echo CHtml::encode($element->time)?></span></td>
 		</tr>
 		<tr>
-			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('avpu'))?></td>
-			<td><span class="big"><?php echo CHtml::encode($element->avpu)?></span></td>
-		</tr>
-		<tr>
 			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('is_patient_experiencing_pain'))?>:</td>
 			<td><span class="big"><?php echo $element->is_patient_experiencing_pain ? 'Yes' : 'No'?></span></td>
 		</tr>
@@ -118,10 +114,6 @@
 		<tr>
 			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('o_comments'))?></td>
 			<td><span class="big"><?php echo CHtml::encode($element->o_comments)?></span></td>
-		</tr>
-		<tr>
-			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('mews_score'))?></td>
-			<td><span class="big"><?php echo CHtml::encode($element->mews_score)?></span></td>
 		</tr>
 		<tr>
 			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('iv_inserted'))?></td>
