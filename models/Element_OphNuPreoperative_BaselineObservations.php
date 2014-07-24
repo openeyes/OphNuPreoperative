@@ -96,9 +96,9 @@ class Element_OphNuPreoperative_BaselineObservations  extends  BaseEventTypeElem
 	public function rules()
 	{
 		return array(
-			array('event_id, bp_systolic, bp_diastolic, bpm, temperature, res_rate, sao2, blood_sugar, bloodsugar_na, urine_passed, time, avpu, is_patient_experiencing_pain, location_id, side_id, type_of_pain_id, pain_score_method_id, pain_score, p_comments, comments, o_comments, mews_score, iv_inserted, iv_location, size_id, fluid_type_id, volume_given_id, rate, obs, skins', 'safe'),
-			array('id, event_id, blood_pressure, bpm, temperature, res_rate, sao2, blood_sugar, bloodsugar_na, urine_passed, time, avpu, is_patient_experiencing_pain, location_id, side_id, type_of_pain_id, pain_score_method_id, pain_score, p_comments, comments, o_comments, mews_score, iv_inserted, iv_location, size_id, fluid_type_id, volume_given_id, rate, ', 'safe', 'on' => 'search'),
-			array('bp_systolic,bp_diastolic,bpm,temperature,res_rate,sao2,blood_sugar,rate', 'numerical'),
+			array('event_id, temperature, blood_sugar, bloodsugar_na, urine_passed, time, avpu, is_patient_experiencing_pain, location_id, side_id, type_of_pain_id, pain_score_method_id, pain_score, p_comments, comments, o_comments, mews_score, iv_inserted, iv_location, size_id, fluid_type_id, volume_given_id, rate, obs, skins', 'safe'),
+			array('id, event_id, temperature, blood_sugar, bloodsugar_na, urine_passed, time, avpu, is_patient_experiencing_pain, location_id, side_id, type_of_pain_id, pain_score_method_id, pain_score, p_comments, comments, o_comments, mews_score, iv_inserted, iv_location, size_id, fluid_type_id, volume_given_id, rate, ', 'safe', 'on' => 'search'),
+			array('temperature,blood_sugar,rate', 'numerical'),
 		);
 	}
 
@@ -124,6 +124,7 @@ class Element_OphNuPreoperative_BaselineObservations  extends  BaseEventTypeElem
 			'volume_given' => array(self::BELONGS_TO, 'OphNuPreoperative_BaselineObservations_VolumeGiven', 'volume_given_id'),
 			'skins' => array(self::HAS_MANY, 'OphNuPreoperative_BaselineObservations_Skin', 'skin_id', 'through' => 'skins_assignment'),
 			'skins_assignment' => array(self::HAS_MANY, 'OphNuPreoperative_BaselineObservations_Skin_Assignment', 'element_id'),
+			'vitals' => array(self::HAS_MANY, 'OphNuPreoperative_Observation', 'element_id'),
 		);
 	}
 

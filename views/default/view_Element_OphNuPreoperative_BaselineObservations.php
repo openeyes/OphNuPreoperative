@@ -18,25 +18,18 @@
  */
 ?>
 	<div class="element-data">
-		<div class="row data-row">
-			<div class="large-3 column"><div class="data-label">Blood pressure</div></div>
-			<div class="large-9 column end"><div class="data-value"><?php echo ($element->bp_systolic && $element->bp_diastolic) ? $element->bp_systolic.' / '.$element->bp_diastolic.' mmHg' : 'Not recorded'?></div></div>
-		</div>
-		<div class="row data-row">
-			<div class="large-3 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('bpm'))?></div></div>
-			<div class="large-9 column end"><div class="data-value"><?php echo $element->bpm ? CHtml::encode($element->bpm).' bpm' : 'Not recorded'?></div></div>
-		</div>
+		<?php $this->widget('application.widgets.Records', array(
+			'form' => $form,
+			'element' => $element,
+			'model' => new OphNuPreoperative_Observation,
+			'field' => 'vitals',
+			'edit' => false,
+			'row_view' => 'protected/modules/OphNuPreoperative/views/default/_vital_row.php',
+			'no_items_text' => 'No vitals have been recorded.',
+		))?>
 		<div class="row data-row">
 			<div class="large-3 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('temperature'))?></div></div>
 			<div class="large-9 column end"><div class="data-value"><?php echo $element->temperature ? CHtml::encode($element->temperature).' C' : 'Not recorded'?></div></div>
-		</div>
-		<div class="row data-row">
-			<div class="large-3 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('res_rate'))?></div></div>
-			<div class="large-9 column end"><div class="data-value"><?php echo $element->res_rate ? CHtml::encode($element->res_rate).' insp/min' : 'Not recorded'?></div></div>
-		</div>
-		<div class="row data-row">
-			<div class="large-3 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('sao2'))?></div></div>
-			<div class="large-9 column end"><div class="data-value"><?php echo $element->sao2 ? CHtml::encode($element->sao2).' %' : 'Not recorded'?></div></div>
 		</div>
 		<div class="row data-row">
 			<div class="large-3 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('blood_sugar'))?></div></div>

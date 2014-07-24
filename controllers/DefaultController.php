@@ -8,6 +8,7 @@ class DefaultController extends BaseEventTypeController
 		'routeOptions' => self::ACTION_TYPE_FORM,
 		'addInvestigation' => self::ACTION_TYPE_FORM,
 		'riskProphylaxis' => self::ACTION_TYPE_FORM,
+		'validateVital' => self::ACTION_TYPE_FORM,
 	);
 
 	public function actionCreate()
@@ -205,5 +206,74 @@ class DefaultController extends BaseEventTypeController
 		} else {
 			$element->updateMedications($data['administered_medications_medication_ids'],$data['administered_medications_drug_ids'],$data['administered_medications_route_ids'],$data['administered_medications_option_ids'],$data['administered_medications_frequency_ids'],$data['administered_medications_start_dates']);
 		}
+	}
+
+	public function actionValidateVital()
+	{
+		$vital = new OphNuPreoperative_Observation;
+		$vital->attributes = $_POST;
+
+		$vital->validate();
+
+		$errors = array();
+
+		foreach ($vital->errors as $field => $error) {
+			$errors[$field] = $error[0];
+		}
+
+		if (empty($errors)) {
+			$vital->timestamp = date('Y-m-d',strtotime($vital->timestamp)).' '.$vital->time.':00';
+			$errors['row'] = $this->renderPartial('_vital_row',array('item' => $vital, 'i' => $_POST['i'], 'edit' => true),true);
+		}
+
+		echo json_encode($errors);
+	}
+
+	protected function setComplexAttributes_Element_OphNuPreoperative_BaselineObservations($element, $data, $index)
+	{
+		$vitals = array();
+
+		if (!empty($data['OphNuPreoperative_Observation']['hr_pulse'])) {
+			foreach ($data['OphNuPreoperative_Observation']['hr_pulse'] as $i => $hr_pulse) {
+				$vital = new OphNuPreoperative_Observation;
+				$vital->element_id = $element->id;
+				$vital->hr_pulse = $hr_pulse;
+
+				foreach (array('blood_pressure','rr','spo2','timestamp') as $field) {
+					$vital->$field = $data['OphNuPreoperative_Observation'][$field][$i];
+				}
+
+				$vital->time = date('H:i',strtotime($vital->timestamp));
+
+				$vitals[] = $vital;
+			}
+		}
+
+		$element->vitals = $vitals;
+	}
+
+	protected function saveComplexAttributes_Element_OphNuPreoperative_BaselineObservations($element, $data, $index)
+	{
+		$ids = array();
+
+		foreach ($element->vitals as $vital) {
+			$vital->element_id = $element->id;
+
+			if (!$vital->save()) {
+				throw new Exception("Unable to save vital item: ".print_r($vital->errors,true));
+			}
+
+			$ids[] = $vital->id;
+		}
+
+		$criteria = new CDbCriteria;
+		$criteria->addCondition('element_id = :element_id');
+		$criteria->params[':element_id'] = $element->id;
+
+		if (!empty($ids)) {
+			$criteria->addNotInCondition('id',$ids);
+		}
+
+		OphNuPreoperative_Observation::model()->deleteAll($criteria);
 	}
 }

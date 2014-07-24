@@ -18,61 +18,32 @@
  */
 ?>
 	<div class="element-fields">
-		<div id="div_Element_OphNuPreoperative_BaselineObservations_bp_systolic" class="row field-row">
+		<?php $form->widget('application.widgets.Records', array(
+			'form' => $form,
+			'element' => $element,
+			'model' => new OphNuPreoperative_Observation,
+			'field' => 'vitals',
+			'validate_method' => '/OphNuPreoperative/default/validateVital',
+			'row_view' => 'protected/modules/OphNuPreoperative/views/default/_vital_row.php',
+			'columns' => array(
+				array(
+					'width' => 5,
+					'fields' => array('hr_pulse','blood_pressure','rr','spo2'),
+				),
+			),
+			'no_items_text' => 'No vitals have been recorded.',
+			'add_button_text' => 'Add vital',
+			'use_last_button_text' => 'Input last recorded vital signs',
+		))?>
+		<div id="div_Element_OphNuPreoperative_BaselineObservations_temperature" class="row field-row">
 			<div class="large-3 column">
-				<label for="Element_OphNuPreoperative_BaselineObservations_bp_systolic">
-					Blood pressure:
-				</label>
-			</div>
-			<div class="large-4 column end">
-				<?php echo $form->textField($element, 'bp_systolic', array('nowrapper' => true), array(), array('label' => 3, 'field' => 4))?>
-				<span class="metric">/</span>
-				<?php echo $form->textField($element, 'bp_diastolic', array('nowrapper' => true), array(), array('label' => 3, 'field' => 4))?>
-				<span class="metric">mmHg</span>
-			</div>
-		</div>
-		<div id="div_Element_OphNuPreoperative_BaselineObservations_bpm" class="row field-row">
-			<div class="large-3 column">
-				<label for="Element_OphNuPreoperative_BaselineObservations_bpm">
-					<?php echo $element->getAttributeLabel('bpm')?>:
-				</label>
-			</div>
-			<div class="large-2 column end">
-				<?php echo $form->textField($element, 'bpm', array('nowrapper' => true, 'class' => 'smallPreopInput'), array(), array('label' => 3, 'field' => 1))?>
-				<span class="metric">bpm</span>
-			</div>
-		</div>
-		<div id="div_Element_OphNuPreoperative_BaselineObservations_bpm" class="row field-row">
-			<div class="large-3 column">
-				<label for="Element_OphNuPreoperative_BaselineObservations_bpm">
+				<label for="Element_OphNuPreoperative_BaselineObservations_temperature">
 					<?php echo $element->getAttributeLabel('temperature')?>:
 				</label>
 			</div>
 			<div class="large-2 column end">
 				<?php echo $form->textField($element, 'temperature', array('nowrapper' => true, 'class' => 'smallPreopInput'), array(), array('label' => 3, 'field' => 1))?>
 				<span class="metric">C</span>
-			</div>
-		</div>
-		<div id="div_Element_OphNuPreoperative_BaselineObservations_res_rate" class="row field-row">
-			<div class="large-3 column">
-				<label for="Element_OphNuPreoperative_BaselineObservations_res_rate">
-					<?php echo $element->getAttributeLabel('res_rate')?>:
-				</label>
-			</div>
-			<div class="large-2 column end">
-				<?php echo $form->textField($element, 'res_rate', array('nowrapper' => true, 'class' => 'smallPreopInput'), array(), array('label' => 3, 'field' => 1))?>
-				<span class="metric">insp/min</span>
-			</div>
-		</div>
-		<div id="div_Element_OphNuPreoperative_BaselineObservations_sao2" class="row field-row">
-			<div class="large-3 column">
-				<label for="Element_OphNuPreoperative_BaselineObservations_sao2">
-					<?php echo $element->getAttributeLabel('sao2')?>:
-				</label>
-			</div>
-			<div class="large-2 column end">
-				<?php echo $form->textField($element, 'sao2', array('nowrapper' => true, 'class' => 'smallPreopInput'), array(), array('label' => 3, 'field' => 1))?>
-				<span class="metric">%</span>
 			</div>
 		</div>
 		<div id="div_Element_OphNuPreoperative_BaselineObservations_sao2" class="row field-row">
