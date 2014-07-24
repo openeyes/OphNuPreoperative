@@ -28,7 +28,24 @@
 			'columns' => array(
 				array(
 					'width' => 5,
-					'fields' => array('hr_pulse','blood_pressure','rr','spo2'),
+					'fields' => array(
+						array(
+							'field' => 'hr_pulse',
+							'type' => 'text',
+						),
+						array(
+							'field' => 'blood_pressure',
+							'type' => 'text',
+						),
+						array(
+							'field' => 'rr',
+							'type' => 'text',
+						),
+						array(
+							'field' => 'spo2',
+							'type' => 'text',
+						),
+					),
 				),
 			),
 			'no_items_text' => 'No vitals have been recorded.',
