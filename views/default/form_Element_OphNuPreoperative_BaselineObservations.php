@@ -67,7 +67,7 @@
 		</div>
 
 		<?php echo $form->radioBoolean($element, 'urine_passed', array('class'=>'linked-fields','data-linked-fields'=>'time','data-linked-values'=>'Yes'), array('label' => 3, 'field' => 4))?>
-		<?php echo $form->textField($element, 'time', array('hide' => !$element->urine_passed), array(), array('label' => 3, 'field' => 1))?>
+		<?php echo $form->timePicker($element, 'time', array(), array('hide' => !$element->urine_passed), array('label' => 3, 'field' => 1))?>
 		<?php echo $form->radioBoolean($element, 'is_patient_experiencing_pain', array(), array('label' => 3, 'field' => 4))?>
 		<div class="collapse">
 			<?php echo $form->dropDownList($element, 'location_id', CHtml::listData(OphNuPreoperative_BaselineObservations_Location::model()->findAll(array('order'=> 'display_order asc')),'id','name'),array('class' => 'linked-fields', 'data-linked-fields' => 'other_pain_location', 'data-linked-values' => 'Other', 'empty'=>'- Please select -'),false,array('label'=>3,'field'=>4))?>
