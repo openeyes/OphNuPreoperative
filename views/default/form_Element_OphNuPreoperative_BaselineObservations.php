@@ -52,17 +52,6 @@
 			'add_button_text' => 'Add vital',
 			'use_last_button_text' => 'Input last recorded vital signs',
 		))?>
-		<div id="div_Element_OphNuPreoperative_BaselineObservations_temperature" class="row field-row">
-			<div class="large-3 column">
-				<label for="Element_OphNuPreoperative_BaselineObservations_temperature">
-					<?php echo $element->getAttributeLabel('temperature')?>:
-				</label>
-			</div>
-			<div class="large-2 column end">
-				<?php echo $form->textField($element, 'temperature', array('nowrapper' => true, 'class' => 'smallPreopInput'), array(), array('label' => 3, 'field' => 1))?>
-				<span class="metric">C</span>
-			</div>
-		</div>
 		<div id="div_Element_OphNuPreoperative_BaselineObservations_sao2" class="row field-row">
 			<div class="large-3 column">
 				<label for="Element_OphNuPreoperative_BaselineObservations_sao2">

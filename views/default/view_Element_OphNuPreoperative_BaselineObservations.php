@@ -28,10 +28,6 @@
 			'no_items_text' => 'No vitals have been recorded.',
 		))?>
 		<div class="row data-row">
-			<div class="large-3 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('temperature'))?></div></div>
-			<div class="large-9 column end"><div class="data-value"><?php echo $element->temperature ? CHtml::encode($element->temperature).' C' : 'Not recorded'?></div></div>
-		</div>
-		<div class="row data-row">
 			<div class="large-3 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('blood_sugar'))?></div></div>
 			<div class="large-9 column end"><div class="data-value"><?php echo $element->bloodsugar_na ? 'N/A' : $element->blood_sugar?></div></div>
 		</div>

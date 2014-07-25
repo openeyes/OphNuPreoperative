@@ -30,10 +30,6 @@
 			<td><span class="big"><?php echo CHtml::encode($element->bpm)?></span></td>
 		</tr>
 		<tr>
-			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('temperature'))?></td>
-			<td><span class="big"><?php echo CHtml::encode($element->temperature)?></span></td>
-		</tr>
-		<tr>
 			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('res_rate'))?></td>
 			<td><span class="big"><?php echo CHtml::encode($element->res_rate)?></span></td>
 		</tr>

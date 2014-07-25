@@ -25,7 +25,6 @@
  * @property integer $event_id
  * @property string $blood_pressure
  * @property string $bpm
- * @property string $temperature
  * @property string $res_rate
  * @property string $sao2
  * @property string $blood_sugar
@@ -94,9 +93,9 @@ class Element_OphNuPreoperative_BaselineObservations  extends  BaseEventTypeElem
 	public function rules()
 	{
 		return array(
-			array('event_id, temperature, blood_sugar, bloodsugar_na, urine_passed, time, is_patient_experiencing_pain, location_id, side_id, type_of_pain_id, pain_score_method_id, pain_score, p_comments, comments, o_comments, obs, skins, other_pain_location', 'safe'),
-			array('id, event_id, temperature, blood_sugar, bloodsugar_na, urine_passed, time, is_patient_experiencing_pain, location_id, side_id, type_of_pain_id, pain_score_method_id, pain_score, p_comments, comments, o_comments', 'safe', 'on' => 'search'),
-			array('temperature,blood_sugar', 'numerical'),
+			array('event_id, blood_sugar, bloodsugar_na, urine_passed, time, is_patient_experiencing_pain, location_id, side_id, type_of_pain_id, pain_score_method_id, pain_score, p_comments, comments, o_comments, obs, skins, other_pain_location', 'safe'),
+			array('id, event_id, blood_sugar, bloodsugar_na, urine_passed, time, is_patient_experiencing_pain, location_id, side_id, type_of_pain_id, pain_score_method_id, pain_score, p_comments, comments, o_comments', 'safe', 'on' => 'search'),
+			array('blood_sugar', 'numerical'),
 		);
 	}
 
@@ -137,7 +136,6 @@ class Element_OphNuPreoperative_BaselineObservations  extends  BaseEventTypeElem
 			'bp_systolic' => 'Blood pressure (systolic)',
 			'bp_diastolic' => 'Blood pressure (diastolic)',
 			'bpm' => 'Heart rate / pulse',
-			'temperature' => 'Temperature',
 			'res_rate' => 'Respiratory rate',
 			'sao2' => 'SaO2',
 			'blood_sugar' => 'Blood glucose',
@@ -171,7 +169,6 @@ class Element_OphNuPreoperative_BaselineObservations  extends  BaseEventTypeElem
 		$criteria->compare('event_id', $this->event_id, true);
 		$criteria->compare('blood_pressure', $this->blood_pressure);
 		$criteria->compare('bpm', $this->bpm);
-		$criteria->compare('temperature', $this->temperature);
 		$criteria->compare('res_rate', $this->res_rate);
 		$criteria->compare('sao2', $this->sao2);
 		$criteria->compare('blood_sugar', $this->blood_sugar);
