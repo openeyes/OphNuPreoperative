@@ -96,8 +96,8 @@ class OphNuPreoperative_Observation extends BaseActiveRecordVersioned
 	public function getAttributeSuffix($attribute)
 	{
 		$suffixes = array(
-			'hr_pulse' => 'mmHg',
-			'blood_pressure' => 'bpm',
+			'hr_pulse' => 'bpm',
+			'blood_pressure' => 'mmHg',
 			'rr' => 'insp/min',
 			'spo2' => '%',
 		);
