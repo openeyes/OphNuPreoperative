@@ -52,9 +52,9 @@
 			'add_button_text' => 'Add vital',
 			'use_last_button_text' => 'Input last recorded vital signs',
 		))?>
-		<div id="div_Element_OphNuPreoperative_BaselineObservations_sao2" class="row field-row">
+		<div id="div_Element_OphNuPreoperative_BaselineObservations_blood_sugar" class="row field-row">
 			<div class="large-3 column">
-				<label for="Element_OphNuPreoperative_BaselineObservations_sao2">
+				<label for="Element_OphNuPreoperative_BaselineObservations_blood_sugar">
 					<?php echo $element->getAttributeLabel('blood_sugar')?>:
 				</label>
 			</div>
