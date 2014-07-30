@@ -177,6 +177,10 @@
 							<?php }?>
 				</div></div>
 			</div>
+			<div class="row data-row">
+				<div class="large-3 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('removable_dental_work_present_comments'))?>:</div></div>
+				<div class="large-9 column end"><div class="data-value"><?php echo CHtml::encode($element->removable_dental_work_present_comments)?></div></div>
+			</div>
 		<?php }?>
 		<?php if ($element->hasMultiSelectValue('dentals','Other (please specify)')) {?>
 			<div class="row data-row">

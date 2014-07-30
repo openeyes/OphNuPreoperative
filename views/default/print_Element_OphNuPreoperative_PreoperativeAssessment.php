@@ -130,6 +130,37 @@
 						<div class="data-value">
 							<?php echo $element->left_iol_size?>
 						</div>
+				</div>
+			</td>
+		</tr>
+		<?php if ($element->removable_dental_work_present) {?>
+			<tr>
+				<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('removable_dental_work_present_comments'))?>:</td>
+				<td><span class="big"><?php echo CHtml::encode($element->removable_dental_work_present_comments)?></span></td>
+			</tr>
+		<?php }?>
+		<tr>
+			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('d_comments'))?></td>
+			<td><span class="big"><?php echo CHtml::encode($element->d_comments)?></span></td>
+		</tr>
+		<tr>
+			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('hearing_aid_present'))?>:</td>
+			<td><span class="big"><?php echo $element->hearing_aid_present ? 'Yes' : 'No'?></span></td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<div class="colThird">
+					<b><?php echo CHtml::encode($element->getAttributeLabel('hearing_aid'))?>:</b>
+					<div class="eventHighlight medium">
+						<?php if (!$element->hearing_aids) {?>
+							<h4>None</h4>
+						<?php } else {?>
+							<h4>
+								<?php foreach ($element->hearing_aids as $item) {
+									echo $item->ophnupreoperative_preoperative_hearing_aid->name?><br/>
+								<?php }?>
+							</h4>
+						<?php }?>
 					</div>
 				<?php }?>
 			</div>

@@ -38,6 +38,7 @@
  * @property string $m_comments
  * @property integer $falls_mobility
  * @property integer $removable_dental_work_present
+ * @property integer $removable_dental_work_present_comments
  * @property string $d_comments
  * @property integer $hearing_aid_present
  * @property integer $patient_belongings
@@ -90,8 +91,8 @@ class Element_OphNuPreoperative_PreoperativeAssessment	extends  BaseEventTypeEle
 	public function rules()
 	{
 		return array(
-			array('event_id, translator_present_id, name_of_translator, patient_verified, date_last_ate, date_last_drank, consent_signed, surgical_site_verified, site_id, iol_verified_id, iol_side_id, right_iol_type_id, left_iol_type_id, right_iol_size, left_iol_size, metal_in_body, m_comments, falls_mobility, removable_dental_work_present, d_comments, hearing_aid_present, patient_belongings, b_comments, date_last_ate_time, date_last_drank_time, wristbands, falls, dentals, hearing_aids, belongings, identifiers', 'safe'),
-			array('id, event_id, translator_present_id, name_of_translator, patient_verified, date_last_ate, date_last_drank, consent_signed, surgical_site_verified, site_id, iol_verified_id, iol_type_id, iol_size_id, metal_in_body, m_comments, falls_mobility, removable_dental_work_present, d_comments, hearing_aid_present, patient_belongings, belong_id, b_comments, ', 'safe', 'on' => 'search'),
+			array('event_id, translator_present_id, name_of_translator, patient_verified, date_last_ate, date_last_drank, consent_signed, surgical_site_verified, site_id, iol_verified_id, iol_side_id, right_iol_type_id, left_iol_type_id, right_iol_size, left_iol_size, metal_in_body, m_comments, falls_mobility, removable_dental_work_present, removable_dental_work_present_comments, d_comments, hearing_aid_present, patient_belongings, b_comments, date_last_ate_time, date_last_drank_time, wristbands, falls, dentals, hearing_aids, belongings, identifiers', 'safe'),
+			array('id, event_id, translator_present_id, name_of_translator, patient_verified, date_last_ate, date_last_drank, consent_signed, surgical_site_verified, site_id, iol_verified_id, iol_type_id, iol_size_id, metal_in_body, m_comments, falls_mobility, removable_dental_work_present, removable_dental_work_present_comments, d_comments, hearing_aid_present, patient_belongings, belong_id, b_comments, ', 'safe', 'on' => 'search'),
 		);
 	}
 
@@ -158,7 +159,8 @@ class Element_OphNuPreoperative_PreoperativeAssessment	extends  BaseEventTypeEle
 			'm_comments' => 'Metal in body notes',
 			'falls_mobility' => 'Falls / mobility',
 			'falls' => 'Falls / mobility items',
-			'removable_dental_work_present' => 'Removable dental work present?',
+			'removable_dental_work_present' => 'Dental work removed?',
+			'removable_dental_work_present_comments' => 'Dental work removed comments',
 			'dental' => 'Dental items',
 			'd_comments' => 'Other dental items',
 			'hearing_aid_present' => 'Hearing aid present?',
@@ -197,6 +199,7 @@ class Element_OphNuPreoperative_PreoperativeAssessment	extends  BaseEventTypeEle
 		$criteria->compare('falls_mobility', $this->falls_mobility);
 		$criteria->compare('falls', $this->falls);
 		$criteria->compare('removable_dental_work_present', $this->removable_dental_work_present);
+		$criteria->compare('removable_dental_work_present_comments', $this->removable_dental_work_present_comments);
 		$criteria->compare('dental', $this->dental);
 		$criteria->compare('d_comments', $this->d_comments);
 		$criteria->compare('hearing_aid_present', $this->hearing_aid_present);
