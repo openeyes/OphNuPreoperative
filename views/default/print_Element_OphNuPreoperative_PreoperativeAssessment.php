@@ -135,6 +135,12 @@
 				</div>
 			</td>
 		</tr>
+		<?php if ($element->removable_dental_work_present) {?>
+			<tr>
+				<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('removable_dental_work_present_comments'))?>:</td>
+				<td><span class="big"><?php echo CHtml::encode($element->removable_dental_work_present_comments)?></span></td>
+			</tr>
+		<?php }?>
 		<tr>
 			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('d_comments'))?></td>
 			<td><span class="big"><?php echo CHtml::encode($element->d_comments)?></span></td>
