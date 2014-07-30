@@ -90,7 +90,7 @@ class Element_OphNuPreoperative_PreoperativeAssessment	extends  BaseEventTypeEle
 	public function rules()
 	{
 		return array(
-			array('event_id, translator_present_id, name_of_translator, patient_verified, date_last_ate, date_last_drank, consent_signed, surgical_site_verified, site_id, iol_verified_id, iol_type_id, iol_size_id, metal_in_body, m_comments, falls_mobility, removable_dental_work_present, d_comments, hearing_aid_present, patient_belongings, b_comments, date_last_ate_time, date_last_drank_time, wristbands, falls, dentals, hearing_aids, belongings, identifiers', 'safe'),
+			array('event_id, translator_present_id, name_of_translator, patient_verified, date_last_ate, date_last_drank, consent_signed, surgical_site_verified, site_id, iol_verified_id, iol_side_id, right_iol_type_id, left_iol_type_id, right_iol_size, left_iol_size, metal_in_body, m_comments, falls_mobility, removable_dental_work_present, d_comments, hearing_aid_present, patient_belongings, b_comments, date_last_ate_time, date_last_drank_time, wristbands, falls, dentals, hearing_aids, belongings, identifiers', 'safe'),
 			array('id, event_id, translator_present_id, name_of_translator, patient_verified, date_last_ate, date_last_drank, consent_signed, surgical_site_verified, site_id, iol_verified_id, iol_type_id, iol_size_id, metal_in_body, m_comments, falls_mobility, removable_dental_work_present, d_comments, hearing_aid_present, patient_belongings, belong_id, b_comments, ', 'safe', 'on' => 'search'),
 		);
 	}
@@ -123,6 +123,9 @@ class Element_OphNuPreoperative_PreoperativeAssessment	extends  BaseEventTypeEle
 			'belonging_assignment' => array(self::HAS_MANY, 'OphNuPreoperative_PreoperativeAssessment_Belong_Assignment', 'element_id'),
 			'identifiers' => array(self::HAS_MANY, 'OphNuPreoperative_PreoperativeAssessment_Identifier', 'identifier_id', 'through' => 'identifier_assignment'),
 			'identifier_assignment' => array(self::HAS_MANY, 'OphNuPreoperative_PreoperativeAssessment_Identifier_Assignment', 'element_id'),
+			'iol_side' => array(self::BELONGS_TO, 'Eye', 'iol_side_id'),
+			'right_iol_type' => array(self::BELONGS_TO, 'OphNuPreoperative_PreopAssessment_IOL_Type', 'right_iol_type_id'),
+			'left_iol_type' => array(self::BELONGS_TO, 'OphNuPreoperative_PreopAssessment_IOL_Type', 'left_iol_type_id'),
 		);
 	}
 
@@ -146,8 +149,11 @@ class Element_OphNuPreoperative_PreoperativeAssessment	extends  BaseEventTypeEle
 			'surgical_site_verified' => 'Surgical site verified',
 			'site_id' => 'Site',
 			'iol_verified_id' => 'IOL verified',
-			'iol_type_id' => 'IOL type',
-			'iol_size_id' => 'IOL size',
+			'right_iol_type_id' => 'Right IOL type',
+			'right_iol_size' => 'Right IOL size',
+			'left_iol_type_id' => 'Left IOL type',
+			'left_iol_size' => 'Left IOL size',
+			'iol_side_id' => 'IOL side',
 			'metal_in_body' => 'Metal in body',
 			'm_comments' => 'Metal in body notes',
 			'falls_mobility' => 'Falls / mobility',
@@ -242,11 +248,24 @@ class Element_OphNuPreoperative_PreoperativeAssessment	extends  BaseEventTypeEle
 		}
 
 		if ($this->iol_verified && $this->iol_verified->name == 'Yes') {
-			if (!$this->iol_type) {
-				$this->addError('iol_type_id',$this->getAttributeLabel('iol_type_id').' cannot be blank.');
+			if (!$this->iol_side) {
+				$this->addError('iol_side_id',$this->getAttributeLabel('iol_side_id').' cannot be blank.');
 			}
-			if (!$this->iol_size) {
-				$this->addError('iol_size_id',$this->getAttributeLabel('iol_size_id').' cannot be blank.');
+
+			if ($this->iol_side && in_array($this->iol_side->name,array('Right','Both'))) {
+				foreach (array('right_iol_type_id','right_iol_size') as $field) {
+					if (!$this->$field) {
+						$this->addError($field,$this->getAttributeLabel($field).' cannot be blank.');
+					}
+				}
+			}
+
+			if ($this->iol_side && in_array($this->iol_side->name,array('Left','Both'))) {
+				foreach (array('left_iol_type_id','left_iol_size') as $field) {
+					if (!$this->$field) {
+						$this->addError($field,$this->getAttributeLabel($field).' cannot be blank.');
+					}
+				}
 			}
 		}
 

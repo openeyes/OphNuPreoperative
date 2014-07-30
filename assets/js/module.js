@@ -72,6 +72,33 @@ $(document).ready(function() {
 			$('#Element_OphNuPreoperative_BaselineObservations_blood_sugar').removeAttr('disabled');
 		}
 	});
+
+	$('input[name="Element_OphNuPreoperative_PreoperativeAssessment[iol_side_id]"]').click(function() {
+		switch ($('input[name="Element_OphNuPreoperative_PreoperativeAssessment[iol_side_id]"]:checked').val()) {
+			case '1':
+				$('.IOLright').hide();
+				$('.IOLleft').show();
+				$('#Element_OphNuPreoperative_PreoperativeAssessment_right_iol_type_id').val('');
+				$('#Element_OphNuPreoperative_PreoperativeAssessment_right_iol_size').val('');
+				$('#div_Element_OphNuPreoperative_PreoperativeAssessment_right_iol_type_id').show();
+				$('#div_Element_OphNuPreoperative_PreoperativeAssessment_right_iol_size').show();
+				break;
+			case '2':
+				$('.IOLright').show();
+				$('.IOLleft').hide();
+				$('#Element_OphNuPreoperative_PreoperativeAssessment_left_iol_type_id').val('');
+				$('#Element_OphNuPreoperative_PreoperativeAssessment_left_iol_size').val('');
+				$('#div_Element_OphNuPreoperative_PreoperativeAssessment_right_iol_type_id').show();
+				$('#div_Element_OphNuPreoperative_PreoperativeAssessment_right_iol_size').show();
+				break;
+			case '3':
+				$('.IOLright').show();
+				$('.IOLleft').show();
+				$('#div_Element_OphNuPreoperative_PreoperativeAssessment_right_iol_type_id').show();
+				$('#div_Element_OphNuPreoperative_PreoperativeAssessment_right_iol_size').show();
+				break;
+		}
+	});
 });
 
 function ucfirst(str) { str += ''; var f = str.charAt(0).toUpperCase(); return f + str.substr(1); }
