@@ -42,7 +42,7 @@
 				<span class="metric">Time</span>
 			</div>
 		</div>
-		<?php echo $form->checkBox($element, 'consent_signed', array('text-align'=>'right'), array('label' => 3, 'field' => 4))?>
+		<?php echo $form->radioBoolean($element, 'consent_signed', array(), array('label' => 3, 'field' => 4))?>
 		<?php echo $form->radioBoolean($element, 'surgical_site_verified', array('class' => 'linked-fields', 'data-linked-fields' => 'site_id', 'data-linked-values' => 'Yes'), array('label' => 3, 'field' => 4))?>
 		<?php echo $form->radioButtons($element, 'site_id', 'OphNuPreoperative_PreoperativeAssessment_Site',null,false,!$element->surgical_site_verified==1,false,false,array(),array('label' => 3, 'field' => 4))?>
 		<?php echo $form->radioButtons($element, 'iol_verified_id', 'OphNuPreoperative_PreoperativeAssessment_IolVerified', null, false, false, false, false, array('class' => 'linked-fields', 'data-linked-fields' => 'iol_side_id', 'data-linked-values' => 'Yes'), array('label' => 3, 'field' => 4))?>
