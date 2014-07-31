@@ -19,44 +19,6 @@
 ?>
 	<div class="element-data">
 		<div class="row data-row">
-			<div class="large-3 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('translator_present_id'))?></div></div>
-			<div class="large-9 column end"><div class="data-value"><?php echo $element->translator_present ? $element->translator_present->name : 'Not recorded'?></div></div>
-		</div>
-		<?php if ($element->translator_present && $element->translator_present->name == 'Yes') {?>
-			<div class="row data-row">
-				<div class="large-3 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('name_of_translator'))?></div></div>
-				<div class="large-9 column end"><div class="data-value"><?php echo CHtml::encode($element->name_of_translator)?></div></div>
-			</div>
-		<?php }?>
-		<div class="row data-row">
-			<div class="large-3 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('patient_verified'))?></div></div>
-			<div class="large-9 column end"><div class="data-value"><?php echo $element->patient_verified ? 'Yes' : 'No'?></div></div>
-		</div>
-		<?php if ($element->patient_verified) {?>
-			<div class="row data-row">
-				<div class="large-3 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('identifiers'))?>:</div></div>
-				<div class="large-9 column end"><div class="data-value"><?php if (!$element->identifiers) {?>
-								None
-							<?php } else {?>
-									<?php foreach ($element->identifiers as $item) {
-										echo $item->name?><br/>
-									<?php }?>
-							<?php }?>
-				</div></div>
-			</div>
-		<?php }?>
-		<div class="row data-row">
-			<div class="large-3 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('wristband'))?>:</div></div>
-			<div class="large-9 column end"><div class="data-value"><?php if (!$element->wristbands) {?>
-							None
-						<?php } else {?>
-								<?php foreach ($element->wristbands as $item) {
-									echo $item->name?><br/>
-								<?php }?>
-						<?php }?>
-			</div></div>
-		</div>
-		<div class="row data-row">
 			<div class="large-3 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('date_last_ate'))?></div></div>
 			<div class="large-9 column end"><div class="data-value"><?php echo $element->date_last_ate ? CHtml::encode($element->NHSDate('date_last_ate')).' at '.substr($element->date_last_ate,11,5) : 'Not recorded'?></div></div>
 		</div>
@@ -130,37 +92,6 @@
 						<div class="data-value">
 							<?php echo $element->left_iol_size?>
 						</div>
-				</div>
-			</td>
-		</tr>
-		<?php if ($element->removable_dental_work_present) {?>
-			<tr>
-				<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('removable_dental_work_present_comments'))?>:</td>
-				<td><span class="big"><?php echo CHtml::encode($element->removable_dental_work_present_comments)?></span></td>
-			</tr>
-		<?php }?>
-		<tr>
-			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('d_comments'))?></td>
-			<td><span class="big"><?php echo CHtml::encode($element->d_comments)?></span></td>
-		</tr>
-		<tr>
-			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('hearing_aid_present'))?>:</td>
-			<td><span class="big"><?php echo $element->hearing_aid_present ? 'Yes' : 'No'?></span></td>
-		</tr>
-		<tr>
-			<td colspan="2">
-				<div class="colThird">
-					<b><?php echo CHtml::encode($element->getAttributeLabel('hearing_aid'))?>:</b>
-					<div class="eventHighlight medium">
-						<?php if (!$element->hearing_aids) {?>
-							<h4>None</h4>
-						<?php } else {?>
-							<h4>
-								<?php foreach ($element->hearing_aids as $item) {
-									echo $item->ophnupreoperative_preoperative_hearing_aid->name?><br/>
-								<?php }?>
-							</h4>
-						<?php }?>
 					</div>
 				<?php }?>
 			</div>
@@ -207,6 +138,10 @@
 									<?php }?>
 							<?php }?>
 				</div></div>
+			</div>
+			<div class="row data-row">
+				<div class="large-3 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('removable_dental_work_present_comments'))?>:</div></div>
+				<div class="large-9 column end"><div class="data-value"><?php echo CHtml::encode($element->removable_dental_work_present_comments)?></div></div>
 			</div>
 		<?php }?>
 		<?php if ($element->hasMultiSelectValue('dentals','Other (please specify)')) {?>

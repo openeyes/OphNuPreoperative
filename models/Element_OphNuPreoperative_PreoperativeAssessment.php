@@ -23,9 +23,6 @@
  * The followings are the available columns in table:
  * @property string $id
  * @property integer $event_id
- * @property integer $translator_present_id
- * @property string $name_of_translator
- * @property integer $patient_verified
  * @property string $date_last_ate
  * @property string $date_last_drank
  * @property integer $consent_signed
@@ -52,8 +49,6 @@
  * @property Event $event
  * @property User $user
  * @property User $usermodified
- * @property OphNuPreoperative_PreoperativeAssessment_TranslatorPresent $translator_present
- * @property OphNuPreoperative_PreOperativeAssessment_Wristband_Assignment $wristbands
  * @property OphNuPreoperative_PreoperativeAssessment_Site $site
  * @property OphNuPreoperative_PreoperativeAssessment_IolVerified $iol_verified
  * @property Element_OphNuPreoperative_PreoperativeAssessment_Falls_Assignment $fallss
@@ -91,8 +86,8 @@ class Element_OphNuPreoperative_PreoperativeAssessment	extends  BaseEventTypeEle
 	public function rules()
 	{
 		return array(
-			array('event_id, translator_present_id, name_of_translator, patient_verified, date_last_ate, date_last_drank, consent_signed, surgical_site_verified, site_id, iol_verified_id, iol_side_id, right_iol_type_id, left_iol_type_id, right_iol_size, left_iol_size, metal_in_body, m_comments, falls_mobility, removable_dental_work_present, removable_dental_work_present_comments, d_comments, hearing_aid_present, patient_belongings, b_comments, date_last_ate_time, date_last_drank_time, wristbands, falls, dentals, hearing_aids, belongings, identifiers', 'safe'),
-			array('id, event_id, translator_present_id, name_of_translator, patient_verified, date_last_ate, date_last_drank, consent_signed, surgical_site_verified, site_id, iol_verified_id, iol_type_id, iol_size_id, metal_in_body, m_comments, falls_mobility, removable_dental_work_present, removable_dental_work_present_comments, d_comments, hearing_aid_present, patient_belongings, belong_id, b_comments, ', 'safe', 'on' => 'search'),
+			array('event_id, date_last_ate, date_last_drank, consent_signed, surgical_site_verified, site_id, iol_verified_id, iol_side_id, right_iol_type_id, left_iol_type_id, right_iol_size, left_iol_size, metal_in_body, m_comments, falls_mobility, removable_dental_work_present, removable_dental_work_present_comments, d_comments, hearing_aid_present, patient_belongings, b_comments, date_last_ate_time, date_last_drank_time, wristbands, falls, dentals, hearing_aids, belongings', 'safe'),
+			array('id, event_id, date_last_ate, date_last_drank, consent_signed, surgical_site_verified, site_id, iol_verified_id, iol_type_id, iol_size_id, metal_in_body, m_comments, falls_mobility, removable_dental_work_present, removable_dental_work_present_comments, d_comments, hearing_aid_present, patient_belongings, belong_id, b_comments, ', 'safe', 'on' => 'search'),
 		);
 	}
 
@@ -107,9 +102,6 @@ class Element_OphNuPreoperative_PreoperativeAssessment	extends  BaseEventTypeEle
 			'event' => array(self::BELONGS_TO, 'Event', 'event_id'),
 			'user' => array(self::BELONGS_TO, 'User', 'created_user_id'),
 			'usermodified' => array(self::BELONGS_TO, 'User', 'last_modified_user_id'),
-			'translator_present' => array(self::BELONGS_TO, 'OphNuPreoperative_PreoperativeAssessment_TranslatorPresent', 'translator_present_id'),
-			'wristbands' => array(self::HAS_MANY, 'OphNuPreoperative_PreoperativeAssessment_Wristband', 'wristband_id', 'through' => 'wristband_assignment'),
-			'wristband_assignment' => array(self::HAS_MANY, 'OphNuPreoperative_PreOperativeAssessment_Wristband_Assignment', 'element_id'),
 			'site' => array(self::BELONGS_TO, 'OphNuPreoperative_PreoperativeAssessment_Site', 'site_id'),
 			'iol_verified' => array(self::BELONGS_TO, 'OphNuPreoperative_PreoperativeAssessment_IolVerified', 'iol_verified_id'),
 			'falls' => array(self::HAS_MANY, 'OphNuPreoperative_PreoperativeAssessment_Falls', 'fall_id', 'through' => 'falls_assignment'),
@@ -122,8 +114,6 @@ class Element_OphNuPreoperative_PreoperativeAssessment	extends  BaseEventTypeEle
 			'iol_size' => array(self::BELONGS_TO, 'OphNuPreoperative_PreopAssessment_IOL_Size', 'iol_size_id'),
 			'belongings' => array(self::HAS_MANY, 'OphNuPreoperative_PreoperativeAssessment_Belong', 'belong_id', 'through' => 'belonging_assignment'),
 			'belonging_assignment' => array(self::HAS_MANY, 'OphNuPreoperative_PreoperativeAssessment_Belong_Assignment', 'element_id'),
-			'identifiers' => array(self::HAS_MANY, 'OphNuPreoperative_PreoperativeAssessment_Identifier', 'identifier_id', 'through' => 'identifier_assignment'),
-			'identifier_assignment' => array(self::HAS_MANY, 'OphNuPreoperative_PreoperativeAssessment_Identifier_Assignment', 'element_id'),
 			'iol_side' => array(self::BELONGS_TO, 'Eye', 'iol_side_id'),
 			'right_iol_type' => array(self::BELONGS_TO, 'OphNuPreoperative_PreopAssessment_IOL_Type', 'right_iol_type_id'),
 			'left_iol_type' => array(self::BELONGS_TO, 'OphNuPreoperative_PreopAssessment_IOL_Type', 'left_iol_type_id'),
@@ -138,10 +128,6 @@ class Element_OphNuPreoperative_PreoperativeAssessment	extends  BaseEventTypeEle
 		return array(
 			'id' => 'ID',
 			'event_id' => 'Event',
-			'translator_present_id' => 'Translator present?',
-			'name_of_translator' => 'Name of translator',
-			'patient_verified' => 'Patient ID / wristband verified with two identifiers',
-			'wristband' => 'Special attention wristband attached?',
 			'date_last_ate' => 'Time last ate',
 			'date_last_ate_time' => 'Time last ate',
 			'date_last_drank' => 'Time last drank',
@@ -168,7 +154,6 @@ class Element_OphNuPreoperative_PreoperativeAssessment	extends  BaseEventTypeEle
 			'patient_belongings' => 'Patient belongings',
 			'belong_id' => 'Belonging items',
 			'b_comments' => 'Belonging notes',
-			'identifiers' => 'Two identifiers',
 		);
 	}
 
@@ -182,10 +167,6 @@ class Element_OphNuPreoperative_PreoperativeAssessment	extends  BaseEventTypeEle
 
 		$criteria->compare('id', $this->id, true);
 		$criteria->compare('event_id', $this->event_id, true);
-		$criteria->compare('translator_present_id', $this->translator_present_id);
-		$criteria->compare('name_of_translator', $this->name_of_translator);
-		$criteria->compare('patient_verified', $this->patient_verified);
-		$criteria->compare('wristband', $this->wristband);
 		$criteria->compare('date_last_ate', $this->date_last_ate);
 		$criteria->compare('date_last_drank', $this->date_last_drank);
 		$criteria->compare('consent_signed', $this->consent_signed);
@@ -238,12 +219,6 @@ class Element_OphNuPreoperative_PreoperativeAssessment	extends  BaseEventTypeEle
 
 	public function beforeValidate()
 	{
-		if ($this->translator_present && $this->translator_present->name == 'Yes') {
-			if (!$this->name_of_translator) {
-				$this->addError('name_of_translator',$this->getAttributeLabel('name_of_translator').' cannot be blank.');
-			}
-		}
-
 		if ($this->surgical_site_verified) {
 			if (!$this->site) {
 				$this->addError('site_id',$this->getAttributeLabel('site_id').' cannot be blank.');
@@ -329,12 +304,6 @@ class Element_OphNuPreoperative_PreoperativeAssessment	extends  BaseEventTypeEle
 		if ($this->hasMultiSelectValue('belongings','Other (please specify)')) {
 			if (!$this->b_comments) {
 				$this->addError('b_comments',$this->getAttributeLabel('b_comments').' cannot be blank.');
-			}
-		}
-
-		if ($this->patient_verified) {
-			if (count($this->identifiers) != 2) {
-				$this->addError('identifiers','Please select exactly 2 patient identifiers');
 			}
 		}
 

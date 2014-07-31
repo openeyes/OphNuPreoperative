@@ -1,4 +1,5 @@
-<?php /**
+<?php
+/**
  * OpenEyes
  *
  * (C) Moorfields Eye Hospital NHS Foundation Trust, 2008-2011
@@ -17,11 +18,36 @@
  */
 
 /**
- * This is the model class for table "ophnupreoperative_preoperative_translator_present".
+ * This is the model class for table "et_ophnupreoperative_baseline".
  *
  * The followings are the available columns in table:
  * @property string $id
- * @property string $name
+ * @property integer $event_id
+ * @property string $blood_pressure
+ * @property string $bpm
+ * @property string $temperature
+ * @property string $res_rate
+ * @property string $sao2
+ * @property string $blood_sugar
+ * @property integer $bloodsugar_na
+ * @property integer $urine_passed
+ * @property string $time
+ * @property integer $is_patient_experiencing_pain
+ * @property integer $location_id
+ * @property integer $side_id
+ * @property integer $type_of_pain_id
+ * @property integer $pain_score_method_id
+ * @property string $pain_score
+ * @property string $p_comments
+ * @property integer $skin_id
+ * @property string $comments
+ * @property string $o_comments
+ * @property integer $iv_inserted
+ * @property string $iv_location
+ * @property integer $size_id
+ * @property integer $fluid_type_id
+ * @property integer $volume_given_id
+ * @property string $rate
  *
  * The followings are the available model relations:
  *
@@ -30,10 +56,21 @@
  * @property Event $event
  * @property User $user
  * @property User $usermodified
+ * @property OphNuPreoperative_BaselineObservations_Location $location
+ * @property OphNuPreoperative_BaselineObservations_Side $side
+ * @property OphNuPreoperative_BaselineObservations_TypeOfPain $type_of_pain
+ * @property OphNuPreoperative_BaselineObservations_PainScoreMethod $pain_score_method
+ * @property OphNuPreoperative_BaselineObservations_Skin $skin
+ * @property OphNuPreoperative_BaselineObservations_Obs_Assignment $obss
+ * @property OphNuPreoperative_BaselineObservations_Size $size
+ * @property OphNuPreoperative_BaselineObservations_FluidType $fluid_type
+ * @property OphNuPreoperative_BaselineObservations_VolumeGiven $volume_given
  */
 
-class OphNuPreoperative_PreoperativeAssessment_TranslatorPresent extends BaseActiveRecordVersioned
+class Element_OphNuPreoperative_PatientID  extends	BaseEventTypeElement
 {
+	public $auto_update_relations = true;
+
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @return the static model class
@@ -48,7 +85,7 @@ class OphNuPreoperative_PreoperativeAssessment_TranslatorPresent extends BaseAct
 	 */
 	public function tableName()
 	{
-		return 'ophnupreoperative_preoperative_translator_present';
+		return 'et_ophnupreoperative_patientid';
 	}
 
 	/**
@@ -57,9 +94,7 @@ class OphNuPreoperative_PreoperativeAssessment_TranslatorPresent extends BaseAct
 	public function rules()
 	{
 		return array(
-			array('name', 'safe'),
-			array('name', 'required'),
-			array('id, name', 'safe', 'on' => 'search'),
+			array('patient_id_verified, translator_present_id, translator_name, wristband_attached, wristbands', 'safe'),
 		);
 	}
 
@@ -74,6 +109,9 @@ class OphNuPreoperative_PreoperativeAssessment_TranslatorPresent extends BaseAct
 			'event' => array(self::BELONGS_TO, 'Event', 'event_id'),
 			'user' => array(self::BELONGS_TO, 'User', 'created_user_id'),
 			'usermodified' => array(self::BELONGS_TO, 'User', 'last_modified_user_id'),
+			'translator_present' => array(self::BELONGS_TO, 'OphNuPreoperative_PatientID_TranslatorPresent', 'translator_present_id'),
+			'wristband_assignments' => array(self::HAS_MANY, 'OphNuPreoperative_PatientID_Wristband_Assignment', 'element_id'),
+			'wristbands' => array(self::HAS_MANY, 'OphNuPreoperative_PatientID_Wristband', 'wristband_id', 'through' => 'wristband_assignments'),
 		);
 	}
 
@@ -84,7 +122,10 @@ class OphNuPreoperative_PreoperativeAssessment_TranslatorPresent extends BaseAct
 	{
 		return array(
 			'id' => 'ID',
-			'name' => 'Name',
+			'event_id' => 'Event',
+			'patient_id_verified' => 'Patient ID verified and ID band applied',
+			'translator_present_id' => 'Translator present',
+			'translator_name' => 'Translator name',
 		);
 	}
 
@@ -97,11 +138,22 @@ class OphNuPreoperative_PreoperativeAssessment_TranslatorPresent extends BaseAct
 		$criteria = new CDbCriteria;
 
 		$criteria->compare('id', $this->id, true);
-		$criteria->compare('name', $this->name, true);
+		$criteria->compare('event_id', $this->event_id, true);
 
 		return new CActiveDataProvider(get_class($this), array(
 			'criteria' => $criteria,
 		));
+	}
+
+	public function beforeValidate()
+	{
+		if ($this->translator_present && $this->translator_present->name == 'Yes') {
+			if (!$this->translator_name) {
+				$this->addError('translator_name',$this->getAttributeLabel('translator_name').' cannot be blank.');
+			}
+		}
+
+		return parent::beforeValidate();
 	}
 }
 ?>

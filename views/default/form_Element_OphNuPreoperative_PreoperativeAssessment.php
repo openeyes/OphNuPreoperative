@@ -18,11 +18,6 @@
  */
 ?>
 	<div class="element-fields">
-		<?php echo $form->radioButtons($element, 'translator_present_id', 'OphNuPreoperative_PreoperativeAssessment_TranslatorPresent', null, false, false, false, false, array('class' => 'linked-fields', 'data-linked-fields' => 'name_of_translator', 'data-linked-values' => 'Yes'), array('label' => 3, 'field' => 4))?>
-		<?php echo $form->textField($element, 'name_of_translator', array('hide' => !$element->translator_present || $element->translator_present->name != 'Yes'), array(), array('label' => 3, 'field' => 4))?>
-		<?php echo $form->checkBox($element, 'patient_verified', array('text-align'=>'right','class'=>'linked-fields','data-linked-fields'=>'identifiers','data-linked-values'=>'1'), array('label' => 3, 'field' => 4))?>
-		<?php echo $form->multiSelectList($element, 'identifiers', 'identifiers', 'identifier_id', CHtml::listData(OphNuPreoperative_PreoperativeAssessment_Identifier::model()->findAll(array('order'=>'display_order asc')),'id','name'), array(), array('empty' => '- Please select -', 'label' => 'Two identifiers'), !$element->patient_verified, false, null, false, false, array('label' => 3, 'field' => 4))?>
-		<?php echo $form->multiSelectList($element, 'wristbands', 'wristbands', 'wristband_id', CHtml::listData(OphNuPreoperative_PreoperativeAssessment_Wristband::model()->findAll(array('order'=>'display_order asc')),'id','name'), array(), array('empty' => '- Please select -', 'label' => 'Special attention wristband attached?'), false, false, null, false, false, array('label' => 3, 'field' => 4), false, 'N/A')?>
 		<div id="Element_OphCiPatientadmission_NpoStatus_date_last_ate" class="row field-row">
 			<div class="large-3 column">
 				<label for="Element_OphCiPatientadmission_NpoStatus_date_last_ate_0">

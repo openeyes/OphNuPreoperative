@@ -17,7 +17,7 @@
  */
 
 /**
- * This is the model class for table "ophnupreoperative_preoperative_identifier".
+ * This is the model class for table "ophnupreoperative_patientid_translatorpresent".
  *
  * The followings are the available columns in table:
  * @property string $id
@@ -32,7 +32,7 @@
  * @property User $usermodified
  */
 
-class OphNuPreoperative_PreoperativeAssessment_Identifier extends BaseActiveRecordVersioned
+class OphNuPreoperative_PatientID_Wristband extends BaseActiveRecordVersioned
 {
 	/**
 	 * Returns the static model of the specified AR class.
@@ -48,7 +48,7 @@ class OphNuPreoperative_PreoperativeAssessment_Identifier extends BaseActiveReco
 	 */
 	public function tableName()
 	{
-		return 'ophnupreoperative_preoperative_identifier';
+		return 'ophnupreoperative_patientid_wristband';
 	}
 
 	/**
