@@ -147,7 +147,7 @@ class Element_OphNuPreoperative_PreoperativeAssessment	extends  BaseEventTypeEle
 			'falls' => 'Falls / mobility items',
 			'removable_dental_work_present' => 'Dental work removed?',
 			'removable_dental_work_present_comments' => 'Dental work removed comments',
-			'dental' => 'Dental items',
+			'dental' => 'Items removed',
 			'd_comments' => 'Other dental items',
 			'hearing_aid_present' => 'Hearing aid present?',
 			'hearing_aid' => 'Hearing aid',

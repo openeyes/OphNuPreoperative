@@ -1,6 +1,6 @@
 <?php
 
-class m140731_104108_change_consent_signed_to_nullable extends CDbMigration
+class m140731_104108_change_consent_signed_to_nullable extends OEMigration
 {
 	public function up()
 	{
