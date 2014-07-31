@@ -92,7 +92,7 @@ class Element_OphNuPreoperative_IVInserted  extends  BaseEventTypeElement
 	public function rules()
 	{
 		return array(
-			array('iv_inserted, iv_location, iv_size_id, fluid_type_id, volume_given_id, rate', 'safe'),
+			array('iv_inserted, iv_location_id, iv_size_id, fluid_type_id, volume_given_id, rate, iv_side_id, iv_fluid_started', 'safe'),
 			array('rate', 'numerical'),
 		);
 	}
@@ -111,6 +111,8 @@ class Element_OphNuPreoperative_IVInserted  extends  BaseEventTypeElement
 			'iv_size' => array(self::BELONGS_TO, 'OphNuPreoperative_BaselineObservations_Size', 'iv_size_id'),
 			'fluid_type' => array(self::BELONGS_TO, 'OphNuPreoperative_BaselineObservations_FluidType', 'fluid_type_id'),
 			'volume_given' => array(self::BELONGS_TO, 'OphNuPreoperative_BaselineObservations_VolumeGiven', 'volume_given_id'),
+			'iv_location' => array(self::BELONGS_TO, 'OphNuPreoperative_IVInserted_Location', 'iv_location_id'),
+			'iv_side' => array(self::BELONGS_TO, 'OphNuPreoperative_IVInserted_Side', 'iv_side_id'),
 		);
 	}
 
@@ -123,11 +125,13 @@ class Element_OphNuPreoperative_IVInserted  extends  BaseEventTypeElement
 			'id' => 'ID',
 			'event_id' => 'Event',
 			'iv_inserted' => 'IV inserted',
-			'iv_location' => 'IV location',
 			'iv_size_id' => 'IV size',
 			'fluid_type_id' => 'IV fluid type',
 			'volume_given_id' => 'IV volume given',
 			'rate' => 'IV rate',
+			'iv_location_id' => 'IV location',
+			'iv_side_id' => 'IV side',
+			'iv_fluid_started' => 'IV fluid started',
 		);
 	}
 
@@ -150,7 +154,15 @@ class Element_OphNuPreoperative_IVInserted  extends  BaseEventTypeElement
 	public function beforeValidate()
 	{
 		if ($this->iv_inserted) {
-			foreach (array('iv_location','iv_size_id','fluid_type_id','volume_given_id','rate') as $field) {
+			foreach (array('iv_location','iv_side_id','iv_size_id','iv_fluid_started') as $field) {
+				if (is_null($this->$field) || $this->$field === '') {
+					$this->addError($field,$this->getAttributeLabel($field).' cannot be blank.');
+				}
+			}
+		}
+
+		if ($this->iv_fluid_started) {
+			foreach (array('fluid_type_id','volume_given_id','rate') as $field) {
 				if (!$this->$field) {
 					$this->addError($field,$this->getAttributeLabel($field).' cannot be blank.');
 				}
