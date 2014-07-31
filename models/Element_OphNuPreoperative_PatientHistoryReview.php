@@ -26,7 +26,6 @@
  * @property integer $medical_history_verified
  * @property integer $medical_discrepancy_found
  * @property string $comments
- * @property integer $allergies_verified
  * @property integer $medication_history_verified
  *
  * The followings are the available model relations:
@@ -63,8 +62,8 @@ class Element_OphNuPreoperative_PatientHistoryReview	extends  BaseEventTypeEleme
 	public function rules()
 	{
 		return array(
-			array('event_id, medical_history_verified, medical_discrepancy_found, comments, allergies_verified, medication_history_verified, patient_has_no_allergies', 'safe'),
-			array('id, event_id, medical_history_verified, medical_discrepancy_found, comments, allergies_verified, medication_history_verified, ', 'safe', 'on' => 'search'),
+			array('event_id, medical_history_verified, medical_discrepancy_found, comments, medication_history_verified, patient_has_no_allergies', 'safe'),
+			array('id, event_id, medical_history_verified, medical_discrepancy_found, comments, medication_history_verified, ', 'safe', 'on' => 'search'),
 		);
 	}
 
@@ -95,9 +94,8 @@ class Element_OphNuPreoperative_PatientHistoryReview	extends  BaseEventTypeEleme
 			'medical_history_verified' => 'Medical history verified',
 			'medical_discrepancy_found' => 'Medical history discrepancy found?',
 			'comments' => 'Discrepancy notes',
-			'allergies_verified' => 'Allergies verified',
 			'medication_history_verified' => 'Medication history verified',
-			'patient_has_no_allergies' => 'Confirm patient has no allergies',
+			'patient_has_no_allergies' => 'Patient has no known allergies',
 		);
 	}
 
@@ -125,7 +123,6 @@ class Element_OphNuPreoperative_PatientHistoryReview	extends  BaseEventTypeEleme
 		$criteria->compare('medical_history_verified', $this->medical_history_verified);
 		$criteria->compare('medical_discrepancy_found', $this->medical_discrepancy_found);
 		$criteria->compare('comments', $this->comments);
-		$criteria->compare('allergies_verified', $this->allergies_verified);
 		$criteria->compare('medication_history_verified', $this->medication_history_verified);
 
 		return new CActiveDataProvider(get_class($this), array(

@@ -34,10 +34,6 @@
 			<td><span class="big"><?php echo CHtml::encode($element->comments)?></span></td>
 		</tr>
 		<tr>
-			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('allergies_verified'))?></td>
-			<td><span class="big"><?php echo $element->allergies_verified ? 'Yes' : 'No'?></span></td>
-		</tr>
-		<tr>
 			<td width="30%"><?php echo CHtml::encode($element->getAttributeLabel('medication_history_verified'))?></td>
 			<td><span class="big"><?php echo $element->medication_history_verified ? 'Yes' : 'No'?></span></td>
 		</tr>
