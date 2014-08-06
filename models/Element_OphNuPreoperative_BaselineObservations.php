@@ -69,6 +69,7 @@
 class Element_OphNuPreoperative_BaselineObservations  extends  BaseEventTypeElement
 {
 	public $auto_update_relations = true;
+	public $auto_update_measurements = true;
 
 	/**
 	 * Returns the static model of the specified AR class.
@@ -93,9 +94,9 @@ class Element_OphNuPreoperative_BaselineObservations  extends  BaseEventTypeElem
 	public function rules()
 	{
 		return array(
-			array('event_id, blood_sugar, bloodsugar_na, urine_passed, time, is_patient_experiencing_pain, location_id, side_id, type_of_pain_id, pain_score_method_id, pain_score, p_comments, comments, o_comments, obs, skins, other_pain_location', 'safe'),
-			array('id, event_id, blood_sugar, bloodsugar_na, urine_passed, time, is_patient_experiencing_pain, location_id, side_id, type_of_pain_id, pain_score_method_id, pain_score, p_comments, comments, o_comments', 'safe', 'on' => 'search'),
-			array('blood_sugar', 'numerical'),
+			array('event_id, blood_glucose_m, bloodsugar_na, urine_passed, time, is_patient_experiencing_pain, location_id, side_id, type_of_pain_id, pain_score_method_id, pain_score, p_comments, comments, o_comments, obs, skins, other_pain_location', 'safe'),
+			array('id, event_id, blood_glucose_m, bloodsugar_na, urine_passed, time, is_patient_experiencing_pain, location_id, side_id, type_of_pain_id, pain_score_method_id, pain_score, p_comments, comments, o_comments', 'safe', 'on' => 'search'),
+			array('blood_glucose_m', 'numerical'),
 		);
 	}
 
@@ -122,6 +123,7 @@ class Element_OphNuPreoperative_BaselineObservations  extends  BaseEventTypeElem
 			'skins' => array(self::HAS_MANY, 'OphNuPreoperative_BaselineObservations_Skin', 'skin_id', 'through' => 'skins_assignment'),
 			'skins_assignment' => array(self::HAS_MANY, 'OphNuPreoperative_BaselineObservations_Skin_Assignment', 'element_id'),
 			'vitals' => array(self::HAS_MANY, 'OphNuPreoperative_Observation', 'element_id'),
+			'blood_glucose_m' => array(self::BELONGS_TO, 'MeasurementGlucoseLevel', 'blood_glucose_m_id'),
 		);
 	}
 
@@ -138,7 +140,7 @@ class Element_OphNuPreoperative_BaselineObservations  extends  BaseEventTypeElem
 			'bpm' => 'Heart rate / pulse',
 			'res_rate' => 'Respiratory rate',
 			'sao2' => 'SaO2',
-			'blood_sugar' => 'Blood glucose',
+			'blood_glucose_m' => 'Blood glucose',
 			'bloodsugar_na' => 'N/A',
 			'urine_passed' => 'Urine passed',
 			'time' => 'Time urine passed',

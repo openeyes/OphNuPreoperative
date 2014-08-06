@@ -35,6 +35,9 @@
 class OphNuPreoperative_Observation extends BaseActiveRecordVersioned
 {
 	public $time;
+	public $auto_update_measurements = true;
+	public $blood_pressure_m_systolic;
+	public $blood_pressure_m_diastolic;
 
 	/**
 	 * Returns the static model of the specified AR class.
@@ -59,7 +62,7 @@ class OphNuPreoperative_Observation extends BaseActiveRecordVersioned
 	public function rules()
 	{
 		return array(
-			array('timestamp, time, hr_pulse, blood_pressure, rr, spo2', 'safe'),
+			array('timestamp, time, hr_pulse_m, blood_pressure_m_systolic, blood_pressure_m_diastolic, rr_m, spo2_m', 'safe'),
 			array('timestamp, hr_pulse, blood_pressure, rr, spo2', 'required'),
 			array('id, name', 'safe', 'on' => 'search'),
 		);
@@ -76,6 +79,10 @@ class OphNuPreoperative_Observation extends BaseActiveRecordVersioned
 			'event' => array(self::BELONGS_TO, 'Event', 'event_id'),
 			'user' => array(self::BELONGS_TO, 'User', 'created_user_id'),
 			'usermodified' => array(self::BELONGS_TO, 'User', 'last_modified_user_id'),
+			'hr_pulse_m' => array(self::BELONGS_TO, 'MeasurementPulse', 'hr_pulse_m_id'),
+			'blood_pressure_m' => array(self::BELONGS_TO, 'MeasurementBloodPressure', 'blood_pressure_m_id'),
+			'rr_m' => array(self::BELONGS_TO, 'MeasurementRespiratoryRate', 'rr_m_id'),
+			'spo2_m' => array(self::BELONGS_TO, 'MeasurementSPO2', 'spo2_m_id'),
 		);
 	}
 
@@ -86,20 +93,22 @@ class OphNuPreoperative_Observation extends BaseActiveRecordVersioned
 	{
 		return array(
 			'id' => 'ID',
-			'hr_pulse' => 'HR / pulse',
-			'blood_pressure' => 'Blood pressure',
-			'rr' => 'RR',
-			'spo2' => 'SpO2',
+			'hr_pulse_m' => 'HR / pulse',
+			'blood_pressure_m' => 'Blood pressure',
+			'rr_m' => 'RR',
+			'spo2_m' => 'SpO2',
+			'blood_pressure_m_systolic' => 'Blood pressure (systolic)',
+			'blood_pressure_m_diastolic' => 'Blood pressure (diastolic)',
 		);
 	}
 
 	public function getAttributeSuffix($attribute)
 	{
 		$suffixes = array(
-			'hr_pulse' => 'bpm',
-			'blood_pressure' => 'mmHg',
-			'rr' => 'insp/min',
-			'spo2' => '%',
+			'hr_pulse_m' => 'bpm',
+			'blood_pressure_m' => 'mmHg',
+			'rr_m' => 'insp/min',
+			'spo2_m' => '%',
 		);
 
 		return @$suffixes[$attribute];
@@ -130,9 +139,9 @@ class OphNuPreoperative_Observation extends BaseActiveRecordVersioned
 		));
 	}
 
-  public function getDescription()
+	public function getDescription()
 	{
-		return "Pulse: ".$this->hr_pulse." mmHh, BP: ".$this->blood_pressure." bpm, RR: ".$this->rr." insp/min, SpO2: ".$this->spo2."%";
+		return "Pulse: ".$this->hr_pulse->getValueText().", BP: ".$this->blood_pressure->getValueText().", RR: ".$this->rr->getValueText().", SpO2: ".$this->spo2->getValueText();
 	}
 }
 ?>
