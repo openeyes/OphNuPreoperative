@@ -15,12 +15,12 @@ class m140805_161658_measurements extends CDbMigration
 		$this->addColumn('ophnupreoperative_observation','hr_pulse_m_id','int(10) unsigned null');
 		$this->addColumn('ophnupreoperative_observation','blood_pressure_m_id','int(10) unsigned null');
 		$this->addColumn('ophnupreoperative_observation','rr_m_id','int(10) unsigned null');
-		$this->addColumn('ophnupreoperative_observation','spo2_m_id','int(10) unsigned null');
+		$this->addColumn('ophnupreoperative_observation','sao2_m_id','int(10) unsigned null');
 
 		$this->addColumn('ophnupreoperative_observation_version','hr_pulse_m_id','int(10) unsigned null');
 		$this->addColumn('ophnupreoperative_observation_version','blood_pressure_m_id','int(10) unsigned null');
 		$this->addColumn('ophnupreoperative_observation_version','rr_m_id','int(10) unsigned null');
-		$this->addColumn('ophnupreoperative_observation_version','spo2_m_id','int(10) unsigned null');
+		$this->addColumn('ophnupreoperative_observation_version','sao2_m_id','int(10) unsigned null');
 
 		foreach ($this->dbConnection->createCommand()->select("*")->from("et_ophnupreoperative_baseline")->order("id asc")->queryAll() as $element) {
 			$event = $this->getRecord('event',$element['event_id']);
@@ -31,7 +31,7 @@ class m140805_161658_measurements extends CDbMigration
 						'MeasurementPulse' => array('hr_pulse','pulse','measurement_pulse'),
 						'MeasurementBloodPressure' => array('blood_pressure','bp_systolic','measurement_blood_pressure'),
 						'MeasurementRespiratoryRate' => array('rr','rr','measurement_respiratory_rate'),
-						'MeasurementSPO2' => array('spo2','spo2','measurement_spo2'),
+						'MeasurementSPO2' => array('sao2','sao2','measurement_sao2'),
 					) as $class => $fields) {
 
 					$this->insert('patient_measurement',array(
@@ -98,7 +98,7 @@ class m140805_161658_measurements extends CDbMigration
 		$this->addForeignKey('ophnupreoperative_observation_hpmi_id_fk','ophnupreoperative_observation','hr_pulse_m_id','measurement_pulse','id');
 		$this->addForeignKey('ophnupreoperative_observation_bpmi_fk','ophnupreoperative_observation','blood_pressure_m_id','measurement_blood_pressure','id');
 		$this->addForeignKey('ophnupreoperative_observation_rrmi_fk','ophnupreoperative_observation','rr_m_id','measurement_respiratory_rate','id');
-		$this->addForeignKey('ophnupreoperative_observation_spmi_fk','ophnupreoperative_observation','spo2_m_id','measurement_spo2','id');
+		$this->addForeignKey('ophnupreoperative_observation_spmi_fk','ophnupreoperative_observation','sao2_m_id','measurement_sao2','id');
 
 		$this->dropColumn('et_ophnupreoperative_baseline','blood_sugar');
 		$this->dropColumn('et_ophnupreoperative_baseline_version','blood_sugar');
@@ -106,12 +106,12 @@ class m140805_161658_measurements extends CDbMigration
 		$this->dropColumn('ophnupreoperative_observation','hr_pulse');
 		$this->dropColumn('ophnupreoperative_observation','blood_pressure');
 		$this->dropColumn('ophnupreoperative_observation','rr');
-		$this->dropColumn('ophnupreoperative_observation','spo2');
+		$this->dropColumn('ophnupreoperative_observation','sao2');
 
 		$this->dropColumn('ophnupreoperative_observation_version','hr_pulse');
 		$this->dropColumn('ophnupreoperative_observation_version','blood_pressure');
 		$this->dropColumn('ophnupreoperative_observation_version','rr');
-		$this->dropColumn('ophnupreoperative_observation_version','spo2');
+		$this->dropColumn('ophnupreoperative_observation_version','sao2');
 	}
 
 	public function getRecord($table,$id)
@@ -124,12 +124,12 @@ class m140805_161658_measurements extends CDbMigration
 		$this->addColumn('ophnupreoperative_observation','hr_pulse','varchar(64) not null');
 		$this->addColumn('ophnupreoperative_observation','blood_pressure','varchar(255) not null');
 		$this->addColumn('ophnupreoperative_observation','rr','varchar(64) not null');
-		$this->addColumn('ophnupreoperative_observation','spo2','varchar(64) not null');
+		$this->addColumn('ophnupreoperative_observation','sao2','varchar(64) not null');
 
 		$this->addColumn('ophnupreoperative_observation_version','hr_pulse','varchar(64) not null');
 		$this->addColumn('ophnupreoperative_observation_version','blood_pressure','varchar(255) not null');
 		$this->addColumn('ophnupreoperative_observation_version','rr','varchar(64) not null');
-		$this->addColumn('ophnupreoperative_observation_version','spo2','varchar(64) not null');
+		$this->addColumn('ophnupreoperative_observation_version','sao2','varchar(64) not null');
 
 		$this->addColumn('et_ophnupreoperative_baseline_version','blood_sugar','tinyint(1) unsigned null');
 		$this->addColumn('et_ophnupreoperative_baseline','blood_sugar','tinyint(1) unsigned null');
@@ -150,7 +150,7 @@ class m140805_161658_measurements extends CDbMigration
 						'MeasurementPulse' => array('hr_pulse','pulse','measurement_pulse'),
 						'MeasurementBloodPressure' => array('blood_pressure','bp_systolic','measurement_blood_pressure'),
 						'MeasurementRespiratoryRate' => array('rr','rr','measurement_respiratory_rate'),
-						'MeasurementSPO2' => array('spo2','spo2','measurement_spo2'),
+						'MeasurementSPO2' => array('sao2','sao2','measurement_sao2'),
 					) as $class => $fields) {
 
 					$mes = $this->getRecord($fields[2],$vital[$fields[0].'_m_id']);
@@ -176,11 +176,11 @@ class m140805_161658_measurements extends CDbMigration
 		$this->dropColumn('ophnupreoperative_observation','hr_pulse_m_id');
 		$this->dropColumn('ophnupreoperative_observation','blood_pressure_m_id');
 		$this->dropColumn('ophnupreoperative_observation','rr_m_id');
-		$this->dropColumn('ophnupreoperative_observation','spo2_m_id');
+		$this->dropColumn('ophnupreoperative_observation','sao2_m_id');
 
 		$this->dropColumn('ophnupreoperative_observation_version','hr_pulse_m_id');
 		$this->dropColumn('ophnupreoperative_observation_version','blood_pressure_m_id');
 		$this->dropColumn('ophnupreoperative_observation_version','rr_m_id');
-		$this->dropColumn('ophnupreoperative_observation_version','spo2_m_id');
+		$this->dropColumn('ophnupreoperative_observation_version','sao2_m_id');
 	}
 }
