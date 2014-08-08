@@ -66,7 +66,7 @@ class m140805_161658_measurements extends CDbMigration
 			if ($element['blood_sugar']) {
 				$this->insert('patient_measurement',array(
 					'patient_id' => $episode['patient_id'],
-					'measurement_type_id' => $types['MeasurementGlucoseLevel'],
+					'measurement_type_id' => $types['MeasurementBloodGlucose'],
 					'created_user_id' => $element['created_user_id'],
 					'created_date' => $element['created_date'],
 					'last_modified_user_id' => $element['last_modified_user_id'],
@@ -76,12 +76,12 @@ class m140805_161658_measurements extends CDbMigration
 
 				$pm_id = $this->dbConnection->createCommand()->select("max(id)")->from("patient_measurement")->queryScalar();
 
-				$this->insert('measurement_glucose_level',array(
+				$this->insert('measurement_blood_glucose',array(
 					'patient_measurement_id' => $pm_id,
-					'glucose_level' => $element['blood_sugar'],
+					'blood_glucose' => $element['blood_sugar'],
 				));
 
-				$m_id = $this->dbConnection->createCommand()->select("max(id)")->from("measurement_glucose_level")->queryScalar();
+				$m_id = $this->dbConnection->createCommand()->select("max(id)")->from("measurement_blood_glucose")->queryScalar();
 
 				$this->update('et_ophnupreoperative_baseline',array('blood_glucose_m_id' => $m_id),"id = {$element['id']}");
 
@@ -93,7 +93,7 @@ class m140805_161658_measurements extends CDbMigration
 			}
 		}
 
-		$this->addForeignKey('et_ophnupreoperative_baseline_bgmi_fk','et_ophnupreoperative_baseline','blood_glucose_m_id','measurement_glucose_level','id');
+		$this->addForeignKey('et_ophnupreoperative_baseline_bgmi_fk','et_ophnupreoperative_baseline','blood_glucose_m_id','measurement_blood_glucose','id');
 
 		$this->addForeignKey('ophnupreoperative_observation_hpmi_id_fk','ophnupreoperative_observation','hr_pulse_m_id','measurement_pulse','id');
 		$this->addForeignKey('ophnupreoperative_observation_bpmi_fk','ophnupreoperative_observation','blood_pressure_m_id','measurement_blood_pressure','id');
@@ -162,11 +162,11 @@ class m140805_161658_measurements extends CDbMigration
 			}
 
 			if ($element['blood_glucose_m_id']) {
-				$mes = $this->getRecord('measurement_glucose_level',$element['blood_glucose_m_id']);
+				$mes = $this->getRecord('measurement_blood_glucose',$element['blood_glucose_m_id']);
 
-				$this->update('et_ophnupreoperative_baseline',array('blood_sugar' => $mes['glucose_level']),"id = {$element['id']}");
+				$this->update('et_ophnupreoperative_baseline',array('blood_sugar' => $mes['blood_glucose']),"id = {$element['id']}");
 
-				$this->delete('measurement_glucose_level',"id = ".$element['blood_glucose_m_id']);
+				$this->delete('measurement_blood_glucose',"id = ".$element['blood_glucose_m_id']);
 			}
 		}
 
