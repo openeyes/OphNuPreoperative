@@ -239,7 +239,7 @@ class DefaultController extends BaseEventTypeController
 				$vital->element_id = $element->id;
 				$vital->hr_pulse = $hr_pulse;
 
-				foreach (array('blood_pressure','rr','spo2','timestamp') as $field) {
+				foreach (array('blood_pressure','rr','sao2','timestamp') as $field) {
 					$vital->$field = $data['OphNuPreoperative_Observation'][$field][$i];
 				}
 

@@ -17,7 +17,7 @@
  * @license http://www.gnu.org/licenses/gpl-3.0.html The GNU General Public License V3.0
  */
 ?>
-<tr<?php if ($edit) {?> data-hr_pulse_m="<?php echo CHtml::encode($item->hr_pulse_m->getValue())?>" data-blood_pressure_m_systolic="<?php echo CHtml::encode($item->blood_pressure_m->bp_systolic)?>" data-rr_m="<?php echo CHtml::encode($item->rr_m->getValue())?>" data-spo2="<?php echo CHtml::encode($item->spo2_m->getValue())?>" data-timestamp="<?php echo CHtml::encode($item->NHSDate('timestamp'))?>" data-time="<?php echo $item->time?>" data-i="<?php echo $i?>"<?php }?>>
+<tr<?php if ($edit) {?> data-hr_pulse_m="<?php echo CHtml::encode($item->hr_pulse_m->getValue())?>" data-blood_pressure_m_systolic="<?php echo CHtml::encode($item->blood_pressure_m->bp_systolic)?>" data-rr_m="<?php echo CHtml::encode($item->rr_m->getValue())?>" data-sao2="<?php echo CHtml::encode($item->sao2_m->getValue())?>" data-timestamp="<?php echo CHtml::encode($item->NHSDate('timestamp'))?>" data-time="<?php echo $item->time?>" data-i="<?php echo $i?>"<?php }?>>
 	<td>
 		<?php echo $item->NHSDate('timestamp')?>
 		<?php echo substr($item->time,0,5)?>
@@ -34,7 +34,7 @@
 			<input type="hidden" name="<?php echo CHtml::modelName($item)?>[blood_pressure_m_systolic][]" value="<?php echo CHtml::encode($item->blood_pressure_m->bp_systolic)?>" />
 			<input type="hidden" name="<?php echo CHtml::modelName($item)?>[blood_pressure_m_diastolic][]" value="<?php echo CHtml::encode($item->blood_pressure_m->bp_diastolic)?>" />
 			<input type="hidden" name="<?php echo CHtml::modelName($item)?>[rr_m][]" value="<?php echo CHtml::encode($item->rr_m->getValue())?>" />
-			<input type="hidden" name="<?php echo CHtml::modelName($item)?>[spo2_m][]" value="<?php echo CHtml::encode($item->spo2->getValue())?>" />
+			<input type="hidden" name="<?php echo CHtml::modelName($item)?>[sao2_m][]" value="<?php echo CHtml::encode($item->sao2->getValue())?>" />
 			<input type="hidden" name="<?php echo CHtml::modelName($item)?>[timestamp][]" value="<?php echo CHtml::encode($item->timestamp)?>" />
 		</td>
 	<?php }?>

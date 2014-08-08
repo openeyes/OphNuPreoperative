@@ -31,7 +31,7 @@ class m140805_161658_measurements extends CDbMigration
 						'MeasurementPulse' => array('hr_pulse','pulse','measurement_pulse'),
 						'MeasurementBloodPressure' => array('blood_pressure','bp_systolic','measurement_blood_pressure'),
 						'MeasurementRespiratoryRate' => array('rr','rr','measurement_respiratory_rate'),
-						'MeasurementSPO2' => array('sao2','sao2','measurement_sao2'),
+						'MeasurementSAO2' => array('sao2','sao2','measurement_sao2'),
 					) as $class => $fields) {
 
 					$this->insert('patient_measurement',array(
@@ -150,7 +150,7 @@ class m140805_161658_measurements extends CDbMigration
 						'MeasurementPulse' => array('hr_pulse','pulse','measurement_pulse'),
 						'MeasurementBloodPressure' => array('blood_pressure','bp_systolic','measurement_blood_pressure'),
 						'MeasurementRespiratoryRate' => array('rr','rr','measurement_respiratory_rate'),
-						'MeasurementSPO2' => array('sao2','sao2','measurement_sao2'),
+						'MeasurementSAO2' => array('sao2','sao2','measurement_sao2'),
 					) as $class => $fields) {
 
 					$mes = $this->getRecord($fields[2],$vital[$fields[0].'_m_id']);

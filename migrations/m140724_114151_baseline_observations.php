@@ -11,7 +11,7 @@ class m140724_114151_baseline_observations extends OEMigration
 				'hr_pulse' => 'varchar(64) not null',
 				'blood_pressure' => 'varchar(64) not null',
 				'rr' => 'varchar(64) not null',
-				'spo2' => 'varchar(64) not null',
+				'sao2' => 'varchar(64) not null',
 				'last_modified_user_id' => 'int(10) unsigned NOT NULL DEFAULT 1',
 				'last_modified_date' => 'datetime NOT NULL DEFAULT \'1901-01-01 00:00:00\'',
 				'created_user_id' => 'int(10) unsigned NOT NULL DEFAULT 1',

@@ -62,8 +62,8 @@ class OphNuPreoperative_Observation extends BaseActiveRecordVersioned
 	public function rules()
 	{
 		return array(
-			array('timestamp, time, hr_pulse_m, blood_pressure_m_systolic, blood_pressure_m_diastolic, rr_m, spo2_m', 'safe'),
-			array('timestamp, hr_pulse, blood_pressure, rr, spo2', 'required'),
+			array('timestamp, time, hr_pulse_m, blood_pressure_m_systolic, blood_pressure_m_diastolic, rr_m, sao2_m', 'safe'),
+			array('timestamp, hr_pulse, blood_pressure, rr, sao2', 'required'),
 			array('id, name', 'safe', 'on' => 'search'),
 		);
 	}
@@ -82,7 +82,7 @@ class OphNuPreoperative_Observation extends BaseActiveRecordVersioned
 			'hr_pulse_m' => array(self::BELONGS_TO, 'MeasurementPulse', 'hr_pulse_m_id'),
 			'blood_pressure_m' => array(self::BELONGS_TO, 'MeasurementBloodPressure', 'blood_pressure_m_id'),
 			'rr_m' => array(self::BELONGS_TO, 'MeasurementRespiratoryRate', 'rr_m_id'),
-			'spo2_m' => array(self::BELONGS_TO, 'MeasurementSPO2', 'spo2_m_id'),
+			'sao2_m' => array(self::BELONGS_TO, 'MeasurementSAO2', 'sao2_m_id'),
 		);
 	}
 
@@ -96,7 +96,7 @@ class OphNuPreoperative_Observation extends BaseActiveRecordVersioned
 			'hr_pulse_m' => 'HR / pulse',
 			'blood_pressure_m' => 'Blood pressure',
 			'rr_m' => 'RR',
-			'spo2_m' => 'SpO2',
+			'sao2_m' => 'SaO2',
 			'blood_pressure_m_systolic' => 'Blood pressure (systolic)',
 			'blood_pressure_m_diastolic' => 'Blood pressure (diastolic)',
 		);
@@ -108,7 +108,7 @@ class OphNuPreoperative_Observation extends BaseActiveRecordVersioned
 			'hr_pulse_m' => 'bpm',
 			'blood_pressure_m' => 'mmHg',
 			'rr_m' => 'insp/min',
-			'spo2_m' => '%',
+			'sao2_m' => '%',
 		);
 
 		return @$suffixes[$attribute];
@@ -141,7 +141,7 @@ class OphNuPreoperative_Observation extends BaseActiveRecordVersioned
 
 	public function getDescription()
 	{
-		return "Pulse: ".$this->hr_pulse->getValueText().", BP: ".$this->blood_pressure->getValueText().", RR: ".$this->rr->getValueText().", SpO2: ".$this->spo2->getValueText();
+		return "Pulse: ".$this->hr_pulse->getValueText().", BP: ".$this->blood_pressure->getValueText().", RR: ".$this->rr->getValueText().", SaO2: ".$this->sao2->getValueText();
 	}
 }
 ?>
