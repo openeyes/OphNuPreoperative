@@ -66,10 +66,10 @@ $(document).ready(function() {
 
 	$('#Element_OphNuPreoperative_BaselineObservations_bloodsugar_na').click(function() {
 		if ($(this).is(':checked')) {
-			$('#Element_OphNuPreoperative_BaselineObservations_blood_sugar').attr('disabled','disabled');
-			$('#Element_OphNuPreoperative_BaselineObservations_blood_sugar').val('');
+			$('#Element_OphNuPreoperative_BaselineObservations_blood_glucose_m').attr('disabled','disabled');
+			$('#Element_OphNuPreoperative_BaselineObservations_blood_glucose_m').val('');
 		} else {
-			$('#Element_OphNuPreoperative_BaselineObservations_blood_sugar').removeAttr('disabled');
+			$('#Element_OphNuPreoperative_BaselineObservations_blood_glucose_m').removeAttr('disabled');
 		}
 	});
 

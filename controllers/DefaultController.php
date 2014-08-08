@@ -210,7 +210,10 @@ class DefaultController extends BaseEventTypeController
 
 	public function actionValidateVital()
 	{
-		$vital = new OphNuPreoperative_Observation;
+		if (!@$_POST['Element_OphNuPreoperative_BaselineObservations_vitals_editItem'] || !($vital = OphNuPreoperative_Observation::model()->findByPk($_POST['Element_OphNuPreoperative_BaselineObservations_vitals_editItem_id']))) {
+			$vital = new OphNuPreoperative_Observation;
+		}
+
 		$vital->attributes = $_POST;
 
 		$vital->validate();
@@ -233,14 +236,17 @@ class DefaultController extends BaseEventTypeController
 	{
 		$vitals = array();
 
-		if (!empty($data['OphNuPreoperative_Observation']['hr_pulse'])) {
-			foreach ($data['OphNuPreoperative_Observation']['hr_pulse'] as $i => $hr_pulse) {
-				$vital = new OphNuPreoperative_Observation;
-				$vital->element_id = $element->id;
-				$vital->hr_pulse = $hr_pulse;
+		$safe = OphNuPreoperative_Observation::model()->safeAttributeNames;
 
-				foreach (array('blood_pressure','rr','sao2','timestamp') as $field) {
-					$vital->$field = $data['OphNuPreoperative_Observation'][$field][$i];
+		if (!empty($data['OphNuPreoperative_Observation'][$safe[0]])) {
+			foreach ($data['OphNuPreoperative_Observation'][$safe[0]] as $i => $first) {
+				if (!@$data['OphNuPreoperative_Observation']['id'][$i] || !($vital = OphNuPreoperative_Observation::model()->findByPk($data['OphNuPreoperative_Observation']['id'][$i]))) {
+					$vital = new OphNuPreoperative_Observation;
+					$vital->element_id = $element->id;
+				}
+
+				foreach ($safe as $attribute) {
+					$vital->$attribute = @$data['OphNuPreoperative_Observation'][$attribute][$i];
 				}
 
 				$vital->time = date('H:i',strtotime($vital->timestamp));
@@ -274,6 +280,24 @@ class DefaultController extends BaseEventTypeController
 			$criteria->addNotInCondition('id',$ids);
 		}
 
+		$measurements = array();
+
+		foreach (OphNuPreoperative_Observation::model()->findAll($criteria) as $vital) {
+			foreach ($vital->relations() as $relation => $def) {
+				if ($vital->$relation instanceof Measurement) {
+					$measurements[] = $vital->$relation;
+				}
+			}
+		}
+
 		OphNuPreoperative_Observation::model()->deleteAll($criteria);
+
+		foreach ($measurements as $measurement) {
+			if ($measurement->isOrigin($element->event)) {
+				if (!$measurement->delete()) {
+					throw new Exception("Unable to delete measurement: ".print_r($measurement->errors,true));
+				}
+			}
+		}
 	}
 }

@@ -28,12 +28,12 @@
 			'columns' => array(
 				array(
 					'width' => 5,
-					'field_width' => 5,
+					'field_width' => 6,
 					'fields' => array(
-						array('field' => 'hr_pulse_m','type' => 'text'),
+						array('field' => 'pulse_m','type' => 'pulse'),
 						array('field' => 'blood_pressure_m','type' => 'blood_pressure'),
-						array('field' => 'rr','type' => 'text'),
-						array('field' => 'sao2','type' => 'text'),
+						array('field' => 'rr_m','type' => 'rr'),
+						array('field' => 'sao2_m','type' => 'sao2'),
 					),
 				),
 			),
@@ -41,13 +41,14 @@
 			'add_button_text' => 'Add vital',
 			'use_last_button_text' => 'Input last recorded vital signs',
 		))?>
-		<div id="div_Element_OphNuPreoperative_BaselineObservations_blood_sugar" class="row field-row">
+		<div id="div_Element_OphNuPreoperative_BaselineObservations_blood_glucose_m" class="row field-row">
 			<div class="large-3 column">
-				<label for="Element_OphNuPreoperative_BaselineObservations_blood_sugar">
-					<?php echo $element->getAttributeLabel('blood_sugar')?>:
+				<label for="Element_OphNuPreoperative_BaselineObservations_blood_glucose_m">
+					<?php echo $element->getAttributeLabel('blood_glucose_m')?>:
 				</label>
 			</div>
 			<div class="large-1 column">
+				<input type="hidden" name="<?php echo CHtml::modelName($element)?>[blood_glucose_m]" value="" />
 				<?php echo $form->bloodGlucoseMeasurement($element,array('nowrapper' => true, 'disabled' => $element->bloodsugar_na), array('label' => 3, 'field' => 1))?>
 			</div>
 			<div class="large-2 column end">
