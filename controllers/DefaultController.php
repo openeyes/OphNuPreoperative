@@ -121,17 +121,6 @@ class DefaultController extends BaseEventTypeController
 			}
 
 			$element->medications = $medications;
-
-			$allergies = array();
-
-			foreach ($this->patient->allergies as $allergy) {
-				$_allergy = new OphNuPreoperative_PatientHistory_Allergy;
-				$_allergy->allergy_id = $allergy->id;
-
-				$allergies[] = $_allergy;
-			}
-
-			$element->allergies = $allergies;
 		}
 	}
 
@@ -153,19 +142,6 @@ class DefaultController extends BaseEventTypeController
 		}
 
 		$element->medications = $medications;
-
-		$allergies = array();
-
-		if (!empty($data['allergies_allergies'])) {
-			foreach ($data['allergies_allergies'] as $i => $allergy_id) {
-				$allergy = new OphNuPreoperative_PatientHistory_Allergy;
-				$allergy->allergy_id = $allergy_id;
-
-				$allergies[] = $allergy;
-			}
-		}
-
-		$element->allergies = $allergies;
 	}
 
 	protected function saveComplexAttributes_Element_OphNuPreoperative_PatientHistoryReview($element, $data, $index)
@@ -175,8 +151,6 @@ class DefaultController extends BaseEventTypeController
 		} else {
 			$element->updateMedications($data['medication_history_medication_ids'],$data['medication_history_drug_ids'],$data['medication_history_route_ids'],$data['medication_history_option_ids'],$data['medication_history_frequency_ids'],$data['medication_history_start_dates']);
 		}
-
-		$element->updateAllergies(empty($data['allergies_allergies']) ? array() : $data['allergies_allergies']);
 	}
 
 	protected function setComplexAttributes_Element_OphNuPreoperative_PreoperativeMedicationAdministration($element, $data, $index)

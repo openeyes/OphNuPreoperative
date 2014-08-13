@@ -62,7 +62,7 @@ class Element_OphNuPreoperative_PatientHistoryReview	extends  BaseEventTypeEleme
 	public function rules()
 	{
 		return array(
-			array('event_id, medical_history_verified, medical_discrepancy_found, comments, medication_history_verified, patient_has_no_allergies', 'safe'),
+			array('event_id, medical_history_verified, medical_discrepancy_found, comments, medication_history_verified', 'safe'),
 			array('id, event_id, medical_history_verified, medical_discrepancy_found, comments, medication_history_verified, ', 'safe', 'on' => 'search'),
 		);
 	}
@@ -79,7 +79,6 @@ class Element_OphNuPreoperative_PatientHistoryReview	extends  BaseEventTypeEleme
 			'user' => array(self::BELONGS_TO, 'User', 'created_user_id'),
 			'usermodified' => array(self::BELONGS_TO, 'User', 'last_modified_user_id'),
 			'medications' => array(self::HAS_MANY, 'OphNuPreoperative_PatientHistory_Medication', 'element_id'),
-			'allergies' => array(self::HAS_MANY, 'OphNuPreoperative_PatientHistory_Allergy', 'element_id'),
 		);
 	}
 
@@ -95,7 +94,6 @@ class Element_OphNuPreoperative_PatientHistoryReview	extends  BaseEventTypeEleme
 			'medical_discrepancy_found' => 'Medical history discrepancy found?',
 			'comments' => 'Discrepancy notes',
 			'medication_history_verified' => 'Medication history verified',
-			'patient_has_no_allergies' => 'Patient has no known allergies',
 		);
 	}
 
@@ -181,89 +179,8 @@ class Element_OphNuPreoperative_PatientHistoryReview	extends  BaseEventTypeEleme
 					}
 				}
 			}
-
-			$ids = array();
-
-			foreach ($this->allergies as $allergy) {
-				if (!$paa = PatientAllergyAssignment::model()->find('patient_id=? and allergy_id=?',array($patient->id,$allergy->allergy_id))) {
-					$paa = new PatientAllergyAssignment;
-					$paa->patient_id = $patient->id;
-					$paa->allergy_id = $allergy->allergy_id;
-
-					if (!$paa->save()) {
-						throw new Exception("Unable to save allergy assignment: ".print_r($paa->getErrors(),true));
-					}
-				}
-
-				$ids[] = $paa->id;
-			}
-
-			$criteria = new CDbCriteria;
-			$criteria->addCondition('patient_id = :patient_id');
-			$criteria->params[':patient_id'] = $patient->id;
-			!empty($ids) && $criteria->addNotInCondition('id',$ids);
-
-			PatientAllergyAssignment::model()->deleteAll($criteria);
-
-			if (empty($this->allergies) && $this->patient_has_no_allergies) {
-				if (!$patient->no_allergies_date) {
-					$patient->no_allergies_date = date('Y-m-d H:i:s');
-
-					if (!$patient->save()) {
-						throw new Exception("Unable to save patient: ".print_r($patient->getErrors(),true));
-					}
-				}
-			} else if (!empty($this->allergies) && $patient->no_allergies_date) {
-				$patient->no_allergies_date = null;
-
-				if (!$patient->save()) {
-					throw new Exception("Unable to save patient: ".print_r($patient->getErrors(),true));
-				}
-			}
 		}
 
 		return parent::afterSave();
 	}
-
-	public function getAvailableAllergyList()
-	{
-		$allergy_ids = array();
-
-		foreach ($this->allergies as $allergy) {
-			$allergy_ids[] = $allergy->allergy_id;
-		}
-
-		$criteria = new CDbCriteria;
-		!empty($allergy_ids) && $criteria->addNotInCondition('id',$allergy_ids);
-		$criteria->order = 'name asc';
-
-		return CHtml::listData(Allergy::model()->findAll($criteria),'id','name');
-	}
-
-	public function updateAllergies($allergy_ids)
-	{
-		$ids = array();
-
-		foreach ($allergy_ids as $allergy_id) {
-			if (!$allergy = OphNuPreoperative_PatientHistory_Allergy::model()->find('element_id=? and allergy_id=?',array($this->id,$allergy_id))) {
-				$allergy = new OphNuPreoperative_PatientHistory_Allergy;
-				$allergy->element_id = $this->id;
-				$allergy->allergy_id = $allergy_id;
-
-				if (!$allergy->save()) {
-					throw new Exception("Unable to save allergy: ".print_r($allergy->getErrors(),true));
-				}
-			}
-
-			$ids[] = $allergy->id;
-		}
-
-		$criteria = new CDbCriteria;
-		$criteria->addCondition('element_id = :element_id');
-		$criteria->params[':element_id'] = $this->id;
-		!empty($ids) && $criteria->addNotInCondition('id',$ids);
-
-		OphNuPreoperative_PatientHistory_Allergy::model()->deleteAll($criteria);
-	}
 }
-?>

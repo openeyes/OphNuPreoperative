@@ -37,9 +37,8 @@
 		))?>
 		<?php $form->widget('application.widgets.AllergySelection', array(
 			'form' => $form,
-			'element' => $element,
-			'relation' => 'allergies',
-			'input_name' => 'allergies',
-			'no_allergies_field' => 'patient_has_no_allergies',
+			'patient' => $this->patient,
+			'allow_collapse' => false,
+			'button_align' => 'left',
 		))?>
 	</div>
