@@ -21,153 +21,96 @@ class AdminController extends ModuleAdminController
 {
 	public function actionEditPatientIdentifiers()
 	{
-		$this->render('//admin/generic_admin',array(
-			'title' => 'Patient identifiers',
-			'model' => 'OphNuPreoperative_PreoperativeAssessment_Identifier',
-		));
+		$this->genericAdmin('Patient identifiers','OphNuPreoperative_PreoperativeAssessment_Identifier');
 	}
 
 	public function actionEditWristbands()
 	{
-		$this->render('//admin/generic_admin',array(
-			'title' => 'Special attention wristbands',
-			'model' => 'OphNuPreoperative_PreoperativeAssessment_Wristband',
-		));
+		$this->genericAdmin('Special attention wristbands','OphNuPreoperative_PreoperativeAssessment_Wristband');
 	}
 
 	public function actionEditIOLTypes()
 	{
-		$this->render('//admin/generic_admin',array(
-			'title' => 'IOL types',
-			'model' => 'OphNuPreoperative_PreopAssessment_IOL_Type',
-		));
+		$this->genericAdmin('IOL types','OphNuPreoperative_PreopAssessment_IOL_Type');
 	}
 
 	public function actionEditIOLSizes()
 	{
-		$this->render('//admin/generic_admin',array(
-			'title' => 'IOL sizes',
-			'model' => 'OphNuPreoperative_PreopAssessment_IOL_Size',
-		));
+		$this->genericAdmin('IOL sizes','OphNuPreoperative_PreopAssessment_IOL_Size');
 	}
 
 	public function actionEditFallsMobilityItems()
 	{
-		$this->render('//admin/generic_admin',array(
-			'title' => 'Falls / mobility items',
-			'model' => 'OphNuPreoperative_PreoperativeAssessment_Falls',
-		));
+		$this->genericAdmin('Falls / mobility items','OphNuPreoperative_PreoperativeAssessment_Falls');
 	}
 
 	public function actionEditDentalItems()
 	{
-		$this->render('//admin/generic_admin',array(
-			'title' => 'Removable dental items',
-			'model' => 'OphNuPreoperative_PreoperativeAssessment_Dental',
-		));
+		$this->genericAdmin('Removable dental items','OphNuPreoperative_PreoperativeAssessment_Dental');
 	}
 
 	public function actionEditHearingAidItems()
 	{
-		$this->render('//admin/generic_admin',array(
-			'title' => 'Hearing aid items',
-			'model' => 'OphNuPreoperative_PreoperativeAssessment_HearingAid',
-		));
+		$this->genericAdmin('Hearing aid items','OphNuPreoperative_PreoperativeAssessment_HearingAid');
 	}
 
 	public function actionEditBelongingItems()
 	{
-		$this->render('//admin/generic_admin',array(
-			'title' => 'Patient belongings',
-			'model' => 'OphNuPreoperative_PreoperativeAssessment_Belong',
-		));
+		$this->genericAdmin('Patient belongings','OphNuPreoperative_PreoperativeAssessment_Belong');
 	}
 
 	public function actionEditPainLocations()
 	{
-		$this->render('//admin/generic_admin',array(
-			'title' => 'Pain locations',
-			'model' => 'OphNuPreoperative_BaselineObservations_Location',
-		));
+		$this->genericAdmin('Pain locations','OphNuPreoperative_BaselineObservations_Location');
 	}
 
 	public function actionEditPainSides()
 	{
-		$this->render('//admin/generic_admin',array(
-			'title' => 'Pain sides',
-			'model' => 'OphNuPreoperative_BaselineObservations_Side',
-		));
+		$this->genericAdmin('Pain sides','OphNuPreoperative_BaselineObservations_Side');
 	}
 
 	public function actionEditPainTypes()
 	{
-		$this->render('//admin/generic_admin',array(
-			'title' => 'Pain types',
-			'model' => 'OphNuPreoperative_BaselineObservations_TypeOfPain',
-		));
+		$this->genericAdmin('Pain types','OphNuPreoperative_BaselineObservations_TypeOfPain');
 	}
 
 	public function actionEditPainScoreMethods()
 	{
-		$this->render('//admin/generic_admin',array(
-			'title' => 'Pain score methods',
-			'model' => 'OphNuPreoperative_BaselineObservations_PainScoreMethod',
-		));
+		$this->genericAdmin('Pain score methods','OphNuPreoperative_BaselineObservations_PainScoreMethod');
 	}
 
 	public function actionEditSkinAssessments()
 	{
-		$this->render('//admin/generic_admin',array(
-			'title' => 'Skin assessment items',
-			'model' => 'OphNuPreoperative_BaselineObservations_Skin',
-		));
+		$this->genericAdmin('Skin assessment items','OphNuPreoperative_BaselineObservations_Skin');
 	}
 
 	public function actionEditPreopObservations()
 	{
-		$this->render('//admin/generic_admin',array(
-			'title' => 'Pre-op observations',
-			'model' => 'OphNuPreoperative_BaselineObservations_Obs',
-		));
+		$this->genericAdmin('Pre-op observations','OphNuPreoperative_BaselineObservations_Obs');
 	}
 
 	public function actionEditIVSizes()
 	{
-		$this->render('//admin/generic_admin',array(
-			'title' => 'IV sizes',
-			'model' => 'OphNuPreoperative_BaselineObservations_Size',
-		));
+		$this->genericAdmin('IV sizes','OphNuPreoperative_BaselineObservations_Size');
 	}
 
 	public function actionEditIVFluidTypes()
 	{
-		$this->render('//admin/generic_admin',array(
-			'title' => 'IV fluid types',
-			'model' => 'OphNuPreoperative_BaselineObservations_FluidType',
-		));
+		$this->genericAdmin('IV fluid types','OphNuPreoperative_BaselineObservations_FluidType');
 	}
 
 	public function actionEditVolumeGiven()
 	{
-		$this->render('//admin/generic_admin',array(
-			'title' => 'Volumes given',
-			'model' => 'OphNuPreoperative_BaselineObservations_VolumeGiven',
-		));
+		$this->genericAdmin('Volumes given','OphNuPreoperative_BaselineObservations_VolumeGiven');
 	}
 
 	public function actionEditPatientStatuses()
 	{
-		$this->render('//admin/generic_admin',array(
-			'title' => 'Patient statuses',
-			'model' => 'OphNuPreoperative_PatientStatus_PatientStatus',
-		));
+		$this->genericAdmin('Patient statuses','OphNuPreoperative_PatientStatus_PatientStatus');
 	}
 
 	public function actionEditReasonsForCancellation()
 	{
-		$this->render('//admin/generic_admin',array(
-			'title' => 'Reasons for cancellation',
-			'model' => 'OphNuPreoperative_PatientStatus_Cancel',
-		));
+		$this->genericAdmin('Reasons for cancellation','OphNuPreoperative_PatientStatus_Cancel');
 	}
 }
