@@ -20,7 +20,6 @@
 return array(
 	'params' => array(
 		'admin_menu' => array(
-			'Pre-op patient identifiers' => '/OphNuPreoperative/admin/editPatientIdentifiers',
 			'Pre-op wristbands' => '/OphNuPreoperative/admin/editWristbands',
 			'Pre-op IOL types' => '/OphNuPreoperative/admin/editIOLTypes',
 			'Pre-op IOL sizes' => '/OphNuPreoperative/admin/editIOLSizes',

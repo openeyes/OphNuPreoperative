@@ -19,11 +19,6 @@
 
 class AdminController extends ModuleAdminController
 {
-	public function actionEditPatientIdentifiers()
-	{
-		$this->genericAdmin('Patient identifiers','OphNuPreoperative_PreoperativeAssessment_Identifier');
-	}
-
 	public function actionEditWristbands()
 	{
 		$this->genericAdmin('Special attention wristbands','OphNuPreoperative_PreoperativeAssessment_Wristband');
