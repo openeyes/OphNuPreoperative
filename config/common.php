@@ -22,7 +22,6 @@ return array(
 		'admin_menu' => array(
 			'Pre-op wristbands' => '/OphNuPreoperative/admin/editWristbands',
 			'Pre-op IOL types' => '/OphNuPreoperative/admin/editIOLTypes',
-			'Pre-op IOL sizes' => '/OphNuPreoperative/admin/editIOLSizes',
 			'Pre-op falls / mobility' => '/OphNuPreoperative/admin/editFallsMobilityItems',
 			'Pre-op dentals' => '/OphNuPreoperative/admin/editDentalItems',
 			'Pre-op hearing aids' => '/OphNuPreoperative/admin/editHearingAidItems',

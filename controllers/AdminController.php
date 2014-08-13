@@ -21,17 +21,12 @@ class AdminController extends ModuleAdminController
 {
 	public function actionEditWristbands()
 	{
-		$this->genericAdmin('Special attention wristbands','OphNuPreoperative_PreoperativeAssessment_Wristband');
+		$this->genericAdmin('Special attention wristbands','OphNuPreoperative_PatientID_Wristband');
 	}
 
 	public function actionEditIOLTypes()
 	{
 		$this->genericAdmin('IOL types','OphNuPreoperative_PreopAssessment_IOL_Type');
-	}
-
-	public function actionEditIOLSizes()
-	{
-		$this->genericAdmin('IOL sizes','OphNuPreoperative_PreopAssessment_IOL_Size');
 	}
 
 	public function actionEditFallsMobilityItems()
