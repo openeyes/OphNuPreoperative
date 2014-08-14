@@ -46,8 +46,9 @@
  * @property string $iv_location
  * @property integer $size_id
  * @property integer $fluid_type_id
- * @property integer $volume_given_id
  * @property string $rate
+ * @property string $volume_given
+ *
  *
  * The followings are the available model relations:
  *
@@ -64,7 +65,6 @@
  * @property OphNuPreoperative_BaselineObservations_Obs_Assignment $obss
  * @property OphNuPreoperative_BaselineObservations_Size $size
  * @property OphNuPreoperative_BaselineObservations_FluidType $fluid_type
- * @property OphNuPreoperative_BaselineObservations_VolumeGiven $volume_given
  */
 
 class Element_OphNuPreoperative_IVInserted  extends  BaseEventTypeElement
@@ -92,8 +92,8 @@ class Element_OphNuPreoperative_IVInserted  extends  BaseEventTypeElement
 	public function rules()
 	{
 		return array(
-			array('iv_inserted, iv_location_id, iv_size_id, fluid_type_id, volume_given_id, rate, iv_side_id, iv_fluid_started', 'safe'),
-			array('rate', 'numerical'),
+			array('iv_inserted, iv_location_id, iv_size_id, fluid_type_id, rate, iv_side_id, iv_fluid_started, volume_given', 'safe'),
+			array('rate, volume_given', 'numerical'),
 		);
 	}
 
@@ -110,7 +110,6 @@ class Element_OphNuPreoperative_IVInserted  extends  BaseEventTypeElement
 			'usermodified' => array(self::BELONGS_TO, 'User', 'last_modified_user_id'),
 			'iv_size' => array(self::BELONGS_TO, 'OphNuPreoperative_BaselineObservations_Size', 'iv_size_id'),
 			'fluid_type' => array(self::BELONGS_TO, 'OphNuPreoperative_BaselineObservations_FluidType', 'fluid_type_id'),
-			'volume_given' => array(self::BELONGS_TO, 'OphNuPreoperative_BaselineObservations_VolumeGiven', 'volume_given_id'),
 			'iv_location' => array(self::BELONGS_TO, 'OphNuPreoperative_IVInserted_Location', 'iv_location_id'),
 			'iv_side' => array(self::BELONGS_TO, 'OphNuPreoperative_IVInserted_Side', 'iv_side_id'),
 		);
@@ -127,7 +126,7 @@ class Element_OphNuPreoperative_IVInserted  extends  BaseEventTypeElement
 			'iv_inserted' => 'IV inserted',
 			'iv_size_id' => 'IV size',
 			'fluid_type_id' => 'IV fluid type',
-			'volume_given_id' => 'IV volume given',
+			'volume_given' => 'IV volume given',
 			'rate' => 'IV rate',
 			'iv_location_id' => 'IV location',
 			'iv_side_id' => 'IV side',
@@ -162,7 +161,7 @@ class Element_OphNuPreoperative_IVInserted  extends  BaseEventTypeElement
 		}
 
 		if ($this->iv_fluid_started) {
-			foreach (array('fluid_type_id','volume_given_id','rate') as $field) {
+			foreach (array('fluid_type_id','volume_given','rate') as $field) {
 				if (!$this->$field) {
 					$this->addError($field,$this->getAttributeLabel($field).' cannot be blank.');
 				}

@@ -17,23 +17,34 @@
  * @license http://www.gnu.org/licenses/gpl-3.0.html The GNU General Public License V3.0
  */
 ?>
-	<div class="element-fields">
-		<?php echo $form->checkBox($element, 'iv_inserted', array('text-align'=>'right','class'=>'linked-fields','data-linked-fields'=>'iv_location_id,iv_side_id,iv_size_id,iv_fluid_started','data-linked-values'=>'1'), array('label' => 3, 'field' => 4))?>
-		<?php echo $form->dropDownList($element, 'iv_location_id', CHtml::listData(OphNuPreoperative_IVInserted_Location::model()->findAll(array('order' => 'display_order asc')),'id','name'),array('empty' => '- Please select -'), !$element->iv_inserted,array('label'=>3,'field'=>4))?>
-		<?php echo $form->dropDownList($element, 'iv_side_id', CHtml::listData(OphNuPreoperative_IVInserted_Side::model()->findAll(array('order' => 'display_order asc')),'id','name'),array('empty' => '- Please select -'), !$element->iv_inserted,array('label' => 3, 'field' => 4))?>
-		<?php echo $form->dropDownList($element, 'iv_size_id', CHtml::listData(OphNuPreoperative_BaselineObservations_Size::model()->findAll(array('order'=> 'display_order asc')),'id','name'),array('empty'=>'- Please select -'), !$element->iv_inserted,array('label'=>3,'field'=>4))?>
-		<?php echo $form->radioBoolean($element, 'iv_fluid_started', array('class' => 'linked-fields', 'data-linked-fields' => 'fluid_type_id,volume_given_id,rate', 'data-linked-values' => 'Yes'), array('label' => 3, 'field' => 4), !$element->iv_inserted)?>
-		<?php echo $form->dropDownList($element, 'fluid_type_id', CHtml::listData(OphNuPreoperative_BaselineObservations_FluidType::model()->findAll(array('order'=> 'display_order asc')),'id','name'),array('empty'=>'- Please select -'), !$element->iv_fluid_started,array('label'=>3,'field'=>4))?>
-		<?php echo $form->dropDownList($element, 'volume_given_id', CHtml::listData(OphNuPreoperative_BaselineObservations_VolumeGiven::model()->findAll(array('order'=> 'display_order asc')),'id','name'),array('empty'=>'- Please select -'), !$element->iv_fluid_started,array('label'=>3,'field'=>4))?>
-		<div id="div_Element_OphNuPreoperative_IVInserted_rate" class="row field-row"<?php if (!$element->iv_fluid_started) {?> style="display: none;"<?php }?>>
-			<div class="large-3 column">
-				<label for="Element_OphNuPreoperative_IVInserted_rate">
-					<?php echo $element->getAttributeLabel('rate')?>:
-				</label>
-			</div>
-			<div class="large-2 column end">
-				<?php echo $form->textField($element, 'rate', array('nowrapper'=>true), array(), array('label' => 3, 'field' => 1))?>
-				<span class="metric">mL/hr</span>
-			</div>
-		</div>
-	</div>
+<div class="element-fields">
+
+	<?php echo $form->checkBox($element, 'iv_inserted', array(
+		'text-align'=>'right',
+		'class'=>'linked-fields',
+		'data-linked-fields'=>'iv_location_id,iv_side_id,iv_size_id,iv_fluid_started',
+		'data-linked-values'=>'1'
+	))?>
+
+	<?php echo $form->dropDownList($element, 'iv_location_id', CHtml::listData(OphNuPreoperative_IVInserted_Location::model()->findAll(array('order' => 'display_order asc')),'id','name'),array('empty' => '- Please select -'), !$element->iv_inserted)?>
+	<?php echo $form->dropDownList($element, 'iv_side_id', CHtml::listData(OphNuPreoperative_IVInserted_Side::model()->findAll(array('order' => 'display_order asc')),'id','name'),array('empty' => '- Please select -'), !$element->iv_inserted)?>
+	<?php echo $form->dropDownList($element, 'iv_size_id', CHtml::listData(OphNuPreoperative_BaselineObservations_Size::model()->findAll(array('order'=> 'display_order asc')),'id','name'),array('empty'=>'- Please select -'), !$element->iv_inserted)?>
+
+	<?php echo $form->radioBoolean($element, 'iv_fluid_started', array(
+		'class' => 'linked-fields',
+		'data-linked-fields' =>
+		'fluid_type_id,volume_given,rate',
+		'data-linked-values' => 'Yes'
+	), array(), !$element->iv_inserted)?>
+
+	<?php echo $form->dropDownList($element, 'fluid_type_id', CHtml::listData(OphNuPreoperative_BaselineObservations_FluidType::model()->findAll(array('order'=> 'display_order asc')),'id','name'),array('empty'=>'- Please select -'), !$element->iv_fluid_started)?>
+
+	<?php echo $form->textField($element, 'volume_given', array(
+		'hide' => !$element->iv_fluid_started,
+		'append-text' => 'ml'
+	));?>
+	<?php echo $form->textField($element, 'rate', array(
+		'hide' => !$element->iv_fluid_started,
+		'append-text' => 'mL/hr'
+	));?>
+</div>

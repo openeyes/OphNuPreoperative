@@ -22,11 +22,11 @@
 }
 /* line 19, ../sass/components/_event.scss */
 .event .event-content {
-  background-image: url('../img/watermark.png?1407423452');
+  background-image: url('../img/watermark.png?1408006616');
 }
 /* line 22, ../sass/components/_event.scss */
 .event .event-title {
-  background-image: url('../img/medium.png?1407423358');
+  background-image: url('../img/medium.png?1408006616');
 }
 
 /* line 27, ../sass/components/_event.scss */
@@ -61,42 +61,43 @@
   width: 1em !important;
 }
 
-/* line 55, ../sass/components/_event.scss */
-#Element_OphNuPreoperative_IVInserted_rate {
+/* line 56, ../sass/components/_event.scss */
+#Element_OphNuPreoperative_IVInserted_rate,
+#Element_OphNuPreoperative_IVInserted_volume_given {
   width: 5em;
-  display: inline;
+  display: inline-block;
 }
 
-/* line 61, ../sass/components/_event.scss */
+/* line 62, ../sass/components/_event.scss */
 .addRecordItemDiv label {
   width: 10em;
   margin-top: 5px;
 }
-/* line 65, ../sass/components/_event.scss */
+/* line 66, ../sass/components/_event.scss */
 .addRecordItemDiv input.recordInput {
   width: 5em;
 }
-/* line 68, ../sass/components/_event.scss */
+/* line 69, ../sass/components/_event.scss */
 .addRecordItemDiv .large-2 {
   display: inline-block !important;
   margin-left: -2.2em;
   margin-top: 3px;
 }
-/* line 73, ../sass/components/_event.scss */
+/* line 74, ../sass/components/_event.scss */
 .addRecordItemDiv .recordTimestamp {
   width: 6.4em;
   display: inline-block;
 }
-/* line 77, ../sass/components/_event.scss */
+/* line 78, ../sass/components/_event.scss */
 .addRecordItemDiv .recordTime {
   width: 5em;
   display: inline-block !important;
 }
-/* line 81, ../sass/components/_event.scss */
+/* line 82, ../sass/components/_event.scss */
 .addRecordItemDiv .recordDateLabel {
   width: 6.8em;
 }
-/* line 84, ../sass/components/_event.scss */
+/* line 85, ../sass/components/_event.scss */
 .addRecordItemDiv .recordsUseLastItemDiv {
   width: 35%;
   margin: 0 auto;

@@ -52,9 +52,10 @@
 	width: 1em !important;
 }
 
-#Element_OphNuPreoperative_IVInserted_rate {
+#Element_OphNuPreoperative_IVInserted_rate,
+#Element_OphNuPreoperative_IVInserted_volume_given {
 	width: 5em;
-	display: inline;
+	display: inline-block;
 }
 
 .addRecordItemDiv {

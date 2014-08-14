@@ -44,8 +44,6 @@
  * @property integer $iv_inserted
  * @property string $iv_location
  * @property integer $size_id
- * @property integer $fluid_type_id
- * @property integer $volume_given_id
  * @property string $rate
  *
  * The followings are the available model relations:
@@ -62,8 +60,6 @@
  * @property OphNuPreoperative_BaselineObservations_Skin $skin
  * @property OphNuPreoperative_BaselineObservations_Obs_Assignment $obss
  * @property OphNuPreoperative_BaselineObservations_Size $size
- * @property OphNuPreoperative_BaselineObservations_FluidType $fluid_type
- * @property OphNuPreoperative_BaselineObservations_VolumeGiven $volume_given
  */
 
 class Element_OphNuPreoperative_BaselineObservations  extends  BaseEventTypeElement
@@ -117,8 +113,6 @@ class Element_OphNuPreoperative_BaselineObservations  extends  BaseEventTypeElem
 			'obs' => array(self::HAS_MANY, 'OphNuPreoperative_BaselineObservations_Obs', 'ob_id', 'through' => 'obs_assignment'),
 			'obs_assignment' => array(self::HAS_MANY, 'OphNuPreoperative_BaselineObservations_Obs_Assignment', 'element_id'),
 			'size' => array(self::BELONGS_TO, 'OphNuPreoperative_BaselineObservations_Size', 'size_id'),
-			'fluid_type' => array(self::BELONGS_TO, 'OphNuPreoperative_BaselineObservations_FluidType', 'fluid_type_id'),
-			'volume_given' => array(self::BELONGS_TO, 'OphNuPreoperative_BaselineObservations_VolumeGiven', 'volume_given_id'),
 			'skins' => array(self::HAS_MANY, 'OphNuPreoperative_BaselineObservations_Skin', 'skin_id', 'through' => 'skins_assignment'),
 			'skins_assignment' => array(self::HAS_MANY, 'OphNuPreoperative_BaselineObservations_Skin_Assignment', 'element_id'),
 			'vitals' => array(self::HAS_MANY, 'OphNuPreoperative_Observation', 'element_id', 'order' => 'timestamp ASC'),
