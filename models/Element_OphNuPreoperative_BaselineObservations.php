@@ -121,7 +121,7 @@ class Element_OphNuPreoperative_BaselineObservations  extends  BaseEventTypeElem
 			'volume_given' => array(self::BELONGS_TO, 'OphNuPreoperative_BaselineObservations_VolumeGiven', 'volume_given_id'),
 			'skins' => array(self::HAS_MANY, 'OphNuPreoperative_BaselineObservations_Skin', 'skin_id', 'through' => 'skins_assignment'),
 			'skins_assignment' => array(self::HAS_MANY, 'OphNuPreoperative_BaselineObservations_Skin_Assignment', 'element_id'),
-			'vitals' => array(self::HAS_MANY, 'OphNuPreoperative_Observation', 'element_id'),
+			'vitals' => array(self::HAS_MANY, 'OphNuPreoperative_Observation', 'element_id', 'order' => 'timestamp ASC'),
 			'blood_glucose_m' => array(self::BELONGS_TO, 'MeasurementBloodGlucose', 'blood_glucose_m_id'),
 		);
 	}
