@@ -61,7 +61,7 @@ class OphNuPreoperative_Observation extends BaseActiveRecordVersioned
 	{
 		return array(
 			array('timestamp, time, pulse_m, blood_pressure_m, rr_m, sao2_m', 'safe'),
-			array('timestamp, pulse_m, blood_pressure_m, rr_m, sao2_m', 'required'),
+			array('timestamp', 'required'),
 			array('id, name', 'safe', 'on' => 'search'),
 		);
 	}
@@ -130,7 +130,40 @@ class OphNuPreoperative_Observation extends BaseActiveRecordVersioned
 
 	public function getDescription()
 	{
-		return "Pulse: ".$this->pulse_m->getValueText().", BP: ".$this->blood_pressure_m->getValueText().", RR: ".$this->rr_m->getValueText().", SaO2: ".$this->sao2_m->getValueText();
+		$description = '';
+
+		foreach (array(
+			'Pulse' => 'pulse_m',
+			'BP' => 'blood_pressure_m',
+			'RR' => 'rr_m',
+			'SaO2' => 'sao2_m',
+		) as $label => $field) {
+			if ($this->$field) {
+				if ($description) {
+					$description .= ', ';
+				}
+				$description .= $label.': '.$this->$field->getValueText();
+			}
+		}
+
+		return $description;
+	}
+
+	public function afterValidate()
+	{
+		$have_data = false;
+
+		foreach (array('pulse_m','rr_m','sao2_m','blood_pressure_m') as $field) {
+			if (is_object($this->$field)) {
+				$have_data = true;
+			}
+		}
+
+		if (!$have_data) {
+			$this->addError('','Please enter at least one vital sign item');
+		}
+
+		return parent::afterValidate();
 	}
 }
 ?>
