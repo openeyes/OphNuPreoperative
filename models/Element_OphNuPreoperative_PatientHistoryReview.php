@@ -62,7 +62,7 @@ class Element_OphNuPreoperative_PatientHistoryReview	extends  BaseEventTypeEleme
 	public function rules()
 	{
 		return array(
-			array('event_id, medical_history_verified, medical_discrepancy_found, comments, medication_history_verified', 'safe'),
+			array('event_id, medical_history_verified, medical_discrepancy_found, comments, medication_history_verified, allergies_verified', 'safe'),
 			array('id, event_id, medical_history_verified, medical_discrepancy_found, comments, medication_history_verified, ', 'safe', 'on' => 'search'),
 		);
 	}
@@ -94,6 +94,7 @@ class Element_OphNuPreoperative_PatientHistoryReview	extends  BaseEventTypeEleme
 			'medical_discrepancy_found' => 'Medical history discrepancy found?',
 			'comments' => 'Discrepancy notes',
 			'medication_history_verified' => 'Medication history verified',
+			'allergies_verified' => 'Allergies verified',
 		);
 	}
 

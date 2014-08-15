@@ -41,4 +41,5 @@
 			'allow_collapse' => false,
 			'button_align' => 'left',
 		))?>
+		<?php echo $form->checkBox($element, 'allergies_verified', array('text-align'=>'right'), array('label' => 3, 'field' => 4))?>
 	</div>
