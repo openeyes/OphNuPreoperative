@@ -24,6 +24,10 @@
 			'model' => new OphNuPreoperative_Observation,
 			'field' => 'vitals',
 			'validate_method' => '/OphNuPreoperative/default/validateVital',
+			'sort_table_after_save' => array(
+				'type' => 'date',
+				'column' => 0
+			),
 			'row_view' => 'protected/modules/OphNuPreoperative/views/default/_vital_row.php',
 			'columns' => array(
 				array(
