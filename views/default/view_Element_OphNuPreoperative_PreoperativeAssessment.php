@@ -190,4 +190,10 @@
 				<div class="large-9 column end"><div class="data-value"><?php echo CHtml::encode($element->b_comments)?></div></div>
 			</div>
 		<?php }?>
+		<?php if ($element->patient_belongings && $element->patient_belongings_comments) {?>
+			<div class="row data-row">
+				<div class="large-3 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('patient_belongings_comments'))?></div></div>
+				<div class="large-9 column end"><div class="data-value"><?php echo CHtml::encode($element->patient_belongings_comments)?></div></div>
+			</div>
+		<?php }?>
 	</div>
