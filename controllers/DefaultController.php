@@ -124,6 +124,14 @@ class DefaultController extends BaseEventTypeController
 		}
 	}
 
+	protected function setElementDefaultOptions_Element_OphNuPreoperative_PreoperativeAssessment($element, $action)
+	{
+		if ($action == 'create') {
+			$element->date_last_ate = date('j M Y',strtotime('yesterday'));
+			$element->date_last_drank = date('j M Y',strtotime('yesterday'));
+		}
+	}
+
 	protected function setComplexAttributes_Element_OphNuPreoperative_PatientHistoryReview($element, $data, $index)
 	{
 		$medications = array();
