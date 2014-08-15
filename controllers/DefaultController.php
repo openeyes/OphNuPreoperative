@@ -207,7 +207,7 @@ class DefaultController extends BaseEventTypeController
 		}
 
 		if (empty($errors)) {
-			$vital->timestamp = date('Y-m-d',strtotime($vital->timestamp)).' '.$vital->time.':00';
+			$vital->timestamp = date('Y-m-d').' '.$vital->time.':00';
 			$errors['row'] = $this->renderPartial('_vital_row',array('item' => $vital, 'i' => $_POST['i'], 'edit' => true),true);
 		}
 

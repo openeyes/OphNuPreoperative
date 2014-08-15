@@ -26,6 +26,7 @@
 			'edit' => false,
 			'row_view' => 'protected/modules/OphNuPreoperative/views/default/_vital_row.php',
 			'no_items_text' => 'No vitals have been recorded.',
+			'include_date' => false,
 		))?>
 		<div class="row data-row">
 			<div class="large-3 column"><div class="data-label"><?php echo CHtml::encode($element->getAttributeLabel('blood_glucose_m'))?></div></div>

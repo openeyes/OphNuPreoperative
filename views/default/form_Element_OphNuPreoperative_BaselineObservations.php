@@ -44,6 +44,7 @@
 			'no_items_text' => 'No vitals have been recorded.',
 			'add_button_text' => 'Add vital',
 			'use_last_button_text' => 'Input last recorded vital signs',
+			'include_date' => false,
 		))?>
 		<div id="div_Element_OphNuPreoperative_BaselineObservations_blood_glucose_m" class="row field-row">
 			<div class="large-3 column">
