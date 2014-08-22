@@ -60,7 +60,7 @@ class OphNuPreoperative_Observation extends BaseActiveRecordVersioned
 	public function rules()
 	{
 		return array(
-			array('timestamp, time, pulse_m, blood_pressure_m, rr_m, sao2_m', 'safe'),
+			array('timestamp, time, pulse_m, blood_pressure_m, rr_m, spo2_m', 'safe'),
 			array('timestamp', 'required'),
 			array('id, name', 'safe', 'on' => 'search'),
 		);
@@ -79,7 +79,7 @@ class OphNuPreoperative_Observation extends BaseActiveRecordVersioned
 			'pulse_m' => array(self::BELONGS_TO, 'MeasurementPulse', 'hr_pulse_m_id'),
 			'blood_pressure_m' => array(self::BELONGS_TO, 'MeasurementBloodPressure', 'blood_pressure_m_id'),
 			'rr_m' => array(self::BELONGS_TO, 'MeasurementRespiratoryRate', 'rr_m_id'),
-			'sao2_m' => array(self::BELONGS_TO, 'MeasurementSAO2', 'sao2_m_id'),
+			'spo2_m' => array(self::BELONGS_TO, 'MeasurementSPO2', 'spo2_m_id'),
 		);
 	}
 
@@ -93,7 +93,7 @@ class OphNuPreoperative_Observation extends BaseActiveRecordVersioned
 			'pulse_m' => 'HR / pulse',
 			'blood_pressure_m' => 'Blood pressure',
 			'rr_m' => 'RR',
-			'sao2_m' => 'SaO2',
+			'spo2_m' => 'SpO2',
 			'blood_pressure_m_systolic' => 'Blood pressure (systolic)',
 			'blood_pressure_m_diastolic' => 'Blood pressure (diastolic)',
 		);
@@ -136,7 +136,7 @@ class OphNuPreoperative_Observation extends BaseActiveRecordVersioned
 			'Pulse' => 'pulse_m',
 			'BP' => 'blood_pressure_m',
 			'RR' => 'rr_m',
-			'SaO2' => 'sao2_m',
+			'SpO2' => 'spo2_m',
 		) as $label => $field) {
 			if ($this->$field) {
 				if ($description) {
@@ -153,7 +153,7 @@ class OphNuPreoperative_Observation extends BaseActiveRecordVersioned
 	{
 		$have_data = false;
 
-		foreach (array('pulse_m','rr_m','sao2_m','blood_pressure_m') as $field) {
+		foreach (array('pulse_m','rr_m','spo2_m','blood_pressure_m') as $field) {
 			if (is_object($this->$field)) {
 				$have_data = true;
 			}

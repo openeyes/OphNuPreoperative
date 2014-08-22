@@ -27,7 +27,7 @@
  * @property string $bpm
  * @property string $temperature
  * @property string $res_rate
- * @property string $sao2
+ * @property string $spo2
  * @property string $blood_sugar
  * @property integer $bloodsugar_na
  * @property integer $urine_passed

@@ -37,7 +37,7 @@
 						array('field' => 'pulse_m','type' => 'pulse'),
 						array('field' => 'blood_pressure_m','type' => 'blood_pressure'),
 						array('field' => 'rr_m','type' => 'rr'),
-						array('field' => 'sao2_m','type' => 'sao2'),
+						array('field' => 'spo2_m','type' => 'spo2'),
 					),
 				),
 			),

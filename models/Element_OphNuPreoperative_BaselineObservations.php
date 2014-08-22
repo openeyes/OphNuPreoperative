@@ -26,7 +26,7 @@
  * @property string $blood_pressure
  * @property string $bpm
  * @property string $res_rate
- * @property string $sao2
+ * @property string $spo2
  * @property string $blood_sugar
  * @property integer $bloodsugar_na
  * @property integer $urine_passed
@@ -132,7 +132,7 @@ class Element_OphNuPreoperative_BaselineObservations  extends  BaseEventTypeElem
 			'bp_diastolic' => 'Blood pressure (diastolic)',
 			'bpm' => 'Heart rate / pulse',
 			'res_rate' => 'Respiratory rate',
-			'sao2' => 'SaO2',
+			'spo2' => 'SpO2',
 			'blood_glucose_m' => 'Blood glucose',
 			'bloodsugar_na' => 'N/A',
 			'urine_passed' => 'Urine passed',
@@ -165,7 +165,7 @@ class Element_OphNuPreoperative_BaselineObservations  extends  BaseEventTypeElem
 		$criteria->compare('blood_pressure', $this->blood_pressure);
 		$criteria->compare('bpm', $this->bpm);
 		$criteria->compare('res_rate', $this->res_rate);
-		$criteria->compare('sao2', $this->sao2);
+		$criteria->compare('spo2', $this->spo2);
 		$criteria->compare('blood_sugar', $this->blood_sugar);
 		$criteria->compare('bloodsugar_na', $this->bloodsugar_na);
 		$criteria->compare('urine_passed', $this->urine_passed);
