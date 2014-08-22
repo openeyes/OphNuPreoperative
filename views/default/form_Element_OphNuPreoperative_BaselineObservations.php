@@ -25,7 +25,7 @@
 			'field' => 'vitals',
 			'validate_method' => '/OphNuPreoperative/default/validateVital',
 			'sort_table_after_save' => array(
-				'type' => 'date',
+				'type' => 'time',
 				'column' => 0
 			),
 			'row_view' => 'protected/modules/OphNuPreoperative/views/default/_vital_row.php',
